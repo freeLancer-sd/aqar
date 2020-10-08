@@ -19,6 +19,18 @@ class CreatePropertiesTable extends Migration
             $table->string('address')->nullable();
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('room_number');
+            $table->integer('property_age');
+            $table->integer('furnished')->nullable();
+            $table->integer('air_conditioner')->nullable();
+            $table->integer('space')->nullable();
+            $table->double('price')->nullable();
+            $table->text('note')->nullable();
+
+            $table->foreignId('property_type_id')->constrained();
+            $table->foreignId('property_categorie_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

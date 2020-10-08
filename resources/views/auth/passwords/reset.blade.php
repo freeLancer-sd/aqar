@@ -35,7 +35,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}"><b>Aqar </b>App</a>
     </div>
 
     <!-- /.login-logo -->

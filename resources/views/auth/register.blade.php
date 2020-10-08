@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>InfyOm Laravel Generator | Registration Page</title>
+    <title>Aqar App| Registration Page</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -34,7 +34,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ url('/home') }}"><b>InfyOm </b>Generator</a>
+        <a href="{{ url('/home') }}"><b>Aqar </b>App</a>
     </div>
 
     <div class="register-box-body">
@@ -61,6 +61,18 @@
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group has-feedback{{ $errors->has('mobile') ? ' has-error' : '' }}">
+                <input type="number" class="form-control" name="mobile" value="{{ old('mobile') }}"
+                       placeholder="Mobile">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+
+                @if ($errors->has('mobile'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('mobile') }}</strong>
                     </span>
                 @endif
             </div>
