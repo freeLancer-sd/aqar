@@ -3,8 +3,6 @@
 namespace App\DataTables;
 
 use App\Models\Property;
-use Yajra\DataTables\DataTableAbstract;
-use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
@@ -15,7 +13,7 @@ class PropertyDataTable extends DataTable
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
-     * @return DataTableAbstract
+     * @return \Yajra\DataTables\DataTableAbstract
      */
     public function dataTable($query)
     {
@@ -27,7 +25,7 @@ class PropertyDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param Property $model
+     * @param \App\Models\Property $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function query(Property $model)
@@ -38,7 +36,7 @@ class PropertyDataTable extends DataTable
     /**
      * Optional method if you want to use html builder.
      *
-     * @return Builder
+     * @return \Yajra\DataTables\Html\Builder
      */
     public function html()
     {
@@ -104,7 +102,8 @@ class PropertyDataTable extends DataTable
             'price' => new Column(['title' => __('models/properties.fields.price'), 'data' => 'price']),
             'note' => new Column(['title' => __('models/properties.fields.note'), 'data' => 'note']),
             'property_type_id' => new Column(['title' => __('models/properties.fields.property_type_id'), 'data' => 'property_type_id']),
-            'property_categorie_id' => new Column(['title' => __('models/properties.fields.property_categorie_id'), 'data' => 'property_categorie_id'])
+            'property_categorie_id' => new Column(['title' => __('models/properties.fields.property_categorie_id'), 'data' => 'property_categorie_id']),
+            'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id'])
         ];
     }
 

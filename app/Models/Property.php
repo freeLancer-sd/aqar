@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
  *      definition="Property",
- *      required={"status", "room_number", "property_age", "property_type_id", "property_categorie_id"},
+ *      required={"status", "property_age", "property_type_id", "property_categorie_id", "user_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -97,6 +99,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
+ *          property="user_id",
+ *          description="user_id",
+ *          type="integer",
+ *          format="int32"
+ *      ),
+ *      @SWG\Property(
  *          property="deleted_at",
  *          description="deleted_at",
  *          type="string",
@@ -127,6 +135,7 @@ class Property extends Model
 
 
     protected $dates = ['deleted_at'];
+    protected $with = ['images', 'propertyCategorie', 'propertyType', 'user'];
 
 
 
@@ -144,7 +153,8 @@ class Property extends Model
         'price',
         'note',
         'property_type_id',
-        'property_categorie_id'
+        'property_categorie_id',
+        'user_id'
     ];
 
     /**
@@ -167,7 +177,8 @@ class Property extends Model
         'price' => 'float',
         'note' => 'string',
         'property_type_id' => 'integer',
-        'property_categorie_id' => 'integer'
+        'property_categorie_id' => 'integer',
+        'user_id' => 'integer'
     ];
 
     /**
@@ -180,8 +191,8 @@ class Property extends Model
         'address' => 'nullable|string|max:191',
         'lat' => 'nullable|numeric',
         'lng' => 'nullable|numeric',
-        'status' => 'required|integer',
-        'room_number' => 'required|integer',
+        'status' => 'integer',
+        'room_number' => 'nullable|integer',
         'property_age' => 'required|integer',
         'furnished' => 'nullable|integer',
         'air_conditioner' => 'nullable|integer',
@@ -190,32 +201,41 @@ class Property extends Model
         'note' => 'nullable|string',
         'property_type_id' => 'required',
         'property_categorie_id' => 'required',
+        'user_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function propertyCategorie()
     {
-        return $this->belongsTo(\App\Models\PropertyCategory::class, 'property_categorie_id');
+        return $this->belongsTo(PropertyCategory::class, 'property_categorie_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function propertyType()
     {
-        return $this->belongsTo(\App\Models\PropertyType::class, 'property_type_id');
+        return $this->belongsTo(PropertyType::class, 'property_type_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return BelongsTo
+     **/
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
+     * @return HasMany
      **/
     public function images()
     {
-        return $this->hasMany(\App\Models\Image::class, 'property_id');
+        return $this->hasMany(Image::class, 'property_id');
     }
 }

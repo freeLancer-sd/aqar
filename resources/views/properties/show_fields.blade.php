@@ -82,3 +82,9 @@
     <p>{{ $property->property_categorie_id }}</p>
 </div>
 
+<!-- User Id Field -->
+<div class="form-group">
+    {!! Form::label('user_id', __('models/properties.fields.user_id').':') !!}
+    <p>{{ $property->user_id }}</p>
+</div>
+

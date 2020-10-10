@@ -20,6 +20,7 @@ return array (
     'note' => 'Note',
     'property_type_id' => 'Property Type Id',
     'property_categorie_id' => 'Property Categorie Id',
+    'user_id' => 'User Id',
     'deleted_at' => 'Deleted At',
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',

@@ -59,16 +59,16 @@ class ImageAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $images = $this->imageRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
-
-        return $this->sendResponse(
-            $images->toArray(),
-            __('messages.retrieved', ['model' => __('models/images.plural')])
-        );
+        // $images = $this->imageRepository->all(
+        //     $request->except(['skip', 'limit']),
+        //     $request->get('skip'),
+        //     $request->get('limit')
+        // );
+return $this->imageRepository->all();
+        // return $this->sendResponse(
+        //     $images->toArray(),
+        //     __('messages.retrieved', ['model' => __('models/images.plural')])
+        // );
     }
 
     /**
@@ -111,14 +111,12 @@ class ImageAPIController extends AppBaseController
      */
     public function store(CreateImageAPIRequest $request)
     {
-        $input = $request->all();
+        return $image = $this->imageRepository->createApi($request);
 
-        $image = $this->imageRepository->create($input);
-
-        return $this->sendResponse(
-            $image->toArray(),
-            __('messages.saved', ['model' => __('models/images.singular')])
-        );
+        // return $this->sendResponse(
+        //     $image->toArray(),
+        //     __('messages.saved', ['model' => __('models/images.singular')])
+        // );
     }
 
     /**

@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Property::class, function (Faker $faker) {
 
     return [
-        'title' => $faker->word,
+        'title' => $faker->name,
         'address' => $faker->word,
         'lat' => $faker->randomDigitNotNull,
         'lng' => $faker->randomDigitNotNull,
@@ -19,9 +19,10 @@ $factory->define(Property::class, function (Faker $faker) {
         'air_conditioner' => $faker->randomDigitNotNull,
         'space' => $faker->randomDigitNotNull,
         'price' => $faker->randomDigitNotNull,
-        'note' => $faker->text,
+        'note' => $faker->word,
         'property_type_id' => $faker->word,
         'property_categorie_id' => $faker->word,
+        'user_id' => $faker->word,
         'deleted_at' => $faker->date('Y-m-d H:i:s'),
         'created_at' => $faker->date('Y-m-d H:i:s'),
         'updated_at' => $faker->date('Y-m-d H:i:s')

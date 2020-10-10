@@ -59,11 +59,7 @@ class PropertyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $properties = $this->propertyRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $properties = $this->propertyRepository->index();
 
         return $this->sendResponse(
             $properties->toArray(),
@@ -109,10 +105,10 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreatePropertyAPIRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
 
+        $input = $request->all();
         $property = $this->propertyRepository->create($input);
 
         return $this->sendResponse(
@@ -222,25 +218,28 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, UpdatePropertyAPIRequest $request)
+    public function update($id, Request $request)
     {
         $input = $request->all();
 
         /** @var Property $property */
         $property = $this->propertyRepository->find($id);
 
+
         if (empty($property)) {
             return $this->sendError(
                 __('messages.not_found', ['model' => __('models/properties.singular')])
             );
         }
-
+        if ($property->user_id === $request->user_id) {
+        
         $property = $this->propertyRepository->update($input, $id);
 
         return $this->sendResponse(
-            $property->toArray(),
+            $property,
             __('messages.updated', ['model' => __('models/properties.singular')])
         );
+    }
     }
 
     /**

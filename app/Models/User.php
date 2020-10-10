@@ -91,17 +91,36 @@ class User extends Model
     protected $dates = ['deleted_at'];
 
 
-
-    public $fillable = [
-        'name',
-        'email',
-        'mobile',
-        'email_verified_at',
-        'role',
-        'status',
-        'password',
-        'remember_token'
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'mobile', 'password',
     ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token','email_verified_at', 'deleted_at', 'status'
+    ];
+
+
+
+    // public $fillable = [
+    //     'name',
+    //     'email',
+    //     'mobile',
+    //     'email_verified_at',
+    //     'role',
+    //     'status',
+    //     'password',
+    //     'remember_token'
+    // ];
 
     /**
      * The attributes that should be casted to native types.
@@ -130,8 +149,8 @@ class User extends Model
         'email' => 'nullable|string|max:191',
         'mobile' => 'required|string|max:191',
         'email_verified_at' => 'nullable',
-        'role' => 'required|integer',
-        'status' => 'required|integer',
+        'role' => 'integer',
+        'status' => 'integer',
         'password' => 'required|string|max:191',
         'remember_token' => 'nullable|string|max:100',
         'deleted_at' => 'nullable',

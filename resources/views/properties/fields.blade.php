@@ -82,6 +82,12 @@
     {!! Form::number('property_categorie_id', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- User Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('user_id', __('models/properties.fields.user_id').':') !!}
+    {!! Form::number('user_id', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}

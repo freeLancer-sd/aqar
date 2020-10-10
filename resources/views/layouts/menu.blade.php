@@ -21,3 +21,7 @@
     <a href="{{ route('images.index') }}"><i class="fa fa-edit"></i><span>@lang('models/images.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('properties*') ? 'active' : '' }}">
+    <a href="{{ route('properties.index') }}"><i class="fa fa-edit"></i><span>@lang('models/properties.plural')</span></a>
+</li>
+

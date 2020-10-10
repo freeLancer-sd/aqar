@@ -20,7 +20,7 @@ class CreatePropertiesTable extends Migration
             $table->double('lat')->nullable();
             $table->double('lng')->nullable();
             $table->integer('status')->default(1);
-            $table->integer('room_number');
+            $table->integer('room_number')->nullable();
             $table->integer('property_age');
             $table->integer('furnished')->nullable();
             $table->integer('air_conditioner')->nullable();
@@ -30,6 +30,7 @@ class CreatePropertiesTable extends Migration
 
             $table->foreignId('property_type_id')->constrained();
             $table->foreignId('property_categorie_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

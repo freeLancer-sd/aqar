@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Str;
 
 class AuthController extends Controller
 {
@@ -12,16 +13,18 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:55',
-            'phone' => 'required|max:15',
+            'mobile' => 'required|max:15',
             'email' => 'email|required|unique:users',
             'password' => 'required|confirmed'
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
+        $validatedData['api_token'] = Str::random(60);
+
 
         $user = User::create($validatedData);
 
-        $accessToken = $user->createToken('authToken')->accessToken;
+        // $accessToken = $user->createToken('authToken')->accessToken;
 
         return response(['user' => $user, 'access_token' => $accessToken]);
     }
@@ -29,17 +32,18 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $loginData = $request->validate([
-            'phone' => 'email|required',
+            'mobile' => 'required',
             'password' => 'required'
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials']);
+            return response(['message' => 'Invalid Credentials', 'status'=> false]);
         }
 
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        // $accessToken = auth()->user()->createToken('authToken')->accessToken;
+        // $validatedData['api_token'] => ,
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(['user' => auth()->user(), 'api_token' => Str::random(60), 'status'=> true]);
 
     }
 }

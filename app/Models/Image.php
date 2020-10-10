@@ -62,7 +62,7 @@ class Image extends Model
     use SoftDeletes;
 
     public $table = 'images';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -97,10 +97,10 @@ class Image extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'required|string|max:191',
-        'url' => 'required|string|max:191',
-        'property_id' => 'required',
-        'user_id' => 'required',
+        'name' => 'nullable',
+        'url' => 'nullable',
+        'property_id' => 'nullable',
+        'user_id' => 'nullable',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
@@ -119,6 +119,6 @@ class Image extends Model
      **/
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class, 'user_id');
+        return $this->belongsTo(\App\User::class, 'user_id');
     }
 }
