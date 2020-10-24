@@ -15,7 +15,7 @@ class AuthController extends Controller
             'name' => 'required|max:55',
             'mobile' => 'required|max:15',
             'email' => 'email|required|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required'
         ]);
 
         $validatedData['password'] = bcrypt($request->password);
@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         // $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => $user, 'access_token' => $accessToken]);
+        return response(['user' => $user, 'api_token' => $validatedData['api_token'], 'status'=> true]);
     }
 
     public function login(Request $request)

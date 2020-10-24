@@ -21,6 +21,8 @@ class CreatePropertiesTable extends Migration
             $table->double('lng')->nullable();
             $table->integer('status')->default(1);
             $table->integer('room_number')->nullable();
+            $table->integer('bath_number')->nullable();
+            $table->integer('hall_number')->nullable();
             $table->integer('property_age');
             $table->integer('furnished')->nullable();
             $table->integer('air_conditioner')->nullable();
