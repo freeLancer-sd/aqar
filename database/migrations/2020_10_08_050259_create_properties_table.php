@@ -24,12 +24,23 @@ class CreatePropertiesTable extends Migration
             $table->integer('bath_number')->nullable();
             $table->integer('hall_number')->nullable();
             $table->integer('property_age');
-            $table->integer('furnished')->nullable();
             $table->integer('air_conditioner')->nullable();
             $table->integer('space')->nullable();
             $table->double('price')->nullable();
             $table->text('note')->nullable();
-
+            $table->string('land_number')->nullable(); // رقم الارض
+            $table->string('destination')->nullable(); //الوجهة
+            $table->string('advertiser_status')->nullable(); // حالة المعلن
+            $table->string('floor')->nullable(); // الطابق
+            $table->string('the_number_stores')->nullable(); //عدد المحلات
+            $table->string('the_number_apartments')->nullable(); //عدد الشقق
+            $table->boolean('deluxe')->nullable(); //ديلوكس
+            $table->boolean('kitchen')->nullable(); // مطبخ
+            $table->boolean('swimming_pool')->nullable(); // حوض سباحة
+            $table->boolean('driver_room')->nullable(); //غرفة سائق;
+            $table->boolean('maids_room')->nullable();//غرفة خادمة
+            $table->boolean('elevator')->nullable(); //مصعد
+            $table->boolean('furnished')->nullable(); //مؤثث
             $table->foreignId('property_type_id')->constrained();
             $table->foreignId('property_categorie_id')->constrained();
             $table->foreignId('user_id')->constrained();

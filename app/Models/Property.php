@@ -87,36 +87,65 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="destination",
+ *          description="destination",
+ *          type="string"
+ *      ),
+@SWG\Property(
+ *          property="advertiser_status",
+ *          description="advertiser_status",
+ *          type="string"
+ *      ),
+ * @SWG\Property(
+ *          property="land_number",
+ *          description="land_number",
+ *          type="number"
+ *      ),
+ * @SWG\Property(
+ *          property="floor",
+ *          description="floor",
+ *          type="number"
+ *      ), @SWG\Property(
+ *          property="the_number_apartments",
+ *          description="the_number_apartments",
+ *          type="number"
+ *      ),
+ * @SWG\Property(
+ *          property="the_number_stores",
+ *          description="the_number_stores",
+ *          type="number"
+ *      ),
+ * @SWG\Property(
  *          property="property_type_id",
  *          description="property_type_id",
  *          type="integer",
  *          format="int32"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="property_categorie_id",
  *          description="property_categorie_id",
  *          type="integer",
  *          format="int32"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="user_id",
  *          description="user_id",
  *          type="integer",
  *          format="int32"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="deleted_at",
  *          description="deleted_at",
  *          type="string",
  *          format="date-time"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="created_at",
  *          description="created_at",
  *          type="string",
  *          format="date-time"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="updated_at",
  *          description="updated_at",
  *          type="string",
@@ -129,14 +158,13 @@ class Property extends Model
     use SoftDeletes;
 
     public $table = 'properties';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
     protected $with = ['images', 'propertyCategorie', 'propertyType', 'user'];
-
 
 
     public $fillable = [
@@ -154,6 +182,18 @@ class Property extends Model
         'space',
         'price',
         'note',
+        'land_number',
+        'destination',
+        'advertiser_status',
+        'floor',
+        'the_number_stores',
+        'the_number_apartments',
+        'deluxe',
+        'kitchen',
+        'swimming_pool',
+        'driver_room',
+        'maids_room',
+        'elevator',
         'property_type_id',
         'property_categorie_id',
         'user_id'
@@ -173,13 +213,26 @@ class Property extends Model
         'status' => 'integer',
         'room_number' => 'integer',
         'property_age' => 'integer',
-        'hall_number'=> 'integer',
-        'bath_number'=> 'integer',
+        'hall_number' => 'integer',
+        'bath_number' => 'integer',
         'furnished' => 'integer',
         'air_conditioner' => 'integer',
         'space' => 'integer',
         'price' => 'float',
         'note' => 'string',
+        'land_number' => 'integer',
+        'destination' => 'string',
+        'advertiser_status' => 'string',
+        'floor' => 'integer',
+        'the_number_stores' => 'integer',
+        'the_number_apartments' => 'integer',
+        'deluxe' => 'boolean',
+        'kitchen' => 'boolean',
+        'swimming_pool' => 'boolean',
+        'driver_room' => 'boolean',
+        'maids_room' => 'boolean',
+        'elevator' => 'boolean',
+        'furnished' => 'boolean',
         'property_type_id' => 'integer',
         'property_categorie_id' => 'integer',
         'user_id' => 'integer'
