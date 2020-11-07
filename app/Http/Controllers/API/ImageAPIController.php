@@ -14,7 +14,6 @@ use Response;
  * Class ImageController
  * @package App\Http\Controllers\API
  */
-
 class ImageAPIController extends AppBaseController
 {
     /** @var  ImageRepository */
@@ -64,7 +63,7 @@ class ImageAPIController extends AppBaseController
         //     $request->get('skip'),
         //     $request->get('limit')
         // );
-return $this->imageRepository->all();
+        return $this->imageRepository->all();
         // return $this->sendResponse(
         //     $images->toArray(),
         //     __('messages.retrieved', ['model' => __('models/images.plural')])
@@ -245,6 +244,7 @@ return $this->imageRepository->all();
      * @param int $id
      * @return Response
      *
+     * @throws \Exception
      * @SWG\Delete(
      *      path="/images/{id}",
      *      summary="Remove the specified Image from storage",

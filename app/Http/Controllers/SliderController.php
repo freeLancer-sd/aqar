@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateSliderRequest;
 use App\Repositories\SliderRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Http\Request;
 use Response;
 
 class SliderController extends AppBaseController
@@ -49,11 +50,10 @@ class SliderController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateSliderRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
 
-        $slider = $this->sliderRepository->create($input);
+        $this->sliderRepository->createSlider($request);
 
         Flash::success(__('messages.saved', ['model' => __('models/sliders.singular')]));
 
@@ -63,7 +63,7 @@ class SliderController extends AppBaseController
     /**
      * Display the specified Slider.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -72,7 +72,7 @@ class SliderController extends AppBaseController
         $slider = $this->sliderRepository->find($id);
 
         if (empty($slider)) {
-            Flash::error(__('models/sliders.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/sliders.singular') . ' ' . __('messages.not_found'));
 
             return redirect(route('sliders.index'));
         }
@@ -83,7 +83,7 @@ class SliderController extends AppBaseController
     /**
      * Show the form for editing the specified Slider.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -103,7 +103,7 @@ class SliderController extends AppBaseController
     /**
      * Update the specified Slider in storage.
      *
-     * @param  int              $id
+     * @param int $id
      * @param UpdateSliderRequest $request
      *
      * @return Response
@@ -128,7 +128,7 @@ class SliderController extends AppBaseController
     /**
      * Remove the specified Slider from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */

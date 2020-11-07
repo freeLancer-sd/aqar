@@ -14,7 +14,6 @@ use Response;
  * Class SliderController
  * @package App\Http\Controllers\API
  */
-
 class SliderAPIController extends AppBaseController
 {
     /** @var  SliderRepository */
@@ -57,13 +56,9 @@ class SliderAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request)
+    public function index()
     {
-        $sliders = $this->sliderRepository->all(
-            $request->except(['skip', 'limit']),
-            $request->get('skip'),
-            $request->get('limit')
-        );
+        $sliders = $this->sliderRepository->allApi();
 
         return $this->sendResponse(
             $sliders->toArray(),

@@ -14,7 +14,6 @@ use Response;
  * Class PropertyController
  * @package App\Http\Controllers\API
  */
-
 class PropertyAPIController extends AppBaseController
 {
     /** @var  PropertyRepository */
@@ -232,20 +231,21 @@ class PropertyAPIController extends AppBaseController
             );
         }
         if ($property->user_id === $request->user_id) {
-        
-        $property = $this->propertyRepository->update($input, $id);
 
-        return $this->sendResponse(
-            $property,
-            __('messages.updated', ['model' => __('models/properties.singular')])
-        );
-    }
+            $property = $this->propertyRepository->update($input, $id);
+
+            return $this->sendResponse(
+                $property,
+                __('messages.updated', ['model' => __('models/properties.singular')])
+            );
+        }
     }
 
     /**
      * @param int $id
      * @return Response
      *
+     * @throws \Exception
      * @SWG\Delete(
      *      path="/properties/{id}",
      *      summary="Remove the specified Property from storage",

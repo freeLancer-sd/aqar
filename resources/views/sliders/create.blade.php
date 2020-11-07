@@ -11,7 +11,7 @@
         <div class="box box-primary">
             <div class="box-body">
                 <div class="row">
-                    {!! Form::open(['route' => 'sliders.store']) !!}
+                    {!! Form::open(['route' => 'sliders.store', 'files' => true]) !!}
 
                         @include('sliders.fields')
 

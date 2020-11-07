@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ImageDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreateImageRequest;
 use App\Http\Requests\UpdateImageRequest;
 use App\Repositories\ImageRepository;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class ImageController extends AppBaseController
@@ -53,7 +51,7 @@ class ImageController extends AppBaseController
     {
         $input = $request->all();
 
-        $image = $this->imageRepository->create($input);
+       $this->imageRepository->create($input);
 
         Flash::success(__('messages.saved', ['model' => __('models/images.singular')]));
 

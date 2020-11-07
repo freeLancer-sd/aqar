@@ -53,7 +53,7 @@ class PropertyController extends AppBaseController
     {
         $input = $request->all();
 
-        $property = $this->propertyRepository->create($input);
+        $this->propertyRepository->create($input);
 
         Flash::success(__('messages.saved', ['model' => __('models/properties.singular')]));
 

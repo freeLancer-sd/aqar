@@ -69,7 +69,6 @@ class Slider extends Model
     protected $casts = [
         'id' => 'integer',
         'title' => 'string',
-        'image_url' => 'string',
         'status' => 'boolean'
     ];
 
