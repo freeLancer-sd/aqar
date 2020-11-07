@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\PropertyCategory;
+use App\Models\PropertyType;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class AllSeeders extends Seeder
@@ -11,16 +14,24 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\PropertyType::class, 10)->create();
-        factory(\App\Models\PropertyCategory::class, 10)->create();
+        factory(PropertyType::class, 2)->create();
+        factory(PropertyCategory::class, 5)->create();
         self::createUsers();
     }
 
     public function createUsers()
     {
-        \App\User::create([
-            'name' => 'Elteyab Hassan',
+        User::create([
+            'name' => 'Admin Hassan',
             'mobile' => '0114847667',
+            'email' => 'admin@demo.com',
+            'role' => 2,
+            'password' => '$2y$10$BxoLw3meuJcWMNpdeTxZI.bbh.TMC2OEqk1PYvdlu/AAB61PhZiim',
+        ]);
+
+        User::create([
+            'name' => 'Elteyab Hassan',
+            'mobile' => '0114847666',
             'email' => 'Oxaltyab@mail.com',
             'password' => '$2y$10$BxoLw3meuJcWMNpdeTxZI.bbh.TMC2OEqk1PYvdlu/AAB61PhZiim',
         ]);
