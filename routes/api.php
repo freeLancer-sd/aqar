@@ -41,3 +41,5 @@ Route::get('property/images/{id}', function($id){
 Route::resource('images', 'ImageAPIController');
 
 Route::resource('sliders', 'SliderAPIController');
+
+Route::resource('conditions', 'ConditionAPIController');

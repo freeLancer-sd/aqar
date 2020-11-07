@@ -45,3 +45,5 @@ Route::resource('propertyTypes', 'PropertyTypeController');
 Route::resource('propertyCategories', 'PropertyCategoryController');
 
 Route::resource('sliders', 'SliderController');
+
+Route::resource('conditions', 'ConditionController');

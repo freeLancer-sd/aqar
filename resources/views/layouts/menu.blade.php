@@ -24,3 +24,7 @@
     <a href="{{ route('sliders.index') }}"><i class="fa fa-edit"></i><span>@lang('models/sliders.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('conditions*') ? 'active' : '' }}">
+    <a href="{{ route('conditions.index') }}"><i class="fa fa-edit"></i><span>@lang('models/conditions.plural')</span></a>
+</li>
+
