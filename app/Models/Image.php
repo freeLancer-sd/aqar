@@ -97,7 +97,7 @@ class Image extends Model
      * @var array
      */
     public static $rules = [
-        'name' => 'nullable',
+        'name' => 'required',
         'url' => 'nullable',
         'property_id' => 'nullable',
         'user_id' => 'nullable',

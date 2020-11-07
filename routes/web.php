@@ -43,3 +43,5 @@ Route::resource('images', 'ImageController');
 Route::resource('propertyTypes', 'PropertyTypeController');
 
 Route::resource('propertyCategories', 'PropertyCategoryController');
+
+Route::resource('sliders', 'SliderController');

@@ -17,8 +17,8 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('url');
-            $table->foreignId('property_id')->constrained()->nullable();
-            $table->foreignId('user_id')->constrained()->nullable();
+            $table->foreignId('property_id')->nullable()->constrained();
+            $table->foreignId('user_id')->nullable()->constrained();
             $table->softDeletes();
             $table->timestamps();
         });
