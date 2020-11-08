@@ -2,7 +2,6 @@
 
 use App\Models\Property;
 use App\Models\PropertyCategory;
-use App\Models\PropertyType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,15 +16,13 @@ Route::post('auth/register', 'AuthController@register');
 
 Route::resource('users', 'UserAPIController');
 
-Route::resource('property_types', 'PropertyTypeAPIController');
 
 Route::resource('property_categories', 'PropertyCategoryAPIController');
 
 Route::resource('properties', 'PropertyAPIController');
 Route::get('property/cats_types', function(){
     return $response = [
-        'category'=> PropertyCategory::all(),
-        'type'=> PropertyType::all()
+        'category'=> PropertyCategory::all()
     ];
 });
 

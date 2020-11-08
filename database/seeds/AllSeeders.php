@@ -14,7 +14,6 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-        factory(PropertyType::class, 2)->create();
         factory(PropertyCategory::class, 5)->create();
         self::createUsers();
     }

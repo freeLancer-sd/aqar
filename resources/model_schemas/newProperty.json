@@ -156,18 +156,6 @@
         "inView": true
     },
     {
-        "name": "property_type_id",
-        "dbType": "bigInteger,false,true",
-        "htmlType": null,
-        "validations": "required",
-        "searchable": true,
-        "fillable": true,
-        "primary": false,
-        "inForm": true,
-        "inIndex": true,
-        "inView": true
-    },
-    {
         "name": "property_categorie_id",
         "dbType": "bigInteger,false,true",
         "htmlType": null,
@@ -230,10 +218,6 @@
     {
         "type": "relation",
         "relation": "mt1,PropertyCategory,property_categorie_id"
-    },
-    {
-        "type": "relation",
-        "relation": "mt1,PropertyType,property_type_id"
     },
     {
         "type": "relation",

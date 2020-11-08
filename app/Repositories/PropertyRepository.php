@@ -30,7 +30,6 @@ class PropertyRepository extends BaseRepository
         'space',
         'price',
         'note',
-        'property_type_id',
         'property_categorie_id',
         'user_id'
     ];

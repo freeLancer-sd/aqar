@@ -2,11 +2,6 @@
     <a href="{{ route('users.index') }}"><i class="fa fa-edit"></i><span>@lang('models/users.plural')</span></a>
 </li>
 
-<li class="{{ Request::is('propertyTypes*') ? 'active' : '' }}">
-    <a href="{{ route('propertyTypes.index') }}"><i
-                class="fa fa-edit"></i><span>@lang('models/propertyTypes.plural')</span></a>
-</li>
-
 <li class="{{ Request::is('propertyCategories*') ? 'active' : '' }}">
     <a href="{{ route('propertyCategories.index') }}"><i
                 class="fa fa-edit"></i><span>@lang('models/propertyCategories.plural')</span></a>
@@ -25,6 +20,7 @@
 </li>
 
 <li class="{{ Request::is('conditions*') ? 'active' : '' }}">
-    <a href="{{ route('conditions.index') }}"><i class="fa fa-edit"></i><span>@lang('models/conditions.plural')</span></a>
+    <a href="{{ route('conditions.index') }}"><i
+                class="fa fa-edit"></i><span>@lang('models/conditions.plural')</span></a>
 </li>
 

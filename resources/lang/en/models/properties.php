@@ -18,7 +18,6 @@ return array (
     'space' => 'Space',
     'price' => 'Price',
     'note' => 'Note',
-    'property_type_id' => 'Property Type Id',
     'property_categorie_id' => 'Property Categorie Id',
     'user_id' => 'User Id',
     'deleted_at' => 'Deleted At',

@@ -20,7 +20,6 @@ $factory->define(Property::class, function (Faker $faker) {
         'space' => $faker->randomDigitNotNull,
         'price' => $faker->randomDigitNotNull,
         'note' => $faker->word,
-        'property_type_id' => $faker->word,
         'property_categorie_id' => $faker->word,
         'user_id' => $faker->word,
         'deleted_at' => $faker->date('Y-m-d H:i:s'),

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @SWG\Definition(
  *      definition="Property",
- *      required={"status", "property_age", "property_type_id", "property_categorie_id", "user_id"},
+ *      required={"status", "property_age", "property_categorie_id", "user_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -116,12 +116,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="number"
  *      ),
  * @SWG\Property(
- *          property="property_type_id",
- *          description="property_type_id",
- *          type="integer",
- *          format="int32"
- *      ),
- * @SWG\Property(
  *          property="property_categorie_id",
  *          description="property_categorie_id",
  *          type="integer",
@@ -164,7 +158,7 @@ class Property extends Model
 
 
     protected $dates = ['deleted_at'];
-    protected $with = ['images', 'propertyCategorie', 'propertyType', 'user'];
+    protected $with = ['images', 'propertyCategorie', 'user'];
 
 
     public $fillable = [
@@ -198,7 +192,6 @@ class Property extends Model
         'car_entrance',
         'the_purpose',
         'wells',
-        'property_type_id',
         'property_categorie_id',
         'user_id'
     ];
@@ -240,7 +233,6 @@ class Property extends Model
         'driver_room' => 'boolean',
         'maids_room' => 'boolean',
         'elevator' => 'boolean',
-        'property_type_id' => 'integer',
         'property_categorie_id' => 'integer',
         'user_id' => 'integer'
     ];
@@ -263,7 +255,6 @@ class Property extends Model
         'space' => 'required|integer',
         'price' => 'required|numeric',
         'note' => 'nullable|string',
-//        'property_type_id' => 'required',
         'property_categorie_id' => 'required',
         'user_id' => 'required',
         'deleted_at' => 'nullable',
@@ -277,14 +268,6 @@ class Property extends Model
     public function propertyCategorie()
     {
         return $this->belongsTo(PropertyCategory::class, 'property_categorie_id');
-    }
-
-    /**
-     * @return BelongsTo
-     **/
-    public function propertyType()
-    {
-        return $this->belongsTo(PropertyType::class, 'property_type_id');
     }
 
     /**

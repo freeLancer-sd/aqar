@@ -45,7 +45,6 @@ class CreatePropertiesTable extends Migration
             $table->boolean('maids_room')->nullable();//غرفة خادمة
             $table->boolean('elevator')->nullable(); //مصعد
             $table->boolean('furnished')->nullable(); //مؤثث
-            $table->foreignId('property_type_id')->constrained();
             $table->foreignId('property_categorie_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->softDeletes();

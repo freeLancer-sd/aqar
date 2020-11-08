@@ -70,12 +70,6 @@
     <p>{{ $property->note }}</p>
 </div>
 
-<!-- Property Type Id Field -->
-<div class="form-group">
-    {!! Form::label('property_type_id', __('models/properties.fields.property_type_id').':') !!}
-    <p>{{ $property->property_type_id }}</p>
-</div>
-
 <!-- Property Categorie Id Field -->
 <div class="form-group">
     {!! Form::label('property_categorie_id', __('models/properties.fields.property_categorie_id').':') !!}
