@@ -104,7 +104,7 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(Request $request)
+    public function store(CreatePropertyAPIRequest $request)
     {
 
         $input = $request->all();

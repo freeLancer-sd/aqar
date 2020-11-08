@@ -34,6 +34,10 @@ class CreatePropertiesTable extends Migration
             $table->string('floor')->nullable(); // الطابق
             $table->string('the_number_stores')->nullable(); //عدد المحلات
             $table->string('the_number_apartments')->nullable(); //عدد الشقق
+            $table->string('street_area')->nullable(); //عدد الشقق
+            $table->string('the_purpose')->nullable(); //عدد الشقق
+            $table->string('wells')->nullable(); //عدد الشقق
+            $table->boolean('car_entrance')->nullable(); //عدد الشقق
             $table->boolean('deluxe')->nullable(); //ديلوكس
             $table->boolean('kitchen')->nullable(); // مطبخ
             $table->boolean('swimming_pool')->nullable(); // حوض سباحة
