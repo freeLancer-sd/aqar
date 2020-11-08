@@ -240,7 +240,6 @@ class Property extends Model
         'driver_room' => 'boolean',
         'maids_room' => 'boolean',
         'elevator' => 'boolean',
-        'furnished' => 'boolean',
         'property_type_id' => 'integer',
         'property_categorie_id' => 'integer',
         'user_id' => 'integer'
@@ -264,7 +263,7 @@ class Property extends Model
         'space' => 'required|integer',
         'price' => 'required|numeric',
         'note' => 'nullable|string',
-        'property_type_id' => 'required',
+//        'property_type_id' => 'required',
         'property_categorie_id' => 'required',
         'user_id' => 'required',
         'deleted_at' => 'nullable',
