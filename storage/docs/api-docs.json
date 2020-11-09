@@ -802,205 +802,6 @@
                 }
             }
         },
-        "/propertyTypes": {
-            "get": {
-                "tags": [
-                    "PropertyType"
-                ],
-                "summary": "Get a listing of the PropertyTypes.",
-                "description": "Get all PropertyTypes",
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/definitions/PropertyType"
-                                    }
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "PropertyType"
-                ],
-                "summary": "Store a newly created PropertyType in storage",
-                "description": "Store PropertyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "PropertyType that should be stored",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/PropertyType"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/PropertyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
-        "/propertyTypes/{id}": {
-            "get": {
-                "tags": [
-                    "PropertyType"
-                ],
-                "summary": "Display the specified PropertyType",
-                "description": "Get PropertyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of PropertyType",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/PropertyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "PropertyType"
-                ],
-                "summary": "Update the specified PropertyType in storage",
-                "description": "Update PropertyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of PropertyType",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "body",
-                        "in": "body",
-                        "description": "PropertyType that should be updated",
-                        "required": false,
-                        "schema": {
-                            "$ref": "#/definitions/PropertyType"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "$ref": "#/definitions/PropertyType"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "PropertyType"
-                ],
-                "summary": "Remove the specified PropertyType from storage",
-                "description": "Delete PropertyType",
-                "produces": [
-                    "application/json"
-                ],
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of PropertyType",
-                        "required": true,
-                        "type": "integer"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "schema": {
-                            "properties": {
-                                "success": {
-                                    "type": "boolean"
-                                },
-                                "data": {
-                                    "type": "string"
-                                },
-                                "message": {
-                                    "type": "string"
-                                }
-                            },
-                            "type": "object"
-                        }
-                    }
-                }
-            }
-        },
         "/sliders": {
             "get": {
                 "tags": [
@@ -1483,7 +1284,6 @@
             "required": [
                 "status",
                 "property_age",
-                "property_type_id",
                 "property_categorie_id",
                 "user_id"
             ],
@@ -1574,11 +1374,6 @@
                     "description": "the_number_stores",
                     "type": "number"
                 },
-                "property_type_id": {
-                    "description": "property_type_id",
-                    "type": "integer",
-                    "format": "int32"
-                },
                 "property_categorie_id": {
                     "description": "property_categorie_id",
                     "type": "integer",
@@ -1619,43 +1414,6 @@
                 "title": {
                     "description": "title",
                     "type": "string"
-                },
-                "deleted_at": {
-                    "description": "deleted_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "created_at": {
-                    "description": "created_at",
-                    "type": "string",
-                    "format": "date-time"
-                },
-                "updated_at": {
-                    "description": "updated_at",
-                    "type": "string",
-                    "format": "date-time"
-                }
-            }
-        },
-        "PropertyType": {
-            "required": [
-                "title",
-                "status"
-            ],
-            "properties": {
-                "id": {
-                    "description": "id",
-                    "type": "integer",
-                    "format": "int32"
-                },
-                "title": {
-                    "description": "title",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "status",
-                    "type": "integer",
-                    "format": "int32"
                 },
                 "deleted_at": {
                     "description": "deleted_at",

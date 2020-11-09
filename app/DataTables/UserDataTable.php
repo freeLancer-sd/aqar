@@ -94,11 +94,8 @@ class UserDataTable extends DataTable
             'name' => new Column(['title' => __('models/users.fields.name'), 'data' => 'name']),
             'email' => new Column(['title' => __('models/users.fields.email'), 'data' => 'email']),
             'mobile' => new Column(['title' => __('models/users.fields.mobile'), 'data' => 'mobile']),
-            'email_verified_at' => new Column(['title' => __('models/users.fields.email_verified_at'), 'data' => 'email_verified_at']),
             'role' => new Column(['title' => __('models/users.fields.role'), 'data' => 'role']),
-            'status' => new Column(['title' => __('models/users.fields.status'), 'data' => 'status']),
-            'password' => new Column(['title' => __('models/users.fields.password'), 'data' => 'password']),
-            'remember_token' => new Column(['title' => __('models/users.fields.remember_token'), 'data' => 'remember_token'])
+//            'status' => new Column(['title' => __('models/users.fields.status'), 'data' => 'status']),
         ];
     }
 

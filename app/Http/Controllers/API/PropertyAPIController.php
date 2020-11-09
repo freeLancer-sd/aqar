@@ -58,8 +58,12 @@ class PropertyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $properties = $this->propertyRepository->index();
-
+        $keyword = $request->get('catId');
+        if (!empty($keyword)) {
+            $properties = Property::where('property_categorie_id', $keyword)->get();
+        } else {
+            $properties = $this->propertyRepository->index();
+        }
         return $this->sendResponse(
             $properties->toArray(),
             __('messages.retrieved', ['model' => __('models/properties.plural')])
@@ -104,7 +108,8 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function store(CreatePropertyAPIRequest $request)
+    public
+    function store(CreatePropertyAPIRequest $request)
     {
 
         $input = $request->all();
@@ -154,7 +159,8 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function show($id)
+    public
+    function show($id)
     {
         /** @var Property $property */
         $property = $this->propertyRepository->find($id);
@@ -217,7 +223,8 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function update($id, Request $request)
+    public
+    function update($id, Request $request)
     {
         $input = $request->all();
 
@@ -280,7 +287,8 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         /** @var Property $property */
         $property = $this->propertyRepository->find($id);

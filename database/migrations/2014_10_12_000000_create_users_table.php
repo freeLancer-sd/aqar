@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->integer('role')->default(1);
             $table->integer('status')->default(1);
             $table->string('password');
+            $table->string('ads_type')->nullable();
+
             $table->string('api_token', 80)
                         ->unique()
                         ->nullable()

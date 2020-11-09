@@ -14,8 +14,8 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-        factory(PropertyCategory::class, 5)->create();
         self::createUsers();
+        self::createCategory();
     }
 
     public function createUsers()
@@ -33,6 +33,40 @@ class AllSeeders extends Seeder
             'mobile' => '0114847666',
             'email' => 'Oxaltyab@mail.com',
             'password' => '$2y$10$BxoLw3meuJcWMNpdeTxZI.bbh.TMC2OEqk1PYvdlu/AAB61PhZiim',
+        ]);
+    }
+
+    public function createCategory()
+    {
+        PropertyCategory::create([
+            'title' => 'فيلا',
+        ]);
+        PropertyCategory::create([
+            'title' => 'عمارة',
+        ]);
+        PropertyCategory::create([
+            'title' => 'دور',
+        ]);
+        PropertyCategory::create([
+            'title' => 'شقة',
+        ]);
+        PropertyCategory::create([
+            'title' => 'غرفة',
+        ]);
+        PropertyCategory::create([
+            'title' => 'بيت',]);
+        PropertyCategory::create([
+            'title' => 'مكتب',]);
+        PropertyCategory::create([
+            'title' => 'ارض',]);
+        PropertyCategory::create([
+            'title' => 'مزرعة',]);
+        PropertyCategory::create([
+            'title' => 'مستودع',]);
+        PropertyCategory::create([
+            'title' => 'استراحة',]);
+        PropertyCategory::create([
+            'title' => 'محل',
         ]);
     }
 }

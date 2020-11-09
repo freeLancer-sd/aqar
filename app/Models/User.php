@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -83,7 +84,7 @@ class User extends Model
     use SoftDeletes;
 
     public $table = 'users';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -97,7 +98,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'password',
+        'name', 'email', 'mobile', 'password', 'ads_type'
     ];
 
     /**
@@ -106,21 +107,9 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','email_verified_at', 'deleted_at', 'status'
+        'password', 'remember_token', 'email_verified_at', 'deleted_at', 'status'
     ];
 
-
-
-    // public $fillable = [
-    //     'name',
-    //     'email',
-    //     'mobile',
-    //     'email_verified_at',
-    //     'role',
-    //     'status',
-    //     'password',
-    //     'remember_token'
-    // ];
 
     /**
      * The attributes that should be casted to native types.
@@ -132,6 +121,7 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'mobile' => 'string',
+        'ads_type' => 'string',
         'email_verified_at' => 'datetime',
         'role' => 'integer',
         'status' => 'integer',
@@ -159,10 +149,10 @@ class User extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      **/
     public function images()
     {
-        return $this->hasMany(\App\Models\Image::class, 'user_id');
+        return $this->hasMany(Image::class, 'user_id');
     }
 }
