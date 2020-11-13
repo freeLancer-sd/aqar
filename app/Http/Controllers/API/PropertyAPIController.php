@@ -108,8 +108,7 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public
-    function store(CreatePropertyAPIRequest $request)
+    public function store(CreatePropertyAPIRequest $request)
     {
 
         $input = $request->all();
@@ -159,8 +158,7 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public
-    function show($id)
+    public function show($id)
     {
         /** @var Property $property */
         $property = $this->propertyRepository->find($id);
@@ -223,8 +221,7 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public
-    function update($id, Request $request)
+    public function update($id, Request $request)
     {
         $input = $request->all();
 
@@ -287,8 +284,7 @@ class PropertyAPIController extends AppBaseController
      *      )
      * )
      */
-    public
-    function destroy($id)
+    public function destroy($id)
     {
         /** @var Property $property */
         $property = $this->propertyRepository->find($id);
@@ -305,5 +301,48 @@ class PropertyAPIController extends AppBaseController
             $id,
             __('messages.deleted', ['model' => __('models/properties.singular')])
         );
+    }
+
+    public function search(Request $request)
+    {
+        $property_type = $request->property_type;
+        $the_purpose = $request->the_purpose;
+        $room_number = $request->room_number;
+        $hall_number = $request->hall_number;
+        if (!empty($property_type) && !empty($the_purpose) && !empty($room_number) && !empty($hall_number)) {
+//            return 'status: #1';
+            $properties = Property::where('property_type', $property_type)
+                ->where('the_purpose', $the_purpose)
+                ->orwherebetween('room_number', [1, $room_number])
+                ->orwherebetween('hall_number', [1, $hall_number])
+                ->get();
+        }
+        if (!empty($property_type) && !empty($the_purpose) && !empty($property_type)) {
+//            return 'status: #2';
+            $properties = Property::where('property_type', $property_type)
+                ->orWhere('the_purpose', $the_purpose)
+                ->get();
+        }
+        if (!empty($property_type) && !empty($the_purpose)) {
+//            return 'status: #3';
+            $properties = Property::where('property_type', $property_type)
+                ->orWhere('the_purpose', $the_purpose)
+                ->get();
+        }
+        if (!empty($property_type)) {
+//            return 'status: #4';
+            $properties = Property::where('property_type', $property_type)->get();
+        }
+        if (!empty($the_purpose)) {
+//            return 'status: #5';
+            $properties = Property::where('the_purpose', $the_purpose)->get();
+        }
+
+
+        return $this->sendResponse(
+            $properties->toArray(),
+            __('messages.retrieved', ['model' => __('models/properties.plural')])
+        );
+//        'LIKE', "%$keyword%"
     }
 }
