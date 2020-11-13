@@ -58,9 +58,13 @@ class PropertyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('catId');
-        if (!empty($keyword)) {
-            $properties = Property::where('property_categorie_id', $keyword)->get();
+        $keyword[] = $request->get('catId');
+        $keyword[] = $request->get('user_id');
+        if (!empty($keyword['user_id'])) {
+            $properties = Property::where('user_id', $keyword['user_id'])->get();
+        }
+        if (!empty($keyword['catId'])) {
+            $properties = Property::where('property_categorie_id', $keyword['catId'])->get();
         } else {
             $properties = $this->propertyRepository->index();
         }
