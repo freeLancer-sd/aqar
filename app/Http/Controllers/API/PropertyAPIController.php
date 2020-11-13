@@ -58,13 +58,17 @@ class PropertyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $keyword[] = $request->get('catId');
-        $keyword[] = $request->get('user_id');
-        if (!empty($keyword['user_id'])) {
-            $properties = Property::where('user_id', $keyword['user_id'])->get();
-        }
-        if (!empty($keyword['catId'])) {
-            $properties = Property::where('property_categorie_id', $keyword['catId'])->get();
+        $keyword['catId'] = +$request->get('catId');
+        $keyword['user_id'] = $request->get('user_id');
+        if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
+            $properties = Property::where('user_id', $keyword['user_id'])
+                ->orderBy('id', 'DESC')->get();
+        } elseif (!empty($keyword['user_id'])) {
+            $properties = Property::where('user_id', $keyword['user_id'])
+                ->orderBy('id', 'DESC')->get();
+        } elseif (!empty($keyword['catId'])) {
+            $properties = Property::where('property_categorie_id', $keyword['catId'])
+                ->orderBy('id', 'DESC')->get();
         } else {
             $properties = $this->propertyRepository->index();
         }
@@ -178,6 +182,62 @@ class PropertyAPIController extends AppBaseController
             __('messages.retrieved', ['model' => __('models/properties.singular')])
         );
     }
+
+    /**
+     * @param int $id
+     * @return Response
+     *
+     * @SWG\Get(
+     *      path="/properties/user/{id}",
+     *      summary="Display Property by user id",
+     *      tags={"Property"},
+     *      description="Get Property",
+     *      produces={"application/json"},
+     *      @SWG\Parameter(
+     *          name="id",
+     *          description="id of user",
+     *          type="integer",
+     *          required=true,
+     *          in="path"
+     *      ),
+     *      @SWG\Response(
+     *          response=200,
+     *          description="successful operation",
+     *          @SWG\Schema(
+     *              type="object",
+     *              @SWG\Property(
+     *                  property="success",
+     *                  type="boolean"
+     *              ),
+     *              @SWG\Property(
+     *                  property="data",
+     *                  ref="#/definitions/Property"
+     *              ),
+     *              @SWG\Property(
+     *                  property="message",
+     *                  type="string"
+     *              )
+     *          )
+     *      )
+     * )
+     */
+    public function user($id)
+    {
+        /** @var Property $property */
+        $property = $this->propertyRepository->user($id);
+
+        if (empty($property)) {
+            return $this->sendError(
+                __('messages.not_found', ['model' => __('models/properties.singular')])
+            );
+        }
+
+        return $this->sendResponse(
+            $property->toArray(),
+            __('messages.retrieved', ['model' => __('models/properties.singular')])
+        );
+    }
+
 
     /**
      * @param int $id
@@ -341,7 +401,6 @@ class PropertyAPIController extends AppBaseController
 //            return 'status: #5';
             $properties = Property::where('the_purpose', $the_purpose)->get();
         }
-
 
         return $this->sendResponse(
             $properties->toArray(),

@@ -21,6 +21,7 @@ Route::resource('property_categories', 'PropertyCategoryAPIController');
 
 Route::resource('properties', 'PropertyAPIController');
 Route::post('properties/search', 'PropertyAPIController@search');
+Route::get('properties/user/{id}', 'PropertyAPIController@user');
 Route::get('property/cats_types', function(){
     return $response = [
         'category'=> PropertyCategory::all()

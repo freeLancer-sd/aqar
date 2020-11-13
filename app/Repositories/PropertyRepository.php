@@ -52,11 +52,16 @@ class PropertyRepository extends BaseRepository
         return Property::class;
     }
 
-public function index()
-{
-return Property::where('status', 2)->where('lat' ,'!=', '')->get();
-}
+    public function index()
+    {
+        return Property::where('status', 2)->where('lat', '!=', '')
+            ->orderBy('id', 'DESC')->get();
+    }
 
+    public function user($id)
+    {
+        return$this->model->where('user_id', $id)->orderBy('id', 'DESC')->get();
+    }
 
     public function saveImages(Request $request)
     {
