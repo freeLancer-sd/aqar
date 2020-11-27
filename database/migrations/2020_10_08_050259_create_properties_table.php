@@ -23,7 +23,7 @@ class CreatePropertiesTable extends Migration
             $table->integer('room_number')->nullable();
             $table->integer('bath_number')->nullable();
             $table->integer('hall_number')->nullable();
-            $table->integer('property_age');
+            $table->integer('property_age')->nullable();
             $table->integer('air_conditioner')->nullable();
             $table->integer('space')->nullable();
             $table->double('price')->nullable();
@@ -38,6 +38,7 @@ class CreatePropertiesTable extends Migration
             $table->string('the_purpose')->nullable(); // الغرض
             $table->string('wells')->nullable(); //ابار
             $table->string('rental_type')->nullable(); //نوع الايجار  عازب عوائل-
+            $table->string('rental_data')->nullable(); //تاريخ الايجار - يومي - شهري - سنوي
             $table->string('property_type')->nullable(); //نوع الايجار  عازب عوائل-
             $table->boolean('car_entrance')->nullable(); //مدخل سيارة
             $table->boolean('deluxe')->nullable(); //ديلوكس

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="PropertyCategory",
+ *      definition="property_categories",
  *      required={"title"},
  *      @SWG\Property(
  *          property="id",
@@ -45,13 +45,12 @@ class PropertyCategory extends Model
     use SoftDeletes;
 
     public $table = 'property_categories';
-    
+
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [

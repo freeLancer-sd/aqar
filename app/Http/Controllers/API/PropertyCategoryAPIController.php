@@ -14,7 +14,6 @@ use Response;
  * Class PropertyCategoryController
  * @package App\Http\Controllers\API
  */
-
 class PropertyCategoryAPIController extends AppBaseController
 {
     /** @var  PropertyCategoryRepository */
@@ -47,7 +46,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *              @SWG\Property(
      *                  property="data",
      *                  type="array",
-     *                  @SWG\Items(ref="#/definitions/PropertyCategory")
+     *                  @SWG\Items(ref="#/definitions/property_categories")
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -86,7 +85,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *          in="body",
      *          description="PropertyCategory that should be stored",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/PropertyCategory")
+     *          @SWG\Schema(ref="#/definitions/property_categories")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -99,7 +98,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/PropertyCategory"
+     *                  ref="#/definitions/property_categories"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -149,7 +148,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/PropertyCategory"
+     *                  ref="#/definitions/property_categories"
      *              ),
      *              @SWG\Property(
      *                  property="message",
@@ -199,7 +198,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *          in="body",
      *          description="PropertyCategory that should be updated",
      *          required=false,
-     *          @SWG\Schema(ref="#/definitions/PropertyCategory")
+     *          @SWG\Schema(ref="#/definitions/property_categories")
      *      ),
      *      @SWG\Response(
      *          response=200,
@@ -212,7 +211,7 @@ class PropertyCategoryAPIController extends AppBaseController
      *              ),
      *              @SWG\Property(
      *                  property="data",
-     *                  ref="#/definitions/PropertyCategory"
+     *                  ref="#/definitions/property_categories"
      *              ),
      *              @SWG\Property(
      *                  property="message",

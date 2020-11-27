@@ -68,6 +68,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          type="integer",
  *          format="int32"
  *      ),
+ *     @SWG\Property(
+ *          property="driver_room",
+ *          description="driver_room",
+ *          type="boolean",
+ *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="extension",
+ *          description="extension",
+ *          type="boolean",
+ *          format="int32"
+ *      ),
+ *     @SWG\Property(
+ *          property="maids_room",
+ *          description="maids_room",
+ *          type="boolean",
+ *          format="int32"
+ *      ),
  *      @SWG\Property(
  *          property="air_conditioner",
  *          description="air_conditioner",
@@ -96,9 +114,19 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          description="destination",
  *          type="string"
  *      ),
-@SWG\Property(
+ *@SWG\Property(
  *          property="advertiser_status",
  *          description="advertiser_status",
+ *          type="string"
+ *      ),
+ *@SWG\Property(
+ *          property="rental_data",
+ *          description="rental_data",
+ *          type="string"
+ *      ),
+ *@SWG\Property(
+ *          property="rental_type",
+ *          description="rental_type",
  *          type="string"
  *      ),
  * @SWG\Property(
@@ -198,6 +226,7 @@ class Property extends Model
         'the_purpose',
         'wells',
         'rental_type',
+        'rental_data',
         'courtyard',
         'cellar',
         'extension',
@@ -235,6 +264,7 @@ class Property extends Model
         'the_number_apartments' => 'integer',
         'wells' => 'integer',
         'rental_type' => 'string',
+        'rental_data' => 'string',
         'property_type' => 'string',
         'street_area' => 'string',
         'car_entrance' => 'boolean',

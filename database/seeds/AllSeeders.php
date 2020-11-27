@@ -14,8 +14,9 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-        self::createUsers();
-        self::createCategory();
+//        self::createUsers();
+//        self::createCategory();
+        self::getFromSql();
     }
 
     public function createUsers()
@@ -68,5 +69,14 @@ class AllSeeders extends Seeder
         PropertyCategory::create([
             'title' => 'محل',
         ]);
+    }
+
+    public function getFromSql()
+    {
+        $path = base_path() . '/database/seeds/data.sql';
+        $sql = file_get_contents($path);
+        DB::unprepared($sql);
+//        php artisan db:seed --class=SqlSeeder
+
     }
 }

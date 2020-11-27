@@ -59,12 +59,22 @@ class PropertyAPIController extends AppBaseController
     public function index(Request $request)
     {
         $keyword['catId'] = +$request->get('catId');
+        $keyword['propertyType'] = $request->get('propertyType');
         $keyword['user_id'] = $request->get('user_id');
+        if ($keyword['propertyType'] == 'null')
+            $keyword['propertyType'] = null;
+//        return $keyword;
+//        if (!isset($keyword['propertyType']){
         if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
+                ->where('property_categorie_id', $keyword['catId'])
                 ->orderBy('id', 'DESC')->get();
         } elseif (!empty($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
+                ->orderBy('id', 'DESC')->get();
+        } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
+            $properties = Property::where('property_categorie_id', $keyword['catId'])
+                ->where('property_type', $keyword['propertyType'])
                 ->orderBy('id', 'DESC')->get();
         } elseif (!empty($keyword['catId'])) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
@@ -407,5 +417,21 @@ class PropertyAPIController extends AppBaseController
             __('messages.retrieved', ['model' => __('models/properties.plural')])
         );
 //        'LIKE', "%$keyword%"
+    }
+
+    public function filterData(Request $request)
+    {
+        if ($request->status === 'all') {
+            $properties = Property::where('property_type', $request->propertyType)
+                ->orderBy('id', 'DESC')->get();
+        } else {
+            $properties = Property::where('property_categorie_id', $request->propertyCategory)
+                ->where('property_type', $request->propertyType)
+                ->orderBy('id', 'DESC')->get();
+        }
+        return $this->sendResponse(
+            $properties->toArray(),
+            __('messages.retrieved', ['model' => __('models/properties.plural')])
+        );
     }
 }
