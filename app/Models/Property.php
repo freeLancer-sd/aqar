@@ -6,6 +6,7 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * @SWG\Definition(
@@ -182,18 +183,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Property extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Notifiable;
 
     public $table = 'properties';
 
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
-
     protected $dates = ['deleted_at'];
     protected $with = ['images', 'propertyCategorie', 'user'];
 
-
+    public function routeNotificationForFCM()
+    {
+        return Property::where('user_id', $this->id)->pluck('device_token')->toArray();
+    }
     public $fillable = [
         'title',
         'address',

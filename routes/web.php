@@ -40,3 +40,7 @@ Route::resource('propertyCategories', 'PropertyCategoryController');
 Route::resource('sliders', 'SliderController');
 
 Route::resource('conditions', 'ConditionController');
+
+
+Route::post('/save-token', 'NotificationWebController@saveToken')->name('save-token');
+Route::post('/send-notification', 'NotificationWebController@sendNotification')->name('send.notification');

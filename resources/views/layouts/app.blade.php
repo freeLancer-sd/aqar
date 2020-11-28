@@ -50,7 +50,13 @@
                 <!-- Navbar Right Menu -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <!-- User Account Menu -->
+{{--                        @can('notifications.index')--}}
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::is('notifications*') ? 'active' : '' }}"
+                                   href=""><i class="fa fa-bell"></i></a>
+                            </li>
+{{--                    @endcan--}}
+                    <!-- User Account Menu -->
                         <li class="dropdown user user-menu">
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -60,6 +66,7 @@
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <span class="hidden-xs">{{ Auth::user()->name }}</span>
                             </a>
+
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
@@ -70,7 +77,13 @@
                                         <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
                                     </p>
                                 </li>
-                                <!-- Menu Footer-->
+                            {{--                                <li class="nav-item">--}}
+                            {{--                                    @foreach (Auth::user()->unreadNotifications as $notification)--}}
+                            {{--                                        <a class="nav-link " href="/notifications">{{$notification->type}}<i--}}
+                            {{--                                                    class="fa fa-bell"></i></a>--}}
+                            {{--                                    @endforeach--}}
+                            {{--                                </li>--}}
+                            <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
@@ -166,6 +179,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+{{--<script src="{{asset('firebase-messaging-sw.js')}}"></script>--}}
 
 @stack('scripts')
 </body>

@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Notifications\Notification;
 
 /**
  * @SWG\Definition(
@@ -81,8 +83,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class User extends Model
 {
-    use SoftDeletes;
-
+    use SoftDeletes, Notifiable;
     public $table = 'users';
 
     const CREATED_AT = 'created_at';
@@ -110,6 +111,21 @@ class User extends Model
         'password', 'remember_token', 'email_verified_at', 'deleted_at', 'status'
     ];
 
+    /**
+     * Route notifications for the FCM channel.
+     *
+     * @param Notification $notification
+     * @return string
+     */
+//    public function routeNotificationForFcm($notification)
+//    {
+//        return $this->device_token;
+//    }
+
+    public function routeNotificationForFCM()
+    {
+        return Property::where('user_id', $this->id)->pluck('device_token')->toArray();
+    }
 
     /**
      * The attributes that should be casted to native types.

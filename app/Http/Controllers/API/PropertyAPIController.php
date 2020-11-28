@@ -5,9 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Requests\API\CreatePropertyAPIRequest;
 use App\Http\Requests\API\UpdatePropertyAPIRequest;
 use App\Models\Property;
+use App\Notifications\PropertyNotification;
 use App\Repositories\PropertyRepository;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Notification;
+
 use Response;
 
 /**
@@ -131,7 +135,9 @@ class PropertyAPIController extends AppBaseController
 
         $input = $request->all();
         $property = $this->propertyRepository->create($input);
-
+//        $users = User::where('role', 1)->get();
+//         Notification::send($users, new PropertyNotification($property));
+//        return $property;
         return $this->sendResponse(
             $property->toArray(),
             __('messages.saved', ['model' => __('models/properties.singular')])
@@ -416,7 +422,6 @@ class PropertyAPIController extends AppBaseController
             $properties->toArray(),
             __('messages.retrieved', ['model' => __('models/properties.plural')])
         );
-//        'LIKE', "%$keyword%"
     }
 
     public function filterData(Request $request)
@@ -424,7 +429,7 @@ class PropertyAPIController extends AppBaseController
         if ($request->status === 'all') {
             $properties = Property::where('property_type', $request->propertyType)
                 ->orderBy('id', 'DESC')->get();
-        } else {
+        } else if ($request->status === 'non') {
             $properties = Property::where('property_categorie_id', $request->propertyCategory)
                 ->where('property_type', $request->propertyType)
                 ->orderBy('id', 'DESC')->get();
