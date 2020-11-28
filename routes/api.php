@@ -13,7 +13,6 @@ Route::post('auth/login', 'AuthController@login');
 Route::post('auth/register', 'AuthController@register');
 
 
-
 Route::resource('users', 'UserAPIController');
 
 
@@ -23,16 +22,16 @@ Route::resource('properties', 'PropertyAPIController');
 Route::post('properties/search', 'PropertyAPIController@search');
 Route::post('properties/filter', 'PropertyAPIController@filterData');
 Route::get('properties/user/{id}', 'PropertyAPIController@user');
-Route::get('property/cats_types', function(){
+Route::get('property/cats_types', function () {
     return $response = [
-        'category'=> PropertyCategory::all()
+        'category' => PropertyCategory::all()
     ];
 });
 
-Route::get('property/images/{id}', function($id){
+Route::get('property/images/{id}', function ($id) {
 
-    $images =  Property::where('id', $id)->first();
-    if($images){
+    $images = Property::where('id', $id)->first();
+    if ($images) {
         return $images->images;
     }
     return 'error';
@@ -43,3 +42,6 @@ Route::resource('images', 'ImageAPIController');
 Route::resource('sliders', 'SliderAPIController');
 
 Route::resource('conditions', 'ConditionAPIController');
+
+Route::get('seatings', 'SettingAPIController@index');
+Route::post('seatings', 'SettingAPIController@updateUser');
