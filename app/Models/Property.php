@@ -110,6 +110,16 @@ use Illuminate\Notifications\Notifiable;
  *          description="note",
  *          type="string"
  *      ),
+ *        @SWG\Property(
+ *          property="district_name",
+ *          description="district_name",
+ *          type="string"
+ *      ),
+ *        @SWG\Property(
+ *          property="district_number",
+ *          description="district_number",
+ *          type="string"
+ *      ),
  *      @SWG\Property(
  *          property="destination",
  *          description="destination",
@@ -197,6 +207,7 @@ class Property extends Model
     {
         return Property::where('user_id', $this->id)->pluck('device_token')->toArray();
     }
+
     public $fillable = [
         'title',
         'address',
@@ -212,6 +223,8 @@ class Property extends Model
         'space',
         'price',
         'note',
+        'district_name',
+        'district_number',
         'land_number',
         'destination',
         'advertiser_status',
@@ -247,10 +260,12 @@ class Property extends Model
         'id' => 'integer',
         'title' => 'string',
         'address' => 'string',
+        'district_name' => 'string',
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
         'room_number' => 'integer',
+        'district_number' => 'integer',
         'property_age' => 'integer',
         'hall_number' => 'integer',
         'bath_number' => 'integer',
