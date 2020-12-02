@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\City;
 use App\Models\PropertyCategory;
 use App\Models\PropertyType;
 use App\User;
@@ -14,8 +15,9 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-       self::createUsers();
-       self::createCategory();
+//        self::createUsers();
+//        self::createCategory();
+        self::createCity();
         // self::getFromSql();
     }
 
@@ -39,36 +41,23 @@ class AllSeeders extends Seeder
 
     public function createCategory()
     {
-        PropertyCategory::create([
-            'title' => 'فيلا',
-        ]);
-        PropertyCategory::create([
-            'title' => 'عمارة',
-        ]);
-        PropertyCategory::create([
-            'title' => 'دور',
-        ]);
-        PropertyCategory::create([
-            'title' => 'شقة',
-        ]);
-        PropertyCategory::create([
-            'title' => 'غرفة',
-        ]);
-        PropertyCategory::create([
-            'title' => 'بيت',]);
-        PropertyCategory::create([
-            'title' => 'مكتب',]);
-        PropertyCategory::create([
-            'title' => 'ارض',]);
-        PropertyCategory::create([
-            'title' => 'مزرعة',]);
-        PropertyCategory::create([
-            'title' => 'مستودع',]);
-        PropertyCategory::create([
-            'title' => 'استراحة',]);
-        PropertyCategory::create([
-            'title' => 'محل',
-        ]);
+        $cats = ['فيلا', 'عمارة', 'دور', 'شقة', 'غرفة', 'بيت',
+            'مكتب', 'ارض', 'مزرعة', 'مستودع', 'استراحة', 'محل',];
+        foreach ($cats as $item) {
+            PropertyCategory::create([
+                'title' => $item
+            ]);
+        }
+    }
+
+    public function createCity()
+    {
+        $city = ['الجريف غرب', 'المعمورة', 'الحلة الجديدة', 'الرياض', 'اركويت', 'الازهري', 'بحري'];
+        foreach ($city as $item) {
+            City::create([
+                'name' => $item
+            ]);
+        }
     }
 
     public function getFromSql()

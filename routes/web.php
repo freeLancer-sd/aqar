@@ -44,3 +44,7 @@ Route::resource('conditions', 'ConditionController');
 
 Route::post('/save-token', 'NotificationWebController@saveToken')->name('save-token');
 Route::post('/send-notification', 'NotificationWebController@sendNotification')->name('send.notification');
+
+Route::resource('cities', 'CityController');
+
+Route::resource('districts', 'DistrictController');

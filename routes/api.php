@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\City;
+use App\Models\District;
 use App\Models\Property;
 use App\Models\PropertyCategory;
 use Illuminate\Http\Request;
@@ -24,7 +26,9 @@ Route::post('properties/filter', 'PropertyAPIController@filterData');
 Route::get('properties/user/{id}', 'PropertyAPIController@user');
 Route::get('property/cats_types', function () {
     return $response = [
-        'category' => PropertyCategory::all()
+        'category' => PropertyCategory::all(),
+        'city' => City::all(),
+        'district' => District::all()
     ];
 });
 
@@ -45,3 +49,7 @@ Route::resource('conditions', 'ConditionAPIController');
 
 Route::get('seatings', 'SettingAPIController@index');
 Route::post('seatings', 'SettingAPIController@updateUser');
+
+Route::resource('cities', 'CityAPIController');
+
+Route::resource('districts', 'DistrictAPIController');

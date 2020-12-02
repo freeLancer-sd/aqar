@@ -4,8 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdatePropertysAddDistrictColumn extends Migration
+class CreateCitiesTable extends Migration
 {
+
     /**
      * Run the migrations.
      *
@@ -13,9 +14,11 @@ class UpdatePropertysAddDistrictColumn extends Migration
      */
     public function up()
     {
-        Schema::table('properties', function (Blueprint $table) {
-            $table->string('district_name')->nullable();
-            $table->string('district_number')->nullable();
+        Schema::create('cities', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 190);
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +29,6 @@ class UpdatePropertysAddDistrictColumn extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('cities');
     }
 }
