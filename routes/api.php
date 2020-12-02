@@ -16,6 +16,7 @@ Route::post('auth/register', 'AuthController@register');
 
 
 Route::resource('users', 'UserAPIController');
+Route::get('user/images/{user}', 'UserAPIController@userImage');
 
 
 Route::resource('property_categories', 'PropertyCategoryAPIController');

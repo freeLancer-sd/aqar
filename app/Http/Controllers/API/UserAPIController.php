@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
+use App\Models\Image;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ use Response;
  * Class UserController
  * @package App\Http\Controllers\API
  */
-
 class UserAPIController extends AppBaseController
 {
     /** @var  UserRepository */
@@ -298,5 +298,14 @@ class UserAPIController extends AppBaseController
             $id,
             __('messages.deleted', ['model' => __('models/users.singular')])
         );
+    }
+
+    public function userImage($user)
+    {
+        $user = Image::whereUserId($user)->first();
+        if ($user) {
+            return $user;
+        }
+        return 404;
     }
 }
