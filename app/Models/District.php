@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -38,10 +39,9 @@ class District extends Model
     use SoftDeletes;
 
     public $table = 'districts';
-    
+
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [
@@ -74,10 +74,10 @@ class District extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function city()
     {
-        return $this->belongsTo(\App\Models\cities::class, 'city_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 }

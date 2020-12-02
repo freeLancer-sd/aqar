@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -27,10 +28,9 @@ class City extends Model
     use SoftDeletes;
 
     public $table = 'cities';
-    
+
 
     protected $dates = ['deleted_at'];
-
 
 
     public $fillable = [
@@ -56,5 +56,11 @@ class City extends Model
         'name' => 'required|string|max:190'
     ];
 
-    
+    /**
+     * @return HasMany
+     **/
+    public function district()
+    {
+        return $this->hasMany(District::class);
+    }
 }

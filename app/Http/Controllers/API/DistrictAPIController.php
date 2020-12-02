@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreateDistrictAPIRequest;
 use App\Http\Requests\API\UpdateDistrictAPIRequest;
+use App\Models\City;
 use App\Models\District;
 use App\Repositories\DistrictRepository;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ use Response;
  * Class DistrictController
  * @package App\Http\Controllers\API
  */
-
 class DistrictAPIController extends AppBaseController
 {
     /** @var  DistrictRepository */
@@ -163,6 +163,23 @@ class DistrictAPIController extends AppBaseController
     {
         /** @var District $district */
         $district = $this->districtRepository->find($id);
+
+        if (empty($district)) {
+            return $this->sendError(
+                __('messages.not_found', ['model' => __('models/districts.singular')])
+            );
+        }
+
+        return $this->sendResponse(
+            $district->toArray(),
+            __('messages.retrieved', ['model' => __('models/districts.singular')])
+        );
+    }
+
+    public function byCity($city)
+    {
+        /** @var District $district */
+        $district = District::where('city_id', $city)->with('city')->first();
 
         if (empty($district)) {
             return $this->sendError(

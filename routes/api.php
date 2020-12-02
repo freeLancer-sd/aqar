@@ -53,3 +53,4 @@ Route::post('seatings', 'SettingAPIController@updateUser');
 Route::resource('cities', 'CityAPIController');
 
 Route::resource('districts', 'DistrictAPIController');
+Route::get('districts/byCity/{city}', 'DistrictAPIController@byCity');
