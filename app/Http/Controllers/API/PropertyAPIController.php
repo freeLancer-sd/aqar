@@ -87,10 +87,7 @@ class PropertyAPIController extends AppBaseController
         } else {
             $properties = $this->propertyRepository->paginate(40);
         }
-        return $this->sendResponse(
-            $properties->toArray(),
-            __('messages.retrieved', ['model' => __('models/properties.plural')])
-        );
+        return $properties;
     }
 
     /**
@@ -419,10 +416,7 @@ class PropertyAPIController extends AppBaseController
             $properties = Property::where('the_purpose', $the_purpose)->paginate(40);
         }
 
-        return $this->sendResponse(
-            $properties->toArray(),
-            __('messages.retrieved', ['model' => __('models/properties.plural')])
-        );
+       return $properties;
     }
 
     public function filterData(Request $request)
@@ -435,9 +429,6 @@ class PropertyAPIController extends AppBaseController
                 ->where('property_type', $request->propertyType)
                 ->orderBy('id', 'DESC')->paginate(40);
         }
-        return $this->sendResponse(
-            $properties->toArray(),
-            __('messages.retrieved', ['model' => __('models/properties.plural')])
-        );
+       return $properties;
     }
 }
