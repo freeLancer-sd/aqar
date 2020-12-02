@@ -214,6 +214,7 @@ class Property extends Model
         'lat',
         'lng',
         'status',
+        'status_mobile',
         'room_number',
         'property_age',
         'bath_number',

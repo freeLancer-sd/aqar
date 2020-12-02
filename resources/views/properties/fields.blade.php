@@ -4,6 +4,13 @@
     {!! Form::text('title', null, ['class' => 'form-control']) !!}
 </div>
 
+<!-- Title Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('status_mobile', __('models/properties.fields.title').':') !!}
+    {!! Form::select('status_mobile', [1=> 'اظهار رقم المعلن', 0=> 'إخفاء رقم المعلن'], null, ['class' => 'form-control']) !!}
+    {{--    {!! Form::op('status_mobile', null, ['class' => 'form-control']) !!}--}}
+</div>
+
 <!-- Address Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('address', __('models/properties.fields.address').':') !!}

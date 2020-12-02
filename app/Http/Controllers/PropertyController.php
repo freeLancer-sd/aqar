@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\PropertyDataTable;
-use App\Http\Requests;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
 use App\Repositories\PropertyRepository;
 use Flash;
-use App\Http\Controllers\AppBaseController;
 use Response;
 
 class PropertyController extends AppBaseController
