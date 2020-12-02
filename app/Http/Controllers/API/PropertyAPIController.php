@@ -85,7 +85,7 @@ class PropertyAPIController extends AppBaseController
             $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->orderBy('id', 'DESC')->paginate(40);
         } else {
-            $properties = $this->propertyRepository->paginate(40);
+            $properties = $this->propertyRepository->orderBy('id', 'DESC')->paginate(40);
         }
         return $properties;
     }
