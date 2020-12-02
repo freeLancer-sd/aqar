@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.2.5",
         "appointer/swaggervel": "dev-master",
+        "arcanedev/log-viewer": "~7.1.0",
         "barryvdh/laravel-snappy": "^0.4.7",
         "benwilkins/laravel-fcm-notification": "^4.0",
         "doctrine/dbal": "~2.3",
