@@ -14,7 +14,7 @@ class AddStatusMobileProperties extends Migration
     public function up()
     {
         Schema::table('properties', function (Blueprint $t) {
-            $t->boolean('status_mobile')->default(0);
+            $t->boolean('status_mobile')->default(0)->nullable();
         });
     }
 

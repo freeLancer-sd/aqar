@@ -48,3 +48,5 @@ Route::post('/send-notification', 'NotificationWebController@sendNotification')-
 Route::resource('cities', 'CityController');
 
 Route::resource('districts', 'DistrictController');
+
+Route::resource('settings', 'SettingController');

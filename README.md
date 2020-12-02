@@ -15,3 +15,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 # code:
 - `php artisan infyom:api_scaffold District --fromTable --tableName=districts`
+- `php artisan infyom:api_scaffold  --fromTable --tableName=`

@@ -20,6 +20,7 @@ class CreateSettingsTable extends Migration
             $table->string('version_last')->nullable();
             $table->string('primary_color')->nullable();
             $table->string('secondary_color')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

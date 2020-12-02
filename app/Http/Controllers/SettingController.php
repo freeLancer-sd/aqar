@@ -2,84 +2,150 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
-use Illuminate\Http\Request;
+use App\DataTables\SettingDataTable;
+use App\Http\Requests;
+use App\Http\Requests\CreateSettingRequest;
+use App\Http\Requests\UpdateSettingRequest;
+use App\Repositories\SettingRepository;
+use Flash;
+use App\Http\Controllers\AppBaseController;
+use Response;
 
-class SettingController extends Controller
+class SettingController extends AppBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    /** @var  SettingRepository */
+    private $settingRepository;
+
+    public function __construct(SettingRepository $settingRepo)
     {
-        //
+        $this->settingRepository = $settingRepo;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the Setting.
      *
-     * @return \Illuminate\Http\Response
+     * @param SettingDataTable $settingDataTable
+     * @return Response
+     */
+    public function index(SettingDataTable $settingDataTable)
+    {
+        return $settingDataTable->render('settings.index');
+    }
+
+    /**
+     * Show the form for creating a new Setting.
+     *
+     * @return Response
      */
     public function create()
     {
-        //
+        return view('settings.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created Setting in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateSettingRequest $request
+     *
+     * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateSettingRequest $request)
     {
-        //
+        $input = $request->all();
+
+        $setting = $this->settingRepository->create($input);
+
+        Flash::success(__('messages.saved', ['model' => __('models/settings.singular')]));
+
+        return redirect(route('settings.index'));
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Setting.
      *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function show(Setting $setting)
+    public function show($id)
     {
-        //
+        $setting = $this->settingRepository->find($id);
+
+        if (empty($setting)) {
+            Flash::error(__('models/settings.singular').' '.__('messages.not_found'));
+
+            return redirect(route('settings.index'));
+        }
+
+        return view('settings.show')->with('setting', $setting);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified Setting.
      *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function edit(Setting $setting)
+    public function edit($id)
     {
-        //
+        $setting = $this->settingRepository->find($id);
+
+        if (empty($setting)) {
+            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+
+            return redirect(route('settings.index'));
+        }
+
+        return view('settings.edit')->with('setting', $setting);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified Setting in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param  int              $id
+     * @param UpdateSettingRequest $request
+     *
+     * @return Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update($id, UpdateSettingRequest $request)
     {
-        //
+        $setting = $this->settingRepository->find($id);
+
+        if (empty($setting)) {
+            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+
+            return redirect(route('settings.index'));
+        }
+
+        $setting = $this->settingRepository->update($request->all(), $id);
+
+        Flash::success(__('messages.updated', ['model' => __('models/settings.singular')]));
+
+        return redirect(route('settings.index'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified Setting from storage.
      *
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     *
+     * @return Response
      */
-    public function destroy(Setting $setting)
+    public function destroy($id)
     {
-        //
+        $setting = $this->settingRepository->find($id);
+
+        if (empty($setting)) {
+            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+
+            return redirect(route('settings.index'));
+        }
+
+        $this->settingRepository->delete($id);
+
+        Flash::success(__('messages.deleted', ['model' => __('models/settings.singular')]));
+
+        return redirect(route('settings.index'));
     }
 }

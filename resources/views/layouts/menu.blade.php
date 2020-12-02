@@ -31,3 +31,7 @@
 <li class="{{ Request::is('districts*') ? 'active' : '' }}">
     <a href="{{ route('districts.index') }}"><i class="fa fa-edit"></i><span>@lang('models/districts.plural')</span></a>
 </li>
+<li class="{{ Request::is('settings*') ? 'active' : '' }}">
+    <a href="{{ route('settings.index') }}"><i class="fa fa-edit"></i><span>@lang('models/settings.plural')</span></a>
+</li>
+

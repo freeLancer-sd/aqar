@@ -55,3 +55,5 @@ Route::resource('cities', 'CityAPIController');
 
 Route::resource('districts', 'DistrictAPIController');
 Route::get('districts/byCity/{city}', 'DistrictAPIController@byCity');
+
+Route::resource('settings', 'SettingAPIController');
