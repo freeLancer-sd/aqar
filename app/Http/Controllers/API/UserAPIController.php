@@ -247,6 +247,7 @@ class UserAPIController extends AppBaseController
      * @param int $id
      * @return Response
      *
+     * @throws \Exception
      * @SWG\Delete(
      *      path="/users/{id}",
      *      summary="Remove the specified User from storage",

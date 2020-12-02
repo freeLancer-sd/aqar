@@ -24,8 +24,11 @@ class UpdateUserAPIRequest extends APIRequest
      */
     public function rules()
     {
-        $rules = User::$rules;
-        
-        return $rules;
+        return [
+            'userId' => 'required',
+            'name' => 'string|max:180|min:5',
+            'email' => 'email|string|max:180|min:5',
+            'mobil' => 'string|max:11|min:10',
+        ];
     }
 }
