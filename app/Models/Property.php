@@ -111,13 +111,13 @@ use Illuminate\Notifications\Notifiable;
  *          type="string"
  *      ),
  *        @SWG\Property(
- *          property="district_name",
- *          description="district_name",
+ *          property="district_id",
+ *          description="district_id",
  *          type="string"
  *      ),
  *        @SWG\Property(
- *          property="district_number",
- *          description="district_number",
+ *          property="city_id",
+ *          description="city_id",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -223,8 +223,8 @@ class Property extends Model
         'space',
         'price',
         'note',
-        'district_name',
-        'district_number',
+        'district_id',
+        'city_id',
         'land_number',
         'destination',
         'advertiser_status',
@@ -260,12 +260,11 @@ class Property extends Model
         'id' => 'integer',
         'title' => 'string',
         'address' => 'string',
-        'district_name' => 'string',
+        'district_id' => 'string',
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
         'room_number' => 'integer',
-        'district_number' => 'integer',
         'property_age' => 'integer',
         'hall_number' => 'integer',
         'bath_number' => 'integer',
