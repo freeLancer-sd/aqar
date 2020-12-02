@@ -45,39 +45,39 @@ class PropertyDataTable extends DataTable
             ->minifiedAjax()
             ->addAction(['width' => '120px', 'printable' => false, 'title' => __('crud.action')])
             ->parameters([
-                'dom'       => 'Bfrtip',
+                'dom' => 'Bfrtip',
                 'stateSave' => true,
-                'order'     => [[0, 'desc']],
-                'buttons'   => [
+                'order' => [[0, 'desc']],
+                'buttons' => [
                     [
-                       'extend' => 'create',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-plus"></i> ' .__('auth.app.create').''
+                        'extend' => 'create',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'text' => '<i class="fa fa-plus"></i> ' . __('auth.app.create') . ''
                     ],
                     [
-                       'extend' => 'export',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-download"></i> ' .__('auth.app.export').''
+                        'extend' => 'export',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'text' => '<i class="fa fa-download"></i> ' . __('auth.app.export') . ''
                     ],
                     [
-                       'extend' => 'print',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-print"></i> ' .__('auth.app.print').''
+                        'extend' => 'print',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'text' => '<i class="fa fa-print"></i> ' . __('auth.app.print') . ''
                     ],
                     [
-                       'extend' => 'reset',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-undo"></i> ' .__('auth.app.reset').''
+                        'extend' => 'reset',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'text' => '<i class="fa fa-undo"></i> ' . __('auth.app.reset') . ''
                     ],
                     [
-                       'extend' => 'reload',
-                       'className' => 'btn btn-default btn-sm no-corner',
-                       'text' => '<i class="fa fa-refresh"></i> ' .__('auth.app.reload').''
+                        'extend' => 'reload',
+                        'className' => 'btn btn-default btn-sm no-corner',
+                        'text' => '<i class="fa fa-refresh"></i> ' . __('auth.app.reload') . ''
                     ],
                 ],
-                 'language' => [
-                   'url' => url('//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json'),
-                 ],
+                'language' => [
+                    'url' => url('//cdn.datatables.net/plug-ins/1.10.12/i18n/English.json'),
+                ],
             ]);
     }
 
@@ -94,16 +94,10 @@ class PropertyDataTable extends DataTable
             'lat' => new Column(['title' => __('models/properties.fields.lat'), 'data' => 'lat']),
             'lng' => new Column(['title' => __('models/properties.fields.lng'), 'data' => 'lng']),
             'status' => new Column(['title' => __('models/properties.fields.status'), 'data' => 'status']),
-            'room_number' => new Column(['title' => __('models/properties.fields.room_number'), 'data' => 'room_number']),
-            'property_age' => new Column(['title' => __('models/properties.fields.property_age'), 'data' => 'property_age']),
-            'furnished' => new Column(['title' => __('models/properties.fields.furnished'), 'data' => 'furnished']),
-            'air_conditioner' => new Column(['title' => __('models/properties.fields.air_conditioner'), 'data' => 'air_conditioner']),
             'space' => new Column(['title' => __('models/properties.fields.space'), 'data' => 'space']),
             'price' => new Column(['title' => __('models/properties.fields.price'), 'data' => 'price']),
-            'note' => new Column(['title' => __('models/properties.fields.note'), 'data' => 'note']),
-            'property_type_id' => new Column(['title' => __('models/properties.fields.property_type_id'), 'data' => 'property_type_id']),
             'property_categorie_id' => new Column(['title' => __('models/properties.fields.property_categorie_id'), 'data' => 'property_categorie_id']),
-            'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id'])
+//            'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id'])
         ];
     }
 

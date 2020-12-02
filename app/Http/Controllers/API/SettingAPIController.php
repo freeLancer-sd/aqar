@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Requests\API\CreateSettingAPIRequest;
-use App\Http\Requests\API\UpdateSettingAPIRequest;
-use App\Models\Setting;
+//use App\Models\Setting;
 use App\Repositories\SettingRepository;
 use App\User;
 use Illuminate\Http\Request;
