@@ -1,27 +1,27 @@
 <?php
 
-return array (
-  'singular' => 'Property',
-  'plural' => 'Properties',
-  'fields' => 
-  array (
-    'id' => 'Id',
-    'title' => 'Title',
-    'address' => 'Address',
-    'lat' => 'Lat',
-    'lng' => 'Lng',
-    'status' => 'Status',
-    'room_number' => 'Room Number',
-    'property_age' => 'Property Age',
-    'furnished' => 'Furnished',
-    'air_conditioner' => 'Air Conditioner',
-    'space' => 'Space',
-    'price' => 'Price',
-    'note' => 'Note',
-    'property_categorie_id' => 'Property Categorie Id',
-    'user_id' => 'User Id',
-    'deleted_at' => 'Deleted At',
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
-  ),
+return array(
+    'singular' => 'عقار',
+    'plural' => 'عقارات',
+    'fields' =>
+        array(
+            'id' => 'رقم تعريفي',
+            'title' => 'عنوان خاض',
+            'address' => 'العنوان وموقع العقار',
+            'property_type' => 'غرض عرض العقار',
+            'lat' => 'خط الطول',
+            'lng' => 'خط العرض',
+            'status' => 'حالة الطلب',
+            'room_number' => 'عدد الفرف',
+            'property_age' => 'عمر العقار',
+            'furnished' => 'مؤثثت',
+            'space' => 'المساحة',
+            'price' => 'السعر',
+            'note' => 'ملاحظات',
+            'property_categorie_id' => 'اختار نوع العقار',
+            'user_id' => 'المستخدم',
+            'deleted_at' => 'تاريخ الحذف',
+            'created_at' => 'تاريخ الإضافة',
+            'updated_at' => 'اخر تحديث',
+        ),
 );

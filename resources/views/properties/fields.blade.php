@@ -13,6 +13,12 @@
 
 <!-- Address Field -->
 <div class="form-group col-sm-6">
+    {!! Form::label('property_type', __('models/properties.fields.address').':') !!}
+    {!! Form::text('property_type', null, ['class' => 'form-control']) !!}
+</div>
+
+<!-- Address Field -->
+<div class="form-group col-sm-6">
     {!! Form::label('address', __('models/properties.fields.address').':') !!}
     {!! Form::text('address', null, ['class' => 'form-control']) !!}
 </div>
