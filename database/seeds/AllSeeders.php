@@ -15,8 +15,8 @@ class AllSeeders extends Seeder
      */
     public function run()
     {
-//        self::createUsers();
-//        self::createCategory();
+        self::createUsers();
+        self::createCategory();
         self::createCity();
         // self::getFromSql();
     }

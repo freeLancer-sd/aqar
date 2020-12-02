@@ -179,7 +179,7 @@ class DistrictAPIController extends AppBaseController
     public function byCity($city)
     {
         /** @var District $district */
-        $district = District::where('city_id', $city)->with('city')->first();
+        $district = District::where('city_id', $city)->with('city')->get();
 
         if (empty($district)) {
             return $this->sendError(
