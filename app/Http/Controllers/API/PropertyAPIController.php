@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Notifications\PropertyNotification;
 use App\Repositories\PropertyRepository;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Notification;
@@ -72,19 +73,19 @@ class PropertyAPIController extends AppBaseController
         if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
                 ->where('property_categorie_id', $keyword['catId'])
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         } elseif (!empty($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('property_type', $keyword['propertyType'])
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         } elseif (!empty($keyword['catId'])) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         } else {
-            $properties = $this->propertyRepository->index();
+            $properties = $this->propertyRepository->paginate(40);
         }
         return $this->sendResponse(
             $properties->toArray(),
@@ -257,7 +258,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @param UpdatePropertyAPIRequest $request
+     * @param Request $request
      * @return Response
      *
      * @SWG\Put(
@@ -329,7 +330,7 @@ class PropertyAPIController extends AppBaseController
      * @param int $id
      * @return Response
      *
-     * @throws \Exception
+     * @throws Exception
      * @SWG\Delete(
      *      path="/properties/{id}",
      *      summary="Remove the specified Property from storage",
@@ -395,27 +396,27 @@ class PropertyAPIController extends AppBaseController
                 ->where('the_purpose', $the_purpose)
                 ->orwherebetween('room_number', [1, $room_number])
                 ->orwherebetween('hall_number', [1, $hall_number])
-                ->get();
+                ->paginate(40);
         }
         if (!empty($property_type) && !empty($the_purpose) && !empty($property_type)) {
 //            return 'status: #2';
             $properties = Property::where('property_type', $property_type)
                 ->orWhere('the_purpose', $the_purpose)
-                ->get();
+                ->paginate(40);
         }
         if (!empty($property_type) && !empty($the_purpose)) {
 //            return 'status: #3';
             $properties = Property::where('property_type', $property_type)
                 ->orWhere('the_purpose', $the_purpose)
-                ->get();
+                ->paginate(40);
         }
         if (!empty($property_type)) {
 //            return 'status: #4';
-            $properties = Property::where('property_type', $property_type)->get();
+            $properties = Property::where('property_type', $property_type)->paginate(40);
         }
         if (!empty($the_purpose)) {
 //            return 'status: #5';
-            $properties = Property::where('the_purpose', $the_purpose)->get();
+            $properties = Property::where('the_purpose', $the_purpose)->paginate(40);
         }
 
         return $this->sendResponse(
@@ -428,11 +429,11 @@ class PropertyAPIController extends AppBaseController
     {
         if ($request->status === 'all') {
             $properties = Property::where('property_type', $request->propertyType)
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         } else if ($request->status === 'non') {
             $properties = Property::where('property_categorie_id', $request->propertyCategory)
                 ->where('property_type', $request->propertyType)
-                ->orderBy('id', 'DESC')->get();
+                ->orderBy('id', 'DESC')->paginate(40);
         }
         return $this->sendResponse(
             $properties->toArray(),
