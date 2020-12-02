@@ -302,7 +302,7 @@ class UserAPIController extends AppBaseController
 
     public function userImage($user)
     {
-        $user = Image::whereUserId($user)->first();
+        $user = Image::where('user_id', $user)->first();
         if ($user) {
             return $user;
         }
