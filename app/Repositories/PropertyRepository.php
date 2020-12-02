@@ -55,7 +55,7 @@ class PropertyRepository extends BaseRepository
     public function index()
     {
         return Property::where('status', 2)->where('lat', '!=', '')
-            ->orderBy('id', 'DESC')->get();
+            ->orderBy('id', 'DESC')->paginate(50);
     }
 
     public function user($id)
