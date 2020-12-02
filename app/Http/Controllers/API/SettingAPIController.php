@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateSettingAPIRequest;
 use App\Http\Requests\API\UpdateSettingAPIRequest;
 use App\Models\Setting;
 use App\Repositories\SettingRepository;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Response;
@@ -56,7 +57,7 @@ class SettingAPIController extends AppBaseController
      *      )
      * )
      */
-    public function index(Request $request)
+    public function index()
     {
         $settings = $this->settingRepository->all()->first();
 
@@ -64,5 +65,23 @@ class SettingAPIController extends AppBaseController
             $settings,
             __('messages.retrieved', ['model' => __('models/settings.plural')])
         );
+    }
+
+    /**
+     * updateUser a update users resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUser(Request $request)
+    {
+        $user = User::find($request->user_id);
+        if ($user) {
+            $user->device_token = $request->device_token;
+            $user->save();
+            return true;
+        } else {
+            return false;
+        }
     }
 }
