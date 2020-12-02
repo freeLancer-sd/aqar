@@ -11,7 +11,6 @@ use Intervention\Image\Facades\Image;
  * @package App\Repositories
  * @version October 8, 2020, 5:43 am UTC
  */
-
 class ImageRepository extends BaseRepository
 {
     /**
@@ -21,7 +20,8 @@ class ImageRepository extends BaseRepository
         'name',
         'url',
         'property_id',
-        'user_id'
+        'user_id',
+        'fileName'
     ];
 
     /**
@@ -44,10 +44,11 @@ class ImageRepository extends BaseRepository
 
     public function createApi(Request $request)
     {
+        $folderPath = $request->fileName;
         if ($request->hasfile('images')) {
             $image = $request->file('images');
             $imageModel = new ImageModel();
-            $path = 'upload/property/' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
             $img = Image::make($image);
             $img->save(public_path($path));
             $imageModel->name = $image->getClientOriginalName();

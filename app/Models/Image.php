@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -23,6 +24,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      @SWG\Property(
  *          property="url",
  *          description="url",
+ *          type="string"
+ *      ),
+ *       @SWG\Property(
+ *          property="fileName",
+ *          description="fileName floder where we save image",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -70,10 +76,10 @@ class Image extends Model
     protected $dates = ['deleted_at'];
 
 
-
     public $fillable = [
         'name',
         'url',
+        'fileName',
         'property_id',
         'user_id'
     ];
@@ -87,6 +93,7 @@ class Image extends Model
         'id' => 'integer',
         'name' => 'string',
         'url' => 'string',
+        'fileName' => 'string',
         'property_id' => 'integer',
         'user_id' => 'integer'
     ];
@@ -107,15 +114,15 @@ class Image extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function property()
     {
-        return $this->belongsTo(\App\Models\Property::class, 'property_id');
+        return $this->belongsTo(Property::class, 'property_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      **/
     public function user()
     {
