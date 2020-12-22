@@ -1,11 +1,11 @@
 <?php
 
 return array (
-  'singular' => 'City',
-  'plural' => 'Cities',
+  'singular' => 'المدينة',
+  'plural' => 'المدن',
   'fields' => 
   array (
-    'id' => 'Id',
-    'name' => 'Name',
+    'id' => 'الرقم',
+    'name' => 'الإسم',
   ),
 );

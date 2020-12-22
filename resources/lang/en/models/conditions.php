@@ -5,10 +5,10 @@ return array (
   'plural' => 'Conditions',
   'fields' => 
   array (
-    'id' => 'Id',
-    'title' => 'Title',
-    'body' => 'Body',
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
+    'id' => 'الرقم',
+    'title' => 'العنوان',
+    'body' => 'المحتوي',
+    'created_at' => 'تاريخ الإضافة',
+    'updated_at' => 'تاريخ التعديل',
   ),
 );

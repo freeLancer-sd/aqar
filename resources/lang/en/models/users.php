@@ -1,21 +1,21 @@
 <?php
 
-return array (
-  'singular' => 'User',
-  'plural' => 'Users',
-  'fields' => 
-  array (
-    'id' => 'Id',
-    'name' => 'Name',
-    'email' => 'Email',
-    'mobile' => 'Mobile',
-    'email_verified_at' => 'Email Verified At',
-    'role' => 'Role',
-    'status' => 'Status',
-    'password' => 'Password',
-    'remember_token' => 'Remember Token',
-    'deleted_at' => 'Deleted At',
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
-  ),
+return array(
+    'singular' => 'مستخدم',
+    'plural' => 'المستخدمين',
+    'fields' =>
+        array(
+            'id' => 'الرقم',
+            'name' => 'الإسم',
+            'email' => 'البريد الإلكتروني',
+            'mobile' => 'رقم الهاتف',
+            'email_verified_at' => 'Email Verified At',
+            'role' => 'الصلاحيات',
+            'status' => 'الحالة',
+            'password' => 'كلمة السر',
+            'remember_token' => 'تذكرني',
+            'deleted_at' => 'تم الحذف في',
+            'created_at' => 'تم الإضافة في',
+            'updated_at' => 'اخر تعديل في',
+        ),
 );

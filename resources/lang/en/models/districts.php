@@ -1,13 +1,15 @@
 <?php
 
 return array (
-  'singular' => 'District',
-  'plural' => 'Districts',
+  'singular' => 'الحي',
+  'plural' => 'حي',
   'fields' => 
   array (
-    'id' => 'Id',
-    'name' => 'Name',
-    'number' => 'Number',
-    'city_id' => 'City Id',
+      'id' => 'الرقم',
+    'name' => 'الاسم',
+    'number' => 'الرقم',
+    'city_id' => 'المدينة',
+      'created_at' => 'تاريخ الإضافة',
+      'updated_at' => 'تاريخ التعديل',
   ),
 );
