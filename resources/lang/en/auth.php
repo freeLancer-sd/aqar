@@ -3,14 +3,14 @@
 return [
 
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'بياناتك هذه لا تتطابق مع سجلاتنا.',
+    'throttle' => 'محاولات تسجيل دخول كثيرة جدًا. يرجى المحاولة مرة أخرى خلال: ثواني.',
     'app' => [
-        'create' => 'Create',
-        'print' => 'Print',
-        'reset' => 'Reset',
-        'reload' => 'Reload',
-        'export' => 'export'
+        'create' => 'إنشاء',
+        'print' => 'طباعة',
+        'reset' => 'إعادة تعيين',
+        'reload' => 'إعادة تحميل',
+        'export' => 'تصدير'
     ]
 
 ];

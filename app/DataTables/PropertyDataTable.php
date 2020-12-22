@@ -19,7 +19,13 @@ class PropertyDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'properties.datatables_actions');
+        return $dataTable->addColumn('action', 'properties.datatables_actions')
+            ->editColumn('status', function ($query) {
+                if ($query->status == 1) return 'جديد';
+                if ($query->status == 2) return 'بنتظار الموافقة';
+                if ($query->status == 3) return 'تم الموافقة';
+                if ($query->status == 4) return 'مخفي';
+            });
     }
 
     /**
@@ -91,8 +97,8 @@ class PropertyDataTable extends DataTable
         return [
             'title' => new Column(['title' => __('models/properties.fields.title'), 'data' => 'title']),
             'address' => new Column(['title' => __('models/properties.fields.address'), 'data' => 'address']),
-            'lat' => new Column(['title' => __('models/properties.fields.lat'), 'data' => 'lat']),
-            'lng' => new Column(['title' => __('models/properties.fields.lng'), 'data' => 'lng']),
+//            'lat' => new Column(['title' => __('models/properties.fields.lat'), 'data' => 'lat']),
+//            'lng' => new Column(['title' => __('models/properties.fields.lng'), 'data' => 'lng']),
             'status' => new Column(['title' => __('models/properties.fields.status'), 'data' => 'status']),
             'space' => new Column(['title' => __('models/properties.fields.space'), 'data' => 'space']),
             'price' => new Column(['title' => __('models/properties.fields.price'), 'data' => 'price']),

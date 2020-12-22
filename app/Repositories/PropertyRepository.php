@@ -54,13 +54,15 @@ class PropertyRepository extends BaseRepository
 
     public function index()
     {
-        return Property::where('status', 2)->where('lat', '!=', '')
-            ->orderBy('id', 'DESC')->paginate(50);
+        return Property::where('status', 3)
+            ->where('lat', '!=', '')
+            ->orderBy('id', 'DESC')
+            ->paginate(50);
     }
 
     public function user($id)
     {
-        return$this->model->where('user_id', $id)->orderBy('id', 'DESC')->get();
+        return $this->model->where('user_id', $id)->orderBy('id', 'DESC')->get();
     }
 
     public function saveImages(Request $request)
@@ -78,30 +80,6 @@ class PropertyRepository extends BaseRepository
             $imageModel->save();
             return $imageModel;
         }
+        return false;
     }
-    // public function createApi(Request $request)
-    // {
-    //     $input = $request->all();
-
-    //     $model = $this->model->newInstance($input);
-
-    //     $model->save();
-
-    //     if ($request->hasfile('images')) {
-    //         foreach ($request->file('images') as $image) {
-    //             $imageModel = new ImageModel();
-    //             $path = 'upload/property/' . uniqid() . '.' . $image->getClientOriginalExtension();
-    //             $img = Image::make($image);
-    //             $img->save(public_path($path));
-    //             $imageModel->name = $image->getClientOriginalName();
-    //             $imageModel->url = url("/$path");
-    //             $imageModel->property_id = $model->id;
-    //             $imageModel->user_id = $input['user_id'];
-    //             $imageModel->save();
-    //             $data[] = $imageModel;
-    //         }
-    //         $proptry = Property::find($model->id);
-    //         return $proptry;
-    //     }
-    // }
 }
