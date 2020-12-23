@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'Slider',
-  'plural' => 'Sliders',
+  'singular' => 'شريط',
+  'plural' => 'الشريط المتحرك',
   'fields' => 
   array (
     'id' => 'Id',

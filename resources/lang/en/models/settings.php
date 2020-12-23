@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'Setting',
-  'plural' => 'Settings',
+  'singular' => 'اعداد',
+  'plural' => 'الإعداداة',
   'fields' => 
   array (
     'id' => 'Id',

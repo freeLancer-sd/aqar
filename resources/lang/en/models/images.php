@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'Image',
-  'plural' => 'Images',
+  'singular' => 'صورة',
+  'plural' => 'الصور',
   'fields' => 
   array (
     'id' => 'Id',

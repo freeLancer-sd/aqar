@@ -1,8 +1,8 @@
 <?php
 
 return array (
-  'singular' => 'PropertyCategory',
-  'plural' => 'PropertyCategories',
+  'singular' => 'التصنيف',
+  'plural' => 'التصنيفات',
   'fields' => 
   array (
     'id' => 'Id',
