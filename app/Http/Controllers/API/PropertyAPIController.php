@@ -384,51 +384,60 @@ class PropertyAPIController extends AppBaseController
     public function search(Request $request)
     {
         $property_type = $request->property_type;
-        $the_purpose = $request->the_purpose;
+        $price = $request->price;
         $room_number = $request->room_number;
         $hall_number = $request->hall_number;
-        if (!empty($property_type) && !empty($the_purpose) && !empty($room_number) && !empty($hall_number)) {
+        if (!empty($property_type) && !empty($price) && !empty($room_number) && !empty($hall_number)) {
 //            return 'status: #1';
-            $properties = Property::where('property_type', $property_type)
-                ->where('the_purpose', $the_purpose)
+            return $properties = Property::where('property_type', $property_type)
+                ->orwherebetween('price', [100, $price])
                 ->orwherebetween('room_number', [1, $room_number])
                 ->orwherebetween('hall_number', [1, $hall_number])
+                ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($the_purpose) && !empty($property_type)) {
+        if (!empty($property_type) && !empty($price) && !empty($property_type)) {
 //            return 'status: #2';
-            $properties = Property::where('property_type', $property_type)
-                ->orWhere('the_purpose', $the_purpose)
+            return $properties = Property::where('property_type', $property_type)
+                ->orWhere('price', $price)
+                ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($the_purpose)) {
+        if (!empty($property_type) && !empty($price)) {
 //            return 'status: #3';
-            $properties = Property::where('property_type', $property_type)
-                ->orWhere('the_purpose', $the_purpose)
+            return $properties = Property::where('property_type', $property_type)
+                ->orWhere('price', $price)
+                ->where('status', '=', 3)
                 ->paginate(40);
         }
         if (!empty($property_type)) {
 //            return 'status: #4';
-            $properties = Property::where('property_type', $property_type)->paginate(40);
+            return $properties = Property::where('property_type', $property_type)
+                ->where('status', '=', 3)
+                ->paginate(40);
         }
-        if (!empty($the_purpose)) {
+        if (!empty($price)) {
 //            return 'status: #5';
-            $properties = Property::where('the_purpose', $the_purpose)->paginate(40);
+            return $properties = Property::whereBetween('price', [100, $price])
+                ->where('status', '=', 3)
+                ->paginate(40);
         }
 
-       return $properties;
+        return false;
     }
 
     public function filterData(Request $request)
     {
         if ($request->status === 'all') {
             $properties = Property::where('property_type', $request->propertyType)
+                ->where('status', '=', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
         } else if ($request->status === 'non') {
             $properties = Property::where('property_categorie_id', $request->propertyCategory)
                 ->where('property_type', $request->propertyType)
+                ->where('status', '=', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
         }
-       return $properties;
+        return $properties;
     }
 }
