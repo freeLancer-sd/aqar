@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|max:55',
-            'mobile' => 'required|max:15',
+            'mobile' => 'required|max:15|unique:users',
             'email' => 'email|required|unique:users',
             'password' => 'required'
         ]);
@@ -21,12 +21,9 @@ class AuthController extends Controller
         $validatedData['password'] = bcrypt($request->password);
         $validatedData['api_token'] = Str::random(60);
 
-
         $user = User::create($validatedData);
 
-        // $accessToken = $user->createToken('authToken')->accessToken;
-
-        return response(['user' => $user, 'api_token' => $validatedData['api_token'], 'status'=> true]);
+        return response(['user' => $user, 'api_token' => $validatedData['api_token'], 'status' => true]);
     }
 
     public function login(Request $request)
@@ -37,13 +34,11 @@ class AuthController extends Controller
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials', 'status'=> false]);
+            return response(['message' => 'Invalid Credentials', 'status' => false]);
         }
 
-        // $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        // $validatedData['api_token'] => ,
-
-        return response(['user' => auth()->user(), 'api_token' => Str::random(60), 'status'=> true]);
-
+        $token = Str::random(60);
+        auth()->user()->update(['api_token' => $token]);
+        return response(['user' => auth()->user(), 'api_token' => $token, 'status' => true]);
     }
 }
