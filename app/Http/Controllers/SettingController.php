@@ -55,7 +55,7 @@ class SettingController extends AppBaseController
 
         $setting = $this->settingRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/settings.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/settings.singular')]));
 
         return redirect(route('settings.index'));
     }
@@ -72,7 +72,7 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('models/settings.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/settings.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('settings.index'));
         }
@@ -92,7 +92,7 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/settings.singular')]));
 
             return redirect(route('settings.index'));
         }
@@ -113,14 +113,14 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/settings.singular')]));
 
             return redirect(route('settings.index'));
         }
 
         $setting = $this->settingRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/settings.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/settings.singular')]));
 
         return redirect(route('settings.index'));
     }
@@ -137,14 +137,14 @@ class SettingController extends AppBaseController
         $setting = $this->settingRepository->find($id);
 
         if (empty($setting)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/settings.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/settings.singular')]));
 
             return redirect(route('settings.index'));
         }
 
         $this->settingRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/settings.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/settings.singular')]));
 
         return redirect(route('settings.index'));
     }

@@ -62,7 +62,7 @@ class SliderAPIController extends AppBaseController
 
         return $this->sendResponse(
             $sliders->toArray(),
-            __('messages.retrieved', ['model' => __('models/sliders.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/sliders.plural')])
         );
     }
 
@@ -112,7 +112,7 @@ class SliderAPIController extends AppBaseController
 
         return $this->sendResponse(
             $slider->toArray(),
-            __('messages.saved', ['model' => __('models/sliders.singular')])
+            __('lang.messages.saved', ['model' => __('models/sliders.singular')])
         );
     }
 
@@ -161,13 +161,13 @@ class SliderAPIController extends AppBaseController
 
         if (empty($slider)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/sliders.singular')])
+                __('lang.messages.not_found', ['model' => __('models/sliders.singular')])
             );
         }
 
         return $this->sendResponse(
             $slider->toArray(),
-            __('messages.retrieved', ['model' => __('models/sliders.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/sliders.singular')])
         );
     }
 
@@ -226,7 +226,7 @@ class SliderAPIController extends AppBaseController
 
         if (empty($slider)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/sliders.singular')])
+                __('lang.messages.not_found', ['model' => __('models/sliders.singular')])
             );
         }
 
@@ -234,7 +234,7 @@ class SliderAPIController extends AppBaseController
 
         return $this->sendResponse(
             $slider->toArray(),
-            __('messages.updated', ['model' => __('models/sliders.singular')])
+            __('lang.messages.updated', ['model' => __('models/sliders.singular')])
         );
     }
 
@@ -283,7 +283,7 @@ class SliderAPIController extends AppBaseController
 
         if (empty($slider)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/sliders.singular')])
+                __('lang.messages.not_found', ['model' => __('models/sliders.singular')])
             );
         }
 
@@ -291,7 +291,7 @@ class SliderAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/sliders.singular')])
+            __('lang.messages.deleted', ['model' => __('models/sliders.singular')])
         );
     }
 }

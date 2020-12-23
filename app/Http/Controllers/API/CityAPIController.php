@@ -67,7 +67,7 @@ class CityAPIController extends AppBaseController
 
         return $this->sendResponse(
             $cities->toArray(),
-            __('messages.retrieved', ['model' => __('models/cities.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/cities.plural')])
         );
     }
 
@@ -117,7 +117,7 @@ class CityAPIController extends AppBaseController
 
         return $this->sendResponse(
             $city->toArray(),
-            __('messages.saved', ['model' => __('models/cities.singular')])
+            __('lang.messages.saved', ['model' => __('models/cities.singular')])
         );
     }
 
@@ -166,13 +166,13 @@ class CityAPIController extends AppBaseController
 
         if (empty($city)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/cities.singular')])
+                __('lang.messages.not_found', ['model' => __('models/cities.singular')])
             );
         }
 
         return $this->sendResponse(
             $city->toArray(),
-            __('messages.retrieved', ['model' => __('models/cities.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/cities.singular')])
         );
     }
 
@@ -231,7 +231,7 @@ class CityAPIController extends AppBaseController
 
         if (empty($city)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/cities.singular')])
+                __('lang.messages.not_found', ['model' => __('models/cities.singular')])
             );
         }
 
@@ -239,7 +239,7 @@ class CityAPIController extends AppBaseController
 
         return $this->sendResponse(
             $city->toArray(),
-            __('messages.updated', ['model' => __('models/cities.singular')])
+            __('lang.messages.updated', ['model' => __('models/cities.singular')])
         );
     }
 
@@ -288,7 +288,7 @@ class CityAPIController extends AppBaseController
 
         if (empty($city)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/cities.singular')])
+                __('lang.messages.not_found', ['model' => __('models/cities.singular')])
             );
         }
 
@@ -296,7 +296,7 @@ class CityAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/cities.singular')])
+            __('lang.messages.deleted', ['model' => __('models/cities.singular')])
         );
     }
 }

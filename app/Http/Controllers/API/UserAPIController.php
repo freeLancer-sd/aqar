@@ -67,7 +67,7 @@ class UserAPIController extends AppBaseController
 
         return $this->sendResponse(
             $users->toArray(),
-            __('messages.retrieved', ['model' => __('models/users.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/users.plural')])
         );
     }
 
@@ -117,7 +117,7 @@ class UserAPIController extends AppBaseController
 
         return $this->sendResponse(
             $user->toArray(),
-            __('messages.saved', ['model' => __('models/users.singular')])
+            __('lang.messages.saved', ['model' => __('models/users.singular')])
         );
     }
 
@@ -166,13 +166,13 @@ class UserAPIController extends AppBaseController
 
         if (empty($user)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/users.singular')])
+                __('lang.messages.not_found', ['model' => __('models/users.singular')])
             );
         }
 
         return $this->sendResponse(
             $user->toArray(),
-            __('messages.retrieved', ['model' => __('models/users.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/users.singular')])
         );
     }
 
@@ -231,7 +231,7 @@ class UserAPIController extends AppBaseController
 
         if (empty($user)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/users.singular')])
+                __('lang.messages.not_found', ['model' => __('models/users.singular')])
             );
         }
 
@@ -239,7 +239,7 @@ class UserAPIController extends AppBaseController
 
         return $this->sendResponse(
             $user->toArray(),
-            __('messages.updated', ['model' => __('models/users.singular')])
+            __('lang.messages.updated', ['model' => __('models/users.singular')])
         );
     }
 
@@ -289,7 +289,7 @@ class UserAPIController extends AppBaseController
 
         if (empty($user)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/users.singular')])
+                __('lang.messages.not_found', ['model' => __('models/users.singular')])
             );
         }
 
@@ -297,7 +297,7 @@ class UserAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/users.singular')])
+            __('lang.messages.deleted', ['model' => __('models/users.singular')])
         );
     }
 

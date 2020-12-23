@@ -66,7 +66,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         return $this->sendResponse(
             $propertyCategories->toArray(),
-            __('messages.retrieved', ['model' => __('models/propertyCategories.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/propertyCategories.plural')])
         );
     }
 
@@ -116,7 +116,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         return $this->sendResponse(
             $propertyCategory->toArray(),
-            __('messages.saved', ['model' => __('models/propertyCategories.singular')])
+            __('lang.messages.saved', ['model' => __('models/propertyCategories.singular')])
         );
     }
 
@@ -165,13 +165,13 @@ class PropertyCategoryAPIController extends AppBaseController
 
         if (empty($propertyCategory)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/propertyCategories.singular')])
+                __('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')])
             );
         }
 
         return $this->sendResponse(
             $propertyCategory->toArray(),
-            __('messages.retrieved', ['model' => __('models/propertyCategories.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/propertyCategories.singular')])
         );
     }
 
@@ -230,7 +230,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         if (empty($propertyCategory)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/propertyCategories.singular')])
+                __('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')])
             );
         }
 
@@ -238,7 +238,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         return $this->sendResponse(
             $propertyCategory->toArray(),
-            __('messages.updated', ['model' => __('models/propertyCategories.singular')])
+            __('lang.messages.updated', ['model' => __('models/propertyCategories.singular')])
         );
     }
 
@@ -287,7 +287,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         if (empty($propertyCategory)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/propertyCategories.singular')])
+                __('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')])
             );
         }
 
@@ -295,7 +295,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/propertyCategories.singular')])
+            __('lang.messages.deleted', ['model' => __('models/propertyCategories.singular')])
         );
     }
 }

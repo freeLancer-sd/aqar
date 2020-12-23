@@ -66,7 +66,7 @@ class ImageAPIController extends AppBaseController
         return $this->imageRepository->all();
         // return $this->sendResponse(
         //     $images->toArray(),
-        //     __('messages.retrieved', ['model' => __('models/images.plural')])
+        //     __('lang.messages.retrieved', ['model' => __('models/images.plural')])
         // );
     }
 
@@ -114,7 +114,7 @@ class ImageAPIController extends AppBaseController
 
         // return $this->sendResponse(
         //     $image->toArray(),
-        //     __('messages.saved', ['model' => __('models/images.singular')])
+        //     __('lang.messages.saved', ['model' => __('models/images.singular')])
         // );
     }
 
@@ -163,13 +163,13 @@ class ImageAPIController extends AppBaseController
 
         if (empty($image)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/images.singular')])
+                __('lang.messages.not_found', ['model' => __('models/images.singular')])
             );
         }
 
         return $this->sendResponse(
             $image->toArray(),
-            __('messages.retrieved', ['model' => __('models/images.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/images.singular')])
         );
     }
 
@@ -228,7 +228,7 @@ class ImageAPIController extends AppBaseController
 
         if (empty($image)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/images.singular')])
+                __('lang.messages.not_found', ['model' => __('models/images.singular')])
             );
         }
 
@@ -236,7 +236,7 @@ class ImageAPIController extends AppBaseController
 
         return $this->sendResponse(
             $image->toArray(),
-            __('messages.updated', ['model' => __('models/images.singular')])
+            __('lang.messages.updated', ['model' => __('models/images.singular')])
         );
     }
 
@@ -286,7 +286,7 @@ class ImageAPIController extends AppBaseController
 
         if (empty($image)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/images.singular')])
+                __('lang.messages.not_found', ['model' => __('models/images.singular')])
             );
         }
 
@@ -294,7 +294,7 @@ class ImageAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/images.singular')])
+            __('lang.messages.deleted', ['model' => __('models/images.singular')])
         );
     }
 }

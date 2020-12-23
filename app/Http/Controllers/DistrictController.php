@@ -56,7 +56,7 @@ class DistrictController extends AppBaseController
 
         $district = $this->districtRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/districts.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/districts.singular')]));
 
         return redirect(route('districts.index'));
     }
@@ -73,7 +73,7 @@ class DistrictController extends AppBaseController
         $district = $this->districtRepository->find($id);
 
         if (empty($district)) {
-            Flash::error(__('models/districts.singular') . ' ' . __('messages.not_found'));
+            Flash::error(__('models/districts.singular') . ' ' . __('lang.messages.not_found'));
 
             return redirect(route('districts.index'));
         }
@@ -93,7 +93,7 @@ class DistrictController extends AppBaseController
         $district = $this->districtRepository->find($id);
         $city = City::all()->pluck('name', 'id');
         if (empty($district)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/districts.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/districts.singular')]));
 
             return redirect(route('districts.index'));
         }
@@ -114,14 +114,14 @@ class DistrictController extends AppBaseController
         $district = $this->districtRepository->find($id);
 
         if (empty($district)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/districts.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/districts.singular')]));
 
             return redirect(route('districts.index'));
         }
 
         $district = $this->districtRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/districts.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/districts.singular')]));
 
         return redirect(route('districts.index'));
     }
@@ -138,14 +138,14 @@ class DistrictController extends AppBaseController
         $district = $this->districtRepository->find($id);
 
         if (empty($district)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/districts.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/districts.singular')]));
 
             return redirect(route('districts.index'));
         }
 
         $this->districtRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/districts.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/districts.singular')]));
 
         return redirect(route('districts.index'));
     }

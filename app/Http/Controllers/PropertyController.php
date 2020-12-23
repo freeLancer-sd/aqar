@@ -53,7 +53,7 @@ class PropertyController extends AppBaseController
 
         $this->propertyRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/properties.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/properties.singular')]));
 
         return redirect(route('properties.index'));
     }
@@ -70,7 +70,7 @@ class PropertyController extends AppBaseController
         $property = $this->propertyRepository->find($id);
 
         if (empty($property)) {
-            Flash::error(__('models/properties.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/properties.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('properties.index'));
         }
@@ -90,7 +90,7 @@ class PropertyController extends AppBaseController
         $property = $this->propertyRepository->find($id);
 
         if (empty($property)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/properties.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/properties.singular')]));
 
             return redirect(route('properties.index'));
         }
@@ -111,14 +111,14 @@ class PropertyController extends AppBaseController
         $property = $this->propertyRepository->find($id);
 
         if (empty($property)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/properties.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/properties.singular')]));
 
             return redirect(route('properties.index'));
         }
 
         $property = $this->propertyRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/properties.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/properties.singular')]));
 
         return redirect(route('properties.index'));
     }
@@ -135,14 +135,14 @@ class PropertyController extends AppBaseController
         $property = $this->propertyRepository->find($id);
 
         if (empty($property)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/properties.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/properties.singular')]));
 
             return redirect(route('properties.index'));
         }
 
         $this->propertyRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/properties.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/properties.singular')]));
 
         return redirect(route('properties.index'));
     }

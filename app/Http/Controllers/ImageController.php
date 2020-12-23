@@ -53,7 +53,7 @@ class ImageController extends AppBaseController
 
        $this->imageRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/images.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/images.singular')]));
 
         return redirect(route('images.index'));
     }
@@ -70,7 +70,7 @@ class ImageController extends AppBaseController
         $image = $this->imageRepository->find($id);
 
         if (empty($image)) {
-            Flash::error(__('models/images.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/images.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('images.index'));
         }
@@ -90,7 +90,7 @@ class ImageController extends AppBaseController
         $image = $this->imageRepository->find($id);
 
         if (empty($image)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/images.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/images.singular')]));
 
             return redirect(route('images.index'));
         }
@@ -111,14 +111,14 @@ class ImageController extends AppBaseController
         $image = $this->imageRepository->find($id);
 
         if (empty($image)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/images.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/images.singular')]));
 
             return redirect(route('images.index'));
         }
 
         $image = $this->imageRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/images.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/images.singular')]));
 
         return redirect(route('images.index'));
     }
@@ -135,14 +135,14 @@ class ImageController extends AppBaseController
         $image = $this->imageRepository->find($id);
 
         if (empty($image)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/images.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/images.singular')]));
 
             return redirect(route('images.index'));
         }
 
         $this->imageRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/images.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/images.singular')]));
 
         return redirect(route('images.index'));
     }

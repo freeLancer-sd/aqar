@@ -55,7 +55,7 @@ class CityController extends AppBaseController
 
         $city = $this->cityRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/cities.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/cities.singular')]));
 
         return redirect(route('cities.index'));
     }
@@ -72,7 +72,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error(__('models/cities.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/cities.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('cities.index'));
         }
@@ -92,7 +92,7 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/cities.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/cities.singular')]));
 
             return redirect(route('cities.index'));
         }
@@ -113,14 +113,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/cities.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/cities.singular')]));
 
             return redirect(route('cities.index'));
         }
 
         $city = $this->cityRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/cities.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/cities.singular')]));
 
         return redirect(route('cities.index'));
     }
@@ -137,14 +137,14 @@ class CityController extends AppBaseController
         $city = $this->cityRepository->find($id);
 
         if (empty($city)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/cities.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/cities.singular')]));
 
             return redirect(route('cities.index'));
         }
 
         $this->cityRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/cities.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/cities.singular')]));
 
         return redirect(route('cities.index'));
     }

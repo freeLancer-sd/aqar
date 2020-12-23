@@ -67,7 +67,7 @@ class DistrictAPIController extends AppBaseController
 
         return $this->sendResponse(
             $districts->toArray(),
-            __('messages.retrieved', ['model' => __('models/districts.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/districts.plural')])
         );
     }
 
@@ -117,7 +117,7 @@ class DistrictAPIController extends AppBaseController
 
         return $this->sendResponse(
             $district->toArray(),
-            __('messages.saved', ['model' => __('models/districts.singular')])
+            __('lang.messages.lang.saved', ['model' => __('models/districts.singular')])
         );
     }
 
@@ -166,13 +166,13 @@ class DistrictAPIController extends AppBaseController
 
         if (empty($district)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/districts.singular')])
+                __('lang.messages.not_found', ['model' => __('models/districts.singular')])
             );
         }
 
         return $this->sendResponse(
             $district->toArray(),
-            __('messages.retrieved', ['model' => __('models/districts.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/districts.singular')])
         );
     }
 
@@ -183,13 +183,13 @@ class DistrictAPIController extends AppBaseController
 
         if (empty($district)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/districts.singular')])
+                __('lang.messages.not_found', ['model' => __('models/districts.singular')])
             );
         }
 
         return $this->sendResponse(
             $district->toArray(),
-            __('messages.retrieved', ['model' => __('models/districts.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/districts.singular')])
         );
     }
 
@@ -248,7 +248,7 @@ class DistrictAPIController extends AppBaseController
 
         if (empty($district)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/districts.singular')])
+                __('lang.messages.not_found', ['model' => __('models/districts.singular')])
             );
         }
 
@@ -256,7 +256,7 @@ class DistrictAPIController extends AppBaseController
 
         return $this->sendResponse(
             $district->toArray(),
-            __('messages.updated', ['model' => __('models/districts.singular')])
+            __('lang.messages.updated', ['model' => __('models/districts.singular')])
         );
     }
 
@@ -305,7 +305,7 @@ class DistrictAPIController extends AppBaseController
 
         if (empty($district)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/districts.singular')])
+                __('lang.messages.not_found', ['model' => __('models/districts.singular')])
             );
         }
 
@@ -313,7 +313,7 @@ class DistrictAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/districts.singular')])
+            __('lang.messages.deleted', ['model' => __('models/districts.singular')])
         );
     }
 }

@@ -138,7 +138,7 @@ class PropertyAPIController extends AppBaseController
 //        return $property;
         return $this->sendResponse(
             $property->toArray(),
-            __('messages.saved', ['model' => __('models/properties.singular')])
+            __('lang.messages.saved', ['model' => __('models/properties.singular')])
         );
     }
 
@@ -187,13 +187,13 @@ class PropertyAPIController extends AppBaseController
 
         if (empty($property)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/properties.singular')])
+                __('lang.messages.not_found', ['model' => __('models/properties.singular')])
             );
         }
 
         return $this->sendResponse(
             $property->toArray(),
-            __('messages.retrieved', ['model' => __('models/properties.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/properties.singular')])
         );
     }
 
@@ -242,13 +242,13 @@ class PropertyAPIController extends AppBaseController
 
         if (empty($property)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/properties.singular')])
+                __('lang.messages.not_found', ['model' => __('models/properties.singular')])
             );
         }
 
         return $this->sendResponse(
             $property->toArray(),
-            __('messages.retrieved', ['model' => __('models/properties.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/properties.singular')])
         );
     }
 
@@ -309,7 +309,7 @@ class PropertyAPIController extends AppBaseController
 
         if (empty($property)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/properties.singular')])
+                __('lang.messages.not_found', ['model' => __('models/properties.singular')])
             );
         }
         if ($property->user_id === $request->user_id) {
@@ -318,7 +318,7 @@ class PropertyAPIController extends AppBaseController
 
             return $this->sendResponse(
                 $property,
-                __('messages.updated', ['model' => __('models/properties.singular')])
+                __('lang.messages.updated', ['model' => __('models/properties.singular')])
             );
         }
     }
@@ -369,7 +369,7 @@ class PropertyAPIController extends AppBaseController
 
         if (empty($property)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/properties.singular')])
+                __('lang.messages.not_found', ['model' => __('models/properties.singular')])
             );
         }
 
@@ -377,7 +377,7 @@ class PropertyAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/properties.singular')])
+            __('lang.messages.deleted', ['model' => __('models/properties.singular')])
         );
     }
 

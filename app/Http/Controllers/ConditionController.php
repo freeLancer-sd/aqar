@@ -55,7 +55,7 @@ class ConditionController extends AppBaseController
 
         $condition = $this->conditionRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/conditions.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/conditions.singular')]));
 
         return redirect(route('conditions.index'));
     }
@@ -72,7 +72,7 @@ class ConditionController extends AppBaseController
         $condition = $this->conditionRepository->find($id);
 
         if (empty($condition)) {
-            Flash::error(__('models/conditions.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/conditions.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('conditions.index'));
         }
@@ -92,7 +92,7 @@ class ConditionController extends AppBaseController
         $condition = $this->conditionRepository->find($id);
 
         if (empty($condition)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/conditions.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/conditions.singular')]));
 
             return redirect(route('conditions.index'));
         }
@@ -113,14 +113,14 @@ class ConditionController extends AppBaseController
         $condition = $this->conditionRepository->find($id);
 
         if (empty($condition)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/conditions.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/conditions.singular')]));
 
             return redirect(route('conditions.index'));
         }
 
         $condition = $this->conditionRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/conditions.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/conditions.singular')]));
 
         return redirect(route('conditions.index'));
     }
@@ -137,14 +137,14 @@ class ConditionController extends AppBaseController
         $condition = $this->conditionRepository->find($id);
 
         if (empty($condition)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/conditions.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/conditions.singular')]));
 
             return redirect(route('conditions.index'));
         }
 
         $this->conditionRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/conditions.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/conditions.singular')]));
 
         return redirect(route('conditions.index'));
     }

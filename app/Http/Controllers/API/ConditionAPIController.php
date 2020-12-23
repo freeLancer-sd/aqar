@@ -67,7 +67,7 @@ class ConditionAPIController extends AppBaseController
 
         return $this->sendResponse(
             $conditions->toArray(),
-            __('messages.retrieved', ['model' => __('models/conditions.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/conditions.plural')])
         );
     }
 
@@ -117,7 +117,7 @@ class ConditionAPIController extends AppBaseController
 
         return $this->sendResponse(
             $condition->toArray(),
-            __('messages.saved', ['model' => __('models/conditions.singular')])
+            __('lang.messages.saved', ['model' => __('models/conditions.singular')])
         );
     }
 
@@ -166,13 +166,13 @@ class ConditionAPIController extends AppBaseController
 
         if (empty($condition)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/conditions.singular')])
+                __('lang.messages.not_found', ['model' => __('models/conditions.singular')])
             );
         }
 
         return $this->sendResponse(
             $condition->toArray(),
-            __('messages.retrieved', ['model' => __('models/conditions.singular')])
+            __('lang.messages.retrieved', ['model' => __('models/conditions.singular')])
         );
     }
 
@@ -231,7 +231,7 @@ class ConditionAPIController extends AppBaseController
 
         if (empty($condition)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/conditions.singular')])
+                __('lang.messages.not_found', ['model' => __('models/conditions.singular')])
             );
         }
 
@@ -239,7 +239,7 @@ class ConditionAPIController extends AppBaseController
 
         return $this->sendResponse(
             $condition->toArray(),
-            __('messages.updated', ['model' => __('models/conditions.singular')])
+            __('lang.messages.updated', ['model' => __('models/conditions.singular')])
         );
     }
 
@@ -288,7 +288,7 @@ class ConditionAPIController extends AppBaseController
 
         if (empty($condition)) {
             return $this->sendError(
-                __('messages.not_found', ['model' => __('models/conditions.singular')])
+                __('lang.messages.not_found', ['model' => __('models/conditions.singular')])
             );
         }
 
@@ -296,7 +296,7 @@ class ConditionAPIController extends AppBaseController
 
         return $this->sendResponse(
             $id,
-            __('messages.deleted', ['model' => __('models/conditions.singular')])
+            __('lang.messages.deleted', ['model' => __('models/conditions.singular')])
         );
     }
 }

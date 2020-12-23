@@ -55,7 +55,7 @@ class UserController extends AppBaseController
 
         $user = $this->userRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/users.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/users.singular')]));
 
         return redirect(route('users.index'));
     }
@@ -72,7 +72,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error(__('models/users.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/users.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('users.index'));
         }
@@ -92,7 +92,7 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/users.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/users.singular')]));
 
             return redirect(route('users.index'));
         }
@@ -113,14 +113,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/users.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/users.singular')]));
 
             return redirect(route('users.index'));
         }
 
         $user = $this->userRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/users.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/users.singular')]));
 
         return redirect(route('users.index'));
     }
@@ -137,14 +137,14 @@ class UserController extends AppBaseController
         $user = $this->userRepository->find($id);
 
         if (empty($user)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/users.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/users.singular')]));
 
             return redirect(route('users.index'));
         }
 
         $this->userRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/users.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/users.singular')]));
 
         return redirect(route('users.index'));
     }

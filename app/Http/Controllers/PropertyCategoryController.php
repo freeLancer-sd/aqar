@@ -55,7 +55,7 @@ class PropertyCategoryController extends AppBaseController
 
         $propertyCategory = $this->propertyCategoryRepository->create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/propertyCategories.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/propertyCategories.singular')]));
 
         return redirect(route('propertyCategories.index'));
     }
@@ -72,7 +72,7 @@ class PropertyCategoryController extends AppBaseController
         $propertyCategory = $this->propertyCategoryRepository->find($id);
 
         if (empty($propertyCategory)) {
-            Flash::error(__('models/propertyCategories.singular').' '.__('messages.not_found'));
+            Flash::error(__('models/propertyCategories.singular').' '.__('lang.messages.not_found'));
 
             return redirect(route('propertyCategories.index'));
         }
@@ -92,7 +92,7 @@ class PropertyCategoryController extends AppBaseController
         $propertyCategory = $this->propertyCategoryRepository->find($id);
 
         if (empty($propertyCategory)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/propertyCategories.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')]));
 
             return redirect(route('propertyCategories.index'));
         }
@@ -113,14 +113,14 @@ class PropertyCategoryController extends AppBaseController
         $propertyCategory = $this->propertyCategoryRepository->find($id);
 
         if (empty($propertyCategory)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/propertyCategories.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')]));
 
             return redirect(route('propertyCategories.index'));
         }
 
         $propertyCategory = $this->propertyCategoryRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/propertyCategories.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/propertyCategories.singular')]));
 
         return redirect(route('propertyCategories.index'));
     }
@@ -137,14 +137,14 @@ class PropertyCategoryController extends AppBaseController
         $propertyCategory = $this->propertyCategoryRepository->find($id);
 
         if (empty($propertyCategory)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/propertyCategories.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/propertyCategories.singular')]));
 
             return redirect(route('propertyCategories.index'));
         }
 
         $this->propertyCategoryRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/propertyCategories.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/propertyCategories.singular')]));
 
         return redirect(route('propertyCategories.index'));
     }

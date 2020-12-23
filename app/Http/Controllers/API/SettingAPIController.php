@@ -61,7 +61,7 @@ class SettingAPIController extends AppBaseController
 
         return $this->sendResponse(
             $settings,
-            __('messages.retrieved', ['model' => __('models/settings.plural')])
+            __('lang.messages.retrieved', ['model' => __('models/settings.plural')])
         );
     }
 

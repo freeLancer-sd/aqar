@@ -55,7 +55,7 @@ class SliderController extends AppBaseController
 
         $this->sliderRepository->createSlider($request);
 
-        Flash::success(__('messages.saved', ['model' => __('models/sliders.singular')]));
+        Flash::success(__('lang.messages.saved', ['model' => __('models/sliders.singular')]));
 
         return redirect(route('sliders.index'));
     }
@@ -72,7 +72,7 @@ class SliderController extends AppBaseController
         $slider = $this->sliderRepository->find($id);
 
         if (empty($slider)) {
-            Flash::error(__('models/sliders.singular') . ' ' . __('messages.not_found'));
+            Flash::error(__('models/sliders.singular') . ' ' . __('lang.messages.not_found'));
 
             return redirect(route('sliders.index'));
         }
@@ -92,7 +92,7 @@ class SliderController extends AppBaseController
         $slider = $this->sliderRepository->find($id);
 
         if (empty($slider)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/sliders.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/sliders.singular')]));
 
             return redirect(route('sliders.index'));
         }
@@ -113,14 +113,14 @@ class SliderController extends AppBaseController
         $slider = $this->sliderRepository->find($id);
 
         if (empty($slider)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/sliders.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/sliders.singular')]));
 
             return redirect(route('sliders.index'));
         }
 
         $slider = $this->sliderRepository->update($request->all(), $id);
 
-        Flash::success(__('messages.updated', ['model' => __('models/sliders.singular')]));
+        Flash::success(__('lang.messages.updated', ['model' => __('models/sliders.singular')]));
 
         return redirect(route('sliders.index'));
     }
@@ -137,14 +137,14 @@ class SliderController extends AppBaseController
         $slider = $this->sliderRepository->find($id);
 
         if (empty($slider)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/sliders.singular')]));
+            Flash::error(__('lang.messages.not_found', ['model' => __('models/sliders.singular')]));
 
             return redirect(route('sliders.index'));
         }
 
         $this->sliderRepository->delete($id);
 
-        Flash::success(__('messages.deleted', ['model' => __('models/sliders.singular')]));
+        Flash::success(__('lang.messages.deleted', ['model' => __('models/sliders.singular')]));
 
         return redirect(route('sliders.index'));
     }
