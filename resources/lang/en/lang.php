@@ -2,7 +2,13 @@
 
 return [
 
-
+    'main' => [
+        'site' => 'العان | Alaann',
+        'home' => 'الرئسية',
+        'login' => 'دخول',
+        'registration' => 'تسجيل',
+        'online' => 'متصل',
+    ],
     'crud' => [
         'add_new' => 'إضافة جديد',
     ],

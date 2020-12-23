@@ -91,7 +91,7 @@
                                     <div class="pull-right">
                                         <a href="{{ url('/logout') }}" class="btn btn-default btn-flat"
                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Sign out
+                                            خروج
                                         </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                               style="display: none;">
@@ -107,7 +107,9 @@
         </header>
 
         <!-- Left side column. contains the logo and sidebar -->
-    @include('layouts.sidebar')
+
+        @include('layouts.sidebar')
+
     <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @yield('content')
@@ -143,14 +145,14 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">الرئسية</a></li>
+                    <li><a href="{{ url('/home') }}">@lang('lang.main.site') @endlang</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                    <li><a href="{{ url('/login') }}">دخول</a></li>
-                    <li><a href="{{ url('/register') }}">تسجيل</a></li>
+                    <li><a href="{{ url('/login') }}">@lang('lang.main.login') @endlang</a></li>
+                    <li><a href="{{ url('/register') }}">@lang('lang.main.registration') @endlang</a></li>
                 </ul>
             </div>
         </div>
