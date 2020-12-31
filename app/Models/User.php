@@ -84,6 +84,7 @@ use Illuminate\Notifications\Notification;
 class User extends Model
 {
     use SoftDeletes, Notifiable;
+
     public $table = 'users';
 
     const CREATED_AT = 'created_at';
@@ -170,5 +171,10 @@ class User extends Model
     public function images()
     {
         return $this->hasMany(Image::class, 'user_id');
+    }
+
+    public function ads()
+    {
+        return $this->hasMany(Adv::class, 'user_id');
     }
 }

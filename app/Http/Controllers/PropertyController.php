@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\PropertyDataTable;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Models\PropertyCategory;
 use App\Repositories\PropertyRepository;
 use Flash;
 use Response;
@@ -37,7 +38,8 @@ class PropertyController extends AppBaseController
      */
     public function create()
     {
-        return view('properties.create');
+        $cat = PropertyCategory::all()->pluck( 'title', 'id');
+        return view('properties.create', compact('cat'));
     }
 
     /**
@@ -51,7 +53,7 @@ class PropertyController extends AppBaseController
     {
         $input = $request->all();
 
-        $this->propertyRepository->create($input);
+        $this->propertyRepository->new_create($request);
 
         Flash::success(__('lang.messages.saved', ['model' => __('models/properties.singular')]));
 
@@ -61,7 +63,7 @@ class PropertyController extends AppBaseController
     /**
      * Display the specified Property.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -70,7 +72,7 @@ class PropertyController extends AppBaseController
         $property = $this->propertyRepository->find($id);
 
         if (empty($property)) {
-            Flash::error(__('models/properties.singular').' '.__('lang.messages.not_found'));
+            Flash::error(__('models/properties.singular') . ' ' . __('lang.messages.not_found'));
 
             return redirect(route('properties.index'));
         }
@@ -81,7 +83,7 @@ class PropertyController extends AppBaseController
     /**
      * Show the form for editing the specified Property.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -95,13 +97,14 @@ class PropertyController extends AppBaseController
             return redirect(route('properties.index'));
         }
 
-        return view('properties.edit')->with('property', $property);
+        $cat = PropertyCategory::all()->pluck('title', 'id');
+        return view('properties.edit')->with('property', $property)->with('cat', $cat);
     }
 
     /**
      * Update the specified Property in storage.
      *
-     * @param  int              $id
+     * @param int $id
      * @param UpdatePropertyRequest $request
      *
      * @return Response
@@ -126,7 +129,7 @@ class PropertyController extends AppBaseController
     /**
      * Remove the specified Property from storage.
      *
-     * @param  int $id
+     * @param int $id
      *
      * @return Response
      */
@@ -146,4 +149,5 @@ class PropertyController extends AppBaseController
 
         return redirect(route('properties.index'));
     }
+
 }

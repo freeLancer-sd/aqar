@@ -52,3 +52,8 @@ Route::middleware(['role'])->group(function () {
 
     Route::resource('settings', 'SettingController');
 });
+
+
+Route::resource('advertisements', 'AdvertisementController');
+
+Route::resource('advs', 'AdvController');

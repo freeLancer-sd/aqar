@@ -12,6 +12,11 @@
                 class="fa fa-edit"></i><span>@lang('models/properties.plural')</span></a>
 </li>
 
+<li class="{{ Request::is('advs*') ? 'active' : '' }}">
+    <a href="{{ route('advs.index') }}"><i class="fa fa-edit"></i><span>@lang('models/advs.plural')</span></a>
+</li>
+
+
 <li class="{{ Request::is('images*') ? 'active' : '' }}">
     <a href="{{ route('images.index') }}"><i class="fa fa-edit"></i><span>@lang('models/images.plural')</span></a>
 </li>

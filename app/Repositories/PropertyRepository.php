@@ -55,7 +55,6 @@ class PropertyRepository extends BaseRepository
     public function index()
     {
         return Property::where('status', 3)
-            ->where('lat', '!=', '')
             ->orderBy('id', 'DESC')
             ->paginate(50);
     }
@@ -81,5 +80,31 @@ class PropertyRepository extends BaseRepository
             return $imageModel;
         }
         return false;
+    }
+
+    public function new_create(Request $request)
+    {
+        $input = $request->all();
+
+        $model = $this->model->newInstance($input);
+
+        $model->save();
+//         $model;
+        if ($model && $request->hasFile('image')) {
+
+
+            $imageModel = new ImageModel();
+            foreach ($request->file('filenames') as $file) {
+                $path = 'upload/property/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $img = Image::make($file);
+                $img->save(public_path($path));
+                $imageModel->name = $file->getClientOriginalName();
+                $imageModel->url = url("/$path");
+                $imageModel->property_id = $model->id;
+                $imageModel->save();
+                return $imageModel;
+            }
+        }
+        return $model;
     }
 }

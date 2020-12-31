@@ -7,6 +7,9 @@ return array(
         array(
             'id' => 'رقم تعريفي',
             'title' => 'عنوان خاض',
+            'ads_title' => 'عنوان الإعلان',
+            'ads_note' => 'وصف الإعلان',
+            'image' => 'الصور',
             'status_mobile' => 'إظهار رقم المعلن',
             'address' => 'العنوان وموقع العقار',
             'property_type' => 'غرض عرض العقار',

@@ -2,13 +2,12 @@
 
 namespace App\DataTables;
 
-use App\Models\Property;
-use App\Models\PropertyCategory;
+use App\Models\Adv;
 use Yajra\DataTables\Services\DataTable;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Column;
 
-class PropertyDataTable extends DataTable
+class AdvDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -20,30 +19,29 @@ class PropertyDataTable extends DataTable
     {
         $dataTable = new EloquentDataTable($query);
 
-        return $dataTable->addColumn('action', 'properties.datatables_actions')
-            ->editColumn('status', function ($query) {
-                if ($query->status == 1) return 'جديد';
-                if ($query->status == 2) return 'بنتظار الموافقة';
-                if ($query->status == 3) return 'تم الموافقة';
-                if ($query->status == 4) return 'مخفي';
+        return $dataTable->addColumn('action', 'advs.datatables_actions')->editColumn('status', function ($query) {
+            if ($query->status == 1) return 'جديد';
+            if ($query->status == 2) return 'بنتظار الموافقة';
+            if ($query->status == 3) return 'تم الموافقة';
+            if ($query->status == 4) return 'مخفي';
+        })
+            ->editColumn('property_categorie_id', function (Adv $adv) {
+                return $adv->propertyCategorie->title;
             })
-            ->editColumn('property_categorie_id', function (Property $property) {
-                return $property->propertyCategorie->title;
-            })
-            ->editColumn('user_id', function (Property $property) {
-                return $property->user->name;
+            ->editColumn('user_id', function (Adv $user) {
+                return $user->user->name;
             });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Property $model
+     * @param \App\Models\Adv $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Property $model)
+    public function query(Adv $model)
     {
-        return $model->where('property_categorie_id', '!=', 13)->newQuery();
+        return $model->where('property_categorie_id', 13)->newQuery();
     }
 
     /**
@@ -102,13 +100,11 @@ class PropertyDataTable extends DataTable
     protected function getColumns()
     {
         return [
-//            'title' => new Column(['title' => __('models/properties.fields.title'), 'data' => 'title']),
-            'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id']),
+            'title' => new Column(['title' => __('models/properties.fields.title'), 'data' => 'title']),
             'address' => new Column(['title' => __('models/properties.fields.address'), 'data' => 'address']),
             'status' => new Column(['title' => __('models/properties.fields.status'), 'data' => 'status']),
-            'space' => new Column(['title' => __('models/properties.fields.space'), 'data' => 'space']),
-            'price' => new Column(['title' => __('models/properties.fields.price'), 'data' => 'price']),
             'property_categorie_id' => new Column(['title' => __('models/properties.fields.property_categorie_id'), 'data' => 'property_categorie_id']),
+            'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id']),
         ];
     }
 

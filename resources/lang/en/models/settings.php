@@ -2,8 +2,8 @@
 
 return array (
   'singular' => 'اعداد',
-  'plural' => 'الإعداداة',
-  'fields' => 
+  'plural' => 'الإعدادات',
+  'fields' =>
   array (
     'id' => 'Id',
     'title' => 'Title',

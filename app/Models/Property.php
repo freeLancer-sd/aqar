@@ -208,7 +208,7 @@ class Property extends Model
         return Property::where('user_id', $this->id)->pluck('device_token')->toArray();
     }
 
-    public $fillable = [
+    protected $fillable = [
         'title',
         'address',
         'lat',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -19,6 +20,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          property="title",
  *          description="title",
  *          type="string"
+ *      ),
+ *      @SWG\Property(
+ *          property="status",
+ *          description="status",
+ *          type="integer"
  *      ),
  *      @SWG\Property(
  *          property="deleted_at",
@@ -53,8 +59,8 @@ class PropertyCategory extends Model
     protected $dates = ['deleted_at'];
 
 
-    public $fillable = [
-        'title'
+    protected $fillable = [
+        'title', 'status'
     ];
 
     /**
@@ -64,7 +70,8 @@ class PropertyCategory extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'title' => 'string'
+        'title' => 'string',
+        'status' => 'boolean'
     ];
 
     /**
@@ -80,10 +87,10 @@ class PropertyCategory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      **/
     public function properties()
     {
-        return $this->hasMany(\App\Models\Property::class, 'property_categorie_id');
+        return $this->hasMany(Property::class, 'property_categorie_id');
     }
 }

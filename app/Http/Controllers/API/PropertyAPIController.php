@@ -80,9 +80,11 @@ class PropertyAPIController extends AppBaseController
         } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('property_type', $keyword['propertyType'])
+                ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
         } elseif (!empty($keyword['catId'])) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
+                ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
         } else {
             $properties = $this->propertyRepository->index();
@@ -384,29 +386,28 @@ class PropertyAPIController extends AppBaseController
     public function search(Request $request)
     {
         $property_type = $request->property_type;
-        $price = $request->price;
+        $price_from = $request->price_from;
+        $price_to = $request->price_to;
         $room_number = $request->room_number;
         $hall_number = $request->hall_number;
         if (!empty($property_type) && !empty($price) && !empty($room_number) && !empty($hall_number)) {
 //            return 'status: #1';
             return $properties = Property::where('property_type', $property_type)
-                ->orwherebetween('price', [100, $price])
-                ->orwherebetween('room_number', [1, $room_number])
-                ->orwherebetween('hall_number', [1, $hall_number])
+                ->orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
         if (!empty($property_type) && !empty($price) && !empty($property_type)) {
 //            return 'status: #2';
             return $properties = Property::where('property_type', $property_type)
-                ->orWhere('price', $price)
+                ->orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
         if (!empty($property_type) && !empty($price)) {
 //            return 'status: #3';
             return $properties = Property::where('property_type', $property_type)
-                ->orWhere('price', $price)
+                ->orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
@@ -418,7 +419,7 @@ class PropertyAPIController extends AppBaseController
         }
         if (!empty($price)) {
 //            return 'status: #5';
-            return $properties = Property::whereBetween('price', [100, $price])
+            return $properties = Property::orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
