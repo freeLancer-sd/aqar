@@ -388,26 +388,27 @@ class PropertyAPIController extends AppBaseController
         $property_type = $request->property_type;
         $price_from = $request->price_from;
         $price_to = $request->price_to;
-        $room_number = $request->room_number;
-        $hall_number = $request->hall_number;
-        if (!empty($property_type) && !empty($price_from) && !empty($price_to) && !empty($room_number) && !empty($hall_number)) {
+//        $room_number = $request->room_number;
+//        $hall_number = $request->hall_number;
+        if (!empty($property_type) && !empty($price_from) && !empty($price_to) && !empty($space_from) && !empty($space_to)) {
 //            return 'status: #1';
             return $properties = Property::where('property_type', $property_type)
                 ->orwherebetween('price', [$price_from, $price_to])
+                ->orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($price_from) && !empty($price_to) && !empty($property_type)) {
+        if (!empty($property_type) && !empty($price_from) && !empty($price_to)) {
 //            return 'status: #2';
             return $properties = Property::where('property_type', $property_type)
                 ->orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($price_from) && !empty($price_to)) {
+        if (!empty($property_type) && !empty($space_from) && !empty($space_to)) {
 //            return 'status: #3';
             return $properties = Property::where('property_type', $property_type)
-                ->orwherebetween('price', [$price_from, $price_to])
+                ->orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
@@ -420,6 +421,13 @@ class PropertyAPIController extends AppBaseController
         if (!empty($price_from) && !empty($price_to)) {
 //            return 'status: #5';
             return $properties = Property::orwherebetween('price', [$price_from, $price_to])
+                ->where('status', '=', 3)
+                ->paginate(40);
+        }
+        if (!empty($space_from) && !empty($space_to)) {
+//            return 'status: #5';
+            return $properties = Property::
+            orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
