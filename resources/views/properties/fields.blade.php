@@ -37,14 +37,11 @@
 <!-- Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status', __('models/properties.fields.status').':') !!}
-    <select id="status" name="status" class="form-control control" data-role="control">
-        <option value="1" @if(isset($property)){{$property->status == 1 ? 'selected' : '' }}@endif>جديد</option>
-        <option value="2" @if(isset($property)){{$property->status ==2 ? 'selected' : '' }}@endif>بنتظار الموافقة
-        </option>
-        <option value="3" @if(isset($property)){{$property->status ==3 ? 'selected' : '' }}@endif>تم الموافقة</option>
-        <option value="4" @if(isset($property)){{$property->status ==4 ? 'selected' : '' }}@endif>مخفي</option>
-    </select>
+    {!! Form::select('status',
+['1'=> 'جديد', '2'=> 'بنتظار الموافقة', '3'=> 'تم الموافقة', '4'=> 'مخفي'],
+null, ['class' => 'form-control select2']) !!}
 </div>
+
 
 <!-- Room Number Field -->
 <div class="form-group col-sm-6">

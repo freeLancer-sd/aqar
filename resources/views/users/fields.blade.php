@@ -16,43 +16,31 @@
     {!! Form::text('mobile', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Email Verified At Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('email_verified_at', __('models/users.fields.email_verified_at').':') !!}
-    {!! Form::date('email_verified_at', null, ['class' => 'form-control','id'=>'email_verified_at']) !!}
-</div>
-
-@push('scripts')
-    <script type="text/javascript">
-        $('#email_verified_at').datetimepicker({
-            format: 'YYYY-MM-DD HH:mm:ss',
-            useCurrent: false
-        })
-    </script>
-@endpush
 
 <!-- Role Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('role', __('models/users.fields.role').':') !!}
-    {!! Form::number('role', null, ['class' => 'form-control']) !!}
+    {!! Form::select('role', ['1'=>'مدير', "2"=>"مشرف", "3"=>"عضو"], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status', __('models/users.fields.status').':') !!}
-    {!! Form::number('status', null, ['class' => 'form-control']) !!}
+    {!! Form::select('status', ['1'=>'مفعل', "2"=>"ملغي"], null, ['class' => 'form-control']) !!}
 </div>
 
+@push('scripts')
+    <script type="text/javascript">
+        $(function () {
+            //Initialize Select2 Elements
+            $('select2').select2();
+        });
+    </script>
+@endpush
 <!-- Password Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('password', __('models/users.fields.password').':') !!}
     {!! Form::password('password', ['class' => 'form-control']) !!}
-</div>
-
-<!-- Remember Token Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('remember_token', __('models/users.fields.remember_token').':') !!}
-    {!! Form::text('remember_token', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
