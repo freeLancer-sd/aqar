@@ -70,19 +70,19 @@ class PropertyAPIController extends AppBaseController
             $keyword['propertyType'] = null;
 //        return $keyword;
 //        if (!isset($keyword['propertyType']){
-        if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
+        if (!isset($keyword['catId']) && !isset($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
                 ->where('property_categorie_id', $keyword['catId'])
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!empty($keyword['user_id'])) {
+        } elseif (!isset($keyword['user_id'])) {
             $properties = Property::where('user_id', $keyword['user_id'])
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
+        } elseif (!isset($keyword['catId']) && $keyword['propertyType']) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('property_type', $keyword['propertyType'])
                 ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!empty($keyword['catId'])) {
+        } elseif (!isset($keyword['catId'])) {
             $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
@@ -385,13 +385,14 @@ class PropertyAPIController extends AppBaseController
 
     public function search(Request $request)
     {
+//        return $request->all();
         $property_type = $request->property_type;
         $property_cat = $request->property_categorie_id;
         $price_from = $request->price_from;
         $price_to = $request->price_to;
         $space_from = $request->space_from;
         $space_to = $request->space_to;
-        if (!empty($property_type) && !empty($property_cat) && !empty($price_from) && !empty($price_to) && !empty($space_from) && !empty($space_to)) {
+        if (!isset($property_type) && !isset($property_cat) && !isset($price_from) && !isset($price_to) && !isset($space_from) && !isset($space_to)) {
 //            return 'status: #1';
             return $properties = Property::where('status', '=', 3)
                 ->orwherebetween('price', [$price_from, $price_to])
@@ -400,7 +401,7 @@ class PropertyAPIController extends AppBaseController
                 ->where('property_type', $property_type)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($property_cat) && !empty($price_from) && !empty($price_to)) {
+        if (!isset($property_type) && !isset($property_cat) && !isset($price_from) && !isset($price_to)) {
 //            return 'status: #2';
             return $properties = Property::where('property_type', $property_type)
                 ->where('property_categorie_id', $property_cat)
@@ -408,15 +409,7 @@ class PropertyAPIController extends AppBaseController
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($property_cat) && !empty($space_from) && !empty($space_to)) {
-//            return 'status: #2';
-            return $properties = Property::where('property_type', $property_type)
-                ->where('property_categorie_id', $property_cat)
-                ->orwherebetween('space', [$space_from, $space_to])
-                ->where('status', '=', 3)
-                ->paginate(40);
-        }
-        if (!empty($property_type) && !empty($space_from) && !empty($space_to)) {
+        if (!isset($property_type) && !isset($property_cat) && !isset($space_from) && !isset($space_to)) {
 //            return 'status: #3';
             return $properties = Property::where('property_type', $property_type)
                 ->where('property_categorie_id', $property_cat)
@@ -424,17 +417,37 @@ class PropertyAPIController extends AppBaseController
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_type) && !empty($price_from) && !empty($price_to)) {
-//            return 'status: #3';
+        if (!isset($property_type) && !isset($space_from) && !isset($space_to)) {
+//            return 'status: #4';
             return $properties = Property::where('property_type', $property_type)
                 ->where('property_categorie_id', $property_cat)
                 ->orwherebetween('space', [$space_from, $space_to])
+                ->where('status', '=', 3)
+                ->paginate(40);
+        }
+        if (!isset($property_type) && !isset($price_from) && !isset($price_to)) {
+//            return 'status: #5'
+            return $properties = Property::where('property_type', $property_type)
+                ->where('property_categorie_id', $property_cat)
+                ->orwherebetween('space', [$space_from, $space_to])
+                ->where('status', '=', 3)
+                ->paginate(40);
+        }
+        if (isset($property_type)) {
+            return $properties = Property::where('property_type', $property_type)
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
 
-        if (!empty($property_cat) && !empty($space_from) && !empty($space_to) && !empty($price_from) && !empty($price_to)) {
-//            return 'status: #3';
+        if (isset($property_type) && isset($property_cat)) {
+            return $properties = Property::where('property_type', $property_type)
+                ->orWhere('property_categorie_id', $property_cat)
+                ->where('status', '=', 3)
+                ->paginate(40);
+        }
+
+        if (!isset($property_cat) && !isset($space_from) && !isset($space_to) && !isset($price_from) && !isset($price_to)) {
+//            return 'status: #7';
             return $properties = Property::where('property_type', $property_type)
                 ->where('property_categorie_id', $property_cat)
                 ->orwherebetween('space', [$space_from, $space_to])
@@ -442,16 +455,16 @@ class PropertyAPIController extends AppBaseController
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_cat) && !empty($space_from) && !empty($space_to)) {
-//            return 'status: #3';
+        if (!isset($property_cat) && !isset($space_from) && !isset($space_to)) {
+//            return 'status: #8';
             return $properties = Property::where('property_type', $property_type)
                 ->where('property_categorie_id', $property_cat)
                 ->orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($property_cat) && !empty($price_from) && !empty($price_to)) {
-//            return 'status: #3';
+        if (!isset($property_cat) && !isset($price_from) && !isset($price_to)) {
+//            return 'status: #9';
             return $properties = Property::where('property_categorie_id', $property_cat)
                 ->orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
@@ -459,27 +472,21 @@ class PropertyAPIController extends AppBaseController
         }
 
 
-        if (!empty($property_type)) {
-//            return 'status: #4';
-            return $properties = Property::where('property_type', $property_type)
-                ->where('status', '=', 3)
-                ->paginate(40);
-        }
-        if (!empty($price_from) && !empty($price_to)) {
-//            return 'status: #5';
+        if (!isset($price_from) && !isset($price_to)) {
+//            return 'status: #11';
             return $properties = Property::orwherebetween('price', [$price_from, $price_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
-        if (!empty($space_from) && !empty($space_to)) {
-//            return 'status: #5';
+        if (!isset($space_from) && !isset($space_to)) {
+//            return 'status: #12';
             return $properties = Property::
             orwherebetween('space', [$space_from, $space_to])
                 ->where('status', '=', 3)
                 ->paginate(40);
         }
 
-        return false;
+        return ['data' => 'noData Found', 'status' => false];
     }
 
     public function filterData(Request $request)
