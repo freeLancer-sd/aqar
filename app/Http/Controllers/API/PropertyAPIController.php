@@ -63,6 +63,7 @@ class PropertyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+//        return $request->all();
         $keyword['catId'] = +$request->get('catId');
         $keyword['propertyType'] = $request->get('propertyType');
         $keyword['user_id'] = $request->get('user_id');
@@ -70,31 +71,30 @@ class PropertyAPIController extends AppBaseController
             $keyword['propertyType'] = null;
 //        return $keyword;
 //        if (!isset($keyword['propertyType']){
-        if (!isset($keyword['catId']) && !isset($keyword['user_id'])) {
-            $properties = Property::where('user_id', $keyword['user_id'])
+        if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
+            return $properties = Property::where('user_id', $keyword['user_id'])
                 ->where('property_categorie_id', $keyword['catId'])
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!isset($keyword['user_id'])) {
-            $properties = Property::where('user_id', $keyword['user_id'])
+        } elseif (!empty($keyword['user_id'])) {
+            return $properties = Property::where('user_id', $keyword['user_id'])
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!isset($keyword['catId']) && $keyword['propertyType']) {
-            $properties = Property::where('property_categorie_id', $keyword['catId'])
+        } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
+            return $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('property_type', $keyword['propertyType'])
                 ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
-        } elseif (!isset($keyword['catId'])) {
-            $properties = Property::where('property_categorie_id', $keyword['catId'])
+        } elseif (!empty($keyword['catId'])) {
+            return $properties = Property::where('property_categorie_id', $keyword['catId'])
                 ->where('status', 3)
                 ->orderBy('id', 'DESC')->paginate(40);
         } else {
-            $properties = $this->propertyRepository->index();
+            return $properties = $this->propertyRepository->index();
         }
-        return $properties;
     }
 
     /**
      * @param CreatePropertyAPIRequest $request
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse|Response
      *
      * @SWG\Post(
      *      path="/properties",
@@ -135,9 +135,6 @@ class PropertyAPIController extends AppBaseController
 
         $input = $request->all();
         $property = $this->propertyRepository->create($input);
-//        $users = User::where('role', 1)->get();
-//         Notification::send($users, new PropertyNotification($property));
-//        return $property;
         return $this->sendResponse(
             $property->toArray(),
             __('lang.messages.saved', ['model' => __('models/properties.singular')])
