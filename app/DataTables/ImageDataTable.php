@@ -24,7 +24,7 @@ class ImageDataTable extends DataTable
         return $dataTable
             ->addColumn('action', 'images.datatables_actions')
             ->editColumn('url', function ($q) {
-                return "<img src='$q->url' height='50' width='50'>";
+                return '<img src='.$q->url.'height="50" width="50">';
             });
     }
 
