@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Models\Image;
+use App\User;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Builder;
 use Yajra\DataTables\Services\DataTable;
@@ -23,9 +24,15 @@ class ImageDataTable extends DataTable
 
         return $dataTable
             ->addColumn('action', 'images.datatables_actions')
-            ->editColumn('url', function ($q) {
-                return '<img src='.$q->url.' &nsbs; height="50" width="50">';
-            });
+            ->editColumn('user_id', function (Image $user){
+                if($user->user) return $user->user->name;
+            })
+            ->editColumn('url', function ($image) {
+                $url = "'$image->url'";
+                return '<img src=' . "$url" . ' border="0" width="40" align="center" />';
+            })
+            ->rawColumns(['action','url']);
+
     }
 
     /**
