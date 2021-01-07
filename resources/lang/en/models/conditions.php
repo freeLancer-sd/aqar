@@ -5,7 +5,7 @@ return array(
     'plural' => 'الصفحات و الشروط',
     'fields' =>
         array(
-            'id' => 'الرقم',
+            'id' => '#: ',
             'title' => 'العنوان',
             'body' => 'المحتوي',
             'created_at' => 'تاريخ الإضافة',

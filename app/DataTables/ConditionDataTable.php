@@ -89,7 +89,7 @@ class ConditionDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id' => new Column(['title' => __('models/conditions.fields.id'), 'data' => 'id']),
+            'id' => new Column(['id' => __('models/conditions.fields.id'), 'data' => 'id']),
             'title' => new Column(['title' => __('models/conditions.fields.title'), 'data' => 'title']),
 //            'body' => new Column(['title' => __('models/conditions.fields.body'), 'data' => 'body'])
         ];
