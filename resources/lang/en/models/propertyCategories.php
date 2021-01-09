@@ -1,14 +1,15 @@
 <?php
 
-return array (
-  'singular' => 'التصنيف',
-  'plural' => 'التصنيفات',
-  'fields' => 
-  array (
-    'id' => 'Id',
-    'title' => 'Title',
-    'deleted_at' => 'Deleted At',
-    'created_at' => 'Created At',
-    'updated_at' => 'Updated At',
-  ),
+return array(
+    'singular' => 'التصنيف',
+    'plural' => 'التصنيفات',
+    'fields' =>
+        array(
+            'id' => 'رقم',
+            'title' => 'العنوان',
+            'status' => 'الحالة',
+            'deleted_at' => 'حذف في',
+            'created_at' => 'تم الاضافة في',
+            'updated_at' => 'اخر تحديث في',
+        ),
 );
