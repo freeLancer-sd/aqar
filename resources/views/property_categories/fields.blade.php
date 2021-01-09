@@ -7,7 +7,7 @@
 <!-- status Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('status', __('models/propertyCategories.fields.status').':') !!}
-    {!! Form::text('status', [0=>'يظهر للجميع', 1=>'يظهر للمستخدمين و الكل'], null, ['class' => 'form-control']) !!}
+    {!! Form::select('status', [0=>'يظهر للجميع', 1=>'يظهر للمستخدمين و الكل'], null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
