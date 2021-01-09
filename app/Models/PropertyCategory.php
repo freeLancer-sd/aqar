@@ -80,8 +80,8 @@ class PropertyCategory extends Model
      * @var array
      */
     public static $rules = [
-        'title' => 'required|string|max:191',
-        'deleted_at' => 'nullable',
+        'title' => 'required|string|max:100',
+        'status' => 'required',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
     ];

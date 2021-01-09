@@ -27,7 +27,8 @@ Route::post('properties/filter', 'PropertyAPIController@filterData');
 Route::get('properties/user/{id}', 'PropertyAPIController@user');
 Route::get('property/cats_types', function () {
     return $response = [
-        'category' => PropertyCategory::all(),
+        'category' => PropertyCategory::where('status', 1)->get(),
+        'all_category' => PropertyCategory::all(),
         'city' => City::all(),
         'district' => District::all()
     ];

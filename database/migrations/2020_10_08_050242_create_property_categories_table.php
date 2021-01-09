@@ -16,6 +16,7 @@ class CreatePropertyCategoriesTable extends Migration
         Schema::create('property_categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });
