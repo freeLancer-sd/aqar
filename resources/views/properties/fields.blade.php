@@ -83,7 +83,7 @@ null, ['class' => 'form-control select2']) !!}
 <!-- Property Categorie Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('property_categorie_id', __('models/properties.fields.property_categorie_id').':') !!}
-    {!! Form::select('property_type', $cat, null, ['class' => 'form-control']) !!}
+    {!! Form::select('property_categorie_id', $cat, null, ['class' => 'form-control']) !!}
     {{--    {!! Form::number('property_categorie_id', null, ['class' => 'form-control']) !!}--}}
 </div>
 

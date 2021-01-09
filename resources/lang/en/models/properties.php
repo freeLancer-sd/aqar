@@ -26,6 +26,18 @@ return array(
             'district_id' => 'district_id',
             'property_categorie_id' => 'اختار نوع العقار',
             'user_id' => 'المستخدم',
+            'car_entrance' => 'مدخل سيارة',
+            'kitchen' => 'مطبخ',
+            'driver_room' => 'غرفة السائق',
+            'maids_room' => 'غرفة الخادمة',
+            'swimming_pool' => 'مسبح',
+            'deluxe' => 'دسيلوكس',
+            'elevator' => 'المصعد',
+            'cellar' => 'قبو',
+            'extension' => 'ملحق',
+            'courtyard' => 'باحة',
+
+
             'deleted_at' => 'تاريخ الحذف',
             'created_at' => 'تاريخ الإضافة',
             'updated_at' => 'اخر تحديث',

@@ -319,7 +319,7 @@ class Property extends Model
         'price' => 'required|numeric',
         'note' => 'nullable|string',
         'property_categorie_id' => 'required',
-        'user_id' => 'required',
+//        'user_id' => 'required',
         'deleted_at' => 'nullable',
         'created_at' => 'nullable',
         'updated_at' => 'nullable'
