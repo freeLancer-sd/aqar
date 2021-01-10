@@ -91,6 +91,8 @@ class PropertyCategoryDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'id' => new Column(['title' => __('models/propertyCategories.fields.id'),
+                'data' => 'id']),
             'title' => new Column(['title' => __('models/propertyCategories.fields.title'), 'data' => 'title'])
         ];
     }
