@@ -42,21 +42,70 @@ class ImageRepository extends BaseRepository
         return ImageModel::class;
     }
 
+//    public function createApi(Request $request)
+//    {
+//        $folderPath = $request->fileName;
+//        if ($request->hasfile('images')) {
+//            $image = $request->file('images');
+//            $imageModel = new ImageModel();
+//            $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
+//            $img = Image::make($image);
+//            $img->save(public_path($path));
+//            $imageModel->name = $image->getClientOriginalName();
+//            $imageModel->url = url("/$path");
+//            $imageModel->property_id = $request->property_id;
+//            $imageModel->user_id = $request->user_id;
+//            $imageModel->save();
+//            return $imageModel;
+//        }
+//    }
+
     public function createApi(Request $request)
     {
-        $folderPath = $request->fileName;
+
         if ($request->hasfile('images')) {
-            $image = $request->file('images');
-            $imageModel = new ImageModel();
-            $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
-            $img = Image::make($image);
-            $img->save(public_path($path));
-            $imageModel->name = $image->getClientOriginalName();
-            $imageModel->url = url("/$path");
-            $imageModel->property_id = $request->property_id;
-            $imageModel->user_id = $request->user_id;
-            $imageModel->save();
-            return $imageModel;
+            if (isset($request->user_id)) {
+
+                return $this->save_user();
+            }
+            if (isset($request->property_id)) {
+
+                return $this->save_property();
+            }
         }
+        return false;
+
+    }
+
+    private function save_property(Request $request)
+    {
+        $folderPath = $request->fileName;
+        $image = $request->file('images');
+        $imageModel = new ImageModel();
+        $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
+        $img = Image::make($image);
+        $img->save(public_path($path));
+        $imageModel->name = $image->getClientOriginalName();
+        $imageModel->url = url("/$path");
+        $imageModel->property_id = $request->property_id;
+        $imageModel->user_id = $request->user_id;
+        $imageModel->save();
+        return $imageModel;
+
+    }
+
+    private function save_user(Request $request)
+    {
+        $folderPath = $request->fileName;
+        $image = $request->file('images');
+        $imageModel = new ImageModel();
+        $path = "upload/$folderPath/" . 'profile_u_' . $request->user_id . '.' . $image->getClientOriginalExtension();
+        $img = Image::make($image);
+        $img->save(public_path($path));
+        $imageModel->name = $image->getClientOriginalName();
+        $imageModel->url = url("/$path");
+        $imageModel->user_id = $request->user_id;
+        $imageModel->save();
+        return $imageModel;
     }
 }

@@ -75,6 +75,7 @@
                                     <p>
                                         {{ Auth::user()->name }}
                                         <small>عضوء منذ {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                        <p>Role: {{Auth::user()->role}}</p>
                                     </p>
                                 </li>
                             {{--                                <li class="nav-item">--}}
