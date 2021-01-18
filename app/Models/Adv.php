@@ -277,6 +277,7 @@ class Adv extends Model
         'user_id',
         'city_id',
         'district_id',
+        'ads_mobile'
     ];
 
     /**
@@ -288,6 +289,7 @@ class Adv extends Model
         'id' => 'integer',
         'title' => 'string',
         'address' => 'string',
+        'ads_mobile'=> 'string',
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
@@ -308,7 +310,8 @@ class Adv extends Model
     public static $rules = [
         'title' => 'nullable|string|max:191',
         'status' => 'required|integer',
-        'note' => 'nullable|string'
+        'note' => 'nullable|string',
+        'ads_mobile'=> 'required|max:22'
     ];
 
     /**
