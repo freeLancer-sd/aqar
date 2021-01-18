@@ -26,23 +26,13 @@
     {{--    {!! Form::file('image[]', null, ['class' => 'form-control','roles' => 'form', 'multiple' => 'true']) !!}--}}
     <input type="file" id="image" class="form-control form-control-file" name="image[]" accept="image/*" multiple="multiple">
 </div>
-{{--<script>--}}
-{{--    $("image").change(function (e) {--}}
 
-{{--        for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {--}}
+<!-- ads_mobile Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('ads_mobile', __('models/properties.fields.ads_mobile').':') !!}
+    {!! Form::text('ads_mobile', null, ['class' => 'form-control']) !!}
+</div>
 
-{{--            var file = e.originalEvent.srcElement.files[i];--}}
-
-{{--            var img = document.createElement("img");--}}
-{{--            var reader = new FileReader();--}}
-{{--            reader.onloadend = function () {--}}
-{{--                img.src = reader.result;--}}
-{{--            }--}}
-{{--            reader.readAsDataURL(file);--}}
-{{--            $("input").after(img);--}}
-{{--        }--}}
-{{--    });--}}
-{{--</script>--}}
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
