@@ -66,11 +66,11 @@ class ImageRepository extends BaseRepository
         if ($request->hasfile('images')) {
             if (isset($request->user_id)) {
 
-                return $this->save_user();
+                return $this->save_user($request);
             }
             if (isset($request->property_id)) {
 
-                return $this->save_property();
+                return $this->save_property($request);
             }
         }
         return false;
