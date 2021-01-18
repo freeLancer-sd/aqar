@@ -21,7 +21,7 @@
 </div>
 
 <!-- Image Field -->
-<div class="form-group col-sm-12 col-lg-12">
+<div class="form-group col-sm-6">
     {!! Form::label('image', __('models/properties.fields.image').':') !!}
     {{--    {!! Form::file('image[]', null, ['class' => 'form-control','roles' => 'form', 'multiple' => 'true']) !!}--}}
     <input type="file" id="image" class="form-control form-control-file" name="image[]" accept="image/*" multiple="multiple">
@@ -29,7 +29,7 @@
 
 <!-- ads_mobile Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('ads_mobile', __('models/properties.fields.ads_mobile').':') !!}
+    {!! Form::label('ads_mobile', __('models/advs.fields.ads_mobile').':') !!}
     {!! Form::text('ads_mobile', null, ['class' => 'form-control']) !!}
 </div>
 
