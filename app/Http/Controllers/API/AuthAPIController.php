@@ -4,11 +4,14 @@
 namespace App\Http\Controllers\API;
 
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\API\CreateAuthUserAPIRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Str;
+use Validator;
 
-class AuthAPIController
+class AuthAPIController extends Controller
 {
 
     public function login(Request $request)
@@ -20,38 +23,50 @@ class AuthAPIController
         ]);
 
         if (!auth()->attempt($loginData)) {
-            return response(['message' => 'Invalid Credentials', 'status' => false]);
+            return response(['message' => __('auth.failed'), 'status' => false]);
         }
 
         $token = Str::random(60);
         auth()->user()->update(['api_token' => $token]);
         return response(['user' => auth()->user(), 'api_token' => $token, 'status' => true]);
+//        return $this->sendSms("544249999", 'Test Otp');
     }
 
     public function register(Request $request)
     {
-        try {
-
-            $otp = random_int(1, 200) . random_int(1, 200);
-        } catch (\Exception $e) {
-        }
-        $validatedData = $request->validate([
+        $otp = random_int(1, 200) . random_int(1, 200);
+        $input = $request->all();
+        $validatedData = Validator::make($request->all(), [
             'name' => 'required|max:55',
             'mobile' => 'required|max:15|unique:users',
-            'email' => 'email|required|unique:users',
+            'email' => 'email|unique:users',
             'password' => 'required'
         ]);
 
-        $validatedData['password'] = bcrypt($request->password);
-        $validatedData['api_token'] = Str::random(60);
-        $validatedData['otp'] = $otp;
+        $input['password'] = bcrypt($request->password);
+        $input['otp'] = $otp;
+        $input['status'] = 2;
+        if ($validatedData->fails()) {
+            return ['status' => false, 'message' => $validatedData->messages()->first()];
 
-        $user = User::create($validatedData);
-        return $message = "رمز تفعيل الحساب هو: " . $otp;
+//        return $message = "رمز تفعيل الحساب هو: " . $otp;
 //        self::sendSms($request->mobile, $message);
+        }
+        $user = User::create($input);
 
-//        return response(['user' => $user, 'api_token' => $validatedData['api_token'], 'status' => true]);
+        return response(['user' => $user, 'status' => true]);
 
+    }
+
+    public function verifyAccount($id, $otp)
+    {
+        $user = User::where('id', $id)->where('otp', '=', $otp)->first();
+        if ($user) {
+            $user->status = 1;
+            $user->save();
+            return true;
+        }
+        return false;
     }
 
     public function sendSms($phone, $message)
@@ -85,7 +100,8 @@ EOT;
         $info = curl_getinfo($ch);
         curl_close($ch);
 
-        var_dump($info["http_code"]);
-        var_dump($response);
+//        var_dump($info["http_code"]);
+//        var_dump($response);
+        return $response;
     }
 }
