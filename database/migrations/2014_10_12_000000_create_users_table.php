@@ -23,11 +23,12 @@ class CreateUsersTable extends Migration
             $table->integer('status')->default(1);
             $table->string('password');
             $table->string('ads_type')->nullable();
+            $table->string('otp')->nullable();
 
             $table->string('api_token', 80)
-                        ->unique()
-                        ->nullable()
-                        ->default(null);
+                ->unique()
+                ->nullable()
+                ->default(null);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

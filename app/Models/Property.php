@@ -105,37 +105,43 @@ use Illuminate\Notifications\Notifiable;
  *          type="number",
  *          format="number"
  *      ),
- *      @SWG\Property(
+ *     @SWG\Property(
+ *          property="seen",
+ *          description="seen",
+ *          type="number",
+ *          format="number"
+ *      ),
+ * @SWG\Property(
  *          property="note",
  *          description="note",
  *          type="string"
  *      ),
- *        @SWG\Property(
+ * @SWG\Property(
  *          property="district_id",
  *          description="district_id",
  *          type="string"
  *      ),
- *        @SWG\Property(
+ * @SWG\Property(
  *          property="city_id",
  *          description="city_id",
  *          type="string"
  *      ),
- *      @SWG\Property(
+ * @SWG\Property(
  *          property="destination",
  *          description="destination",
  *          type="string"
  *      ),
- *@SWG\Property(
+ * @SWG\Property(
  *          property="advertiser_status",
  *          description="advertiser_status",
  *          type="string"
  *      ),
- *@SWG\Property(
+ * @SWG\Property(
  *          property="rental_data",
  *          description="rental_data",
  *          type="string"
  *      ),
- *@SWG\Property(
+ * @SWG\Property(
  *          property="rental_type",
  *          description="rental_type",
  *          type="string"
@@ -249,7 +255,8 @@ class Property extends Model
         'extension',
         'property_type',
         'property_categorie_id',
-        'user_id'
+        'user_id',
+        'seen'
     ];
 
     /**
@@ -265,6 +272,7 @@ class Property extends Model
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
+        'seen' => 'integer',
         'room_number' => 'integer',
         'property_age' => 'integer',
         'hall_number' => 'integer',
@@ -347,5 +355,12 @@ class Property extends Model
     public function images()
     {
         return $this->hasMany(Image::class, 'property_id');
+    }
+
+    public function seenUpdate($id)
+    {
+        $property = Property::find($id);
+        $property->seen = $property->seen +1;
+        $property->save();
     }
 }

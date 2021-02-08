@@ -500,4 +500,10 @@ class PropertyAPIController extends AppBaseController
         }
         return $properties;
     }
+
+    public function seenUpdate($id)
+    {
+        $property = new Property();
+        $property->seenUpdate($id);
+    }
 }

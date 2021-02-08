@@ -88,6 +88,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="number"
  *      ),
  *      @SWG\Property(
+ *          property="seen",
+ *          description="seen",
+ *          type="number",
+ *          format="number"
+ *      ),
+ *      @SWG\Property(
  *          property="note",
  *          description="note",
  *          type="string"
@@ -274,6 +280,7 @@ class Adv extends Model
         'status',
         'note',
         'property_categorie_id',
+        'seen',
         'user_id',
         'city_id',
         'district_id',
@@ -289,11 +296,12 @@ class Adv extends Model
         'id' => 'integer',
         'title' => 'string',
         'address' => 'string',
-        'ads_mobile'=> 'string',
+        'ads_mobile' => 'string',
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
         'space' => 'integer',
+        'seen' => 'integer',
         'price' => 'float',
         'note' => 'string',
         'property_categorie_id' => 'integer',
@@ -311,7 +319,7 @@ class Adv extends Model
         'title' => 'nullable|string|max:191',
         'status' => 'required|integer',
         'note' => 'nullable|string',
-        'ads_mobile'=> 'required|max:22'
+        'ads_mobile' => 'required|max:22'
     ];
 
     /**

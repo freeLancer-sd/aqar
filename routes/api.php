@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('auth/login', 'AuthController@login');
-Route::post('auth/register', 'AuthController@register');
+Route::post('auth/login', 'AuthAPIController@login');
+Route::post('auth/register', 'AuthAPIController@register');
 
 
 Route::resource('users', 'UserAPIController');
@@ -32,6 +32,12 @@ Route::get('property/cats_types', function () {
         'city' => City::all(),
         'district' => District::all()
     ];
+});
+
+Route::get('ads_seen/{id}', function ($id) {
+    $property = Property::find($id);
+    $property->seen = $property->seen + 1;
+    $property->save();
 });
 
 Route::get('property/images/{id}', function ($id) {

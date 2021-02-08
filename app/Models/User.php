@@ -34,6 +34,11 @@ use Illuminate\Notifications\Notification;
  *          type="string"
  *      ),
  *      @SWG\Property(
+ *          property="otp",
+ *          description="otp number",
+ *          type="string"
+ *      ),
+ *      @SWG\Property(
  *          property="email_verified_at",
  *          description="email_verified_at",
  *          type="string",
@@ -100,7 +105,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'password', 'ads_type'
+        'name', 'email', 'mobile', 'password', 'ads_type', 'otp'
     ];
 
     /**
@@ -109,7 +114,7 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email_verified_at', 'deleted_at', 'status'
+        'password', 'remember_token', 'email_verified_at', 'deleted_at', 'status', 'otp'
     ];
 
     /**
