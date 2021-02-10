@@ -112,10 +112,10 @@ class ImageRepository extends BaseRepository
 //            'url' => url("/$path"),
 //            'user_id' => $request->user_id
 //        ]);
-        $img = Image::make($image);
+        $img = Image::make($image)->insert(public_path('mark.png'), 'bottom-right', 50, 50)->save(public_path($path));
         /* insert watermark at bottom-right corner with 10px offset */
-        $img->insert(public_path('mark.png'), 'bottom-right', 50, 50);
-        $img->save(public_path($path));
+//        $img->insert(public_path('mark.png'), 'bottom-right', 50, 50);
+//        $img->save(public_path($path));
         if ($imageModel) {
             $imageModel->name = $image->getClientOriginalName();
             $imageModel->url = url("/$path");

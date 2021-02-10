@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\API\CreateAuthUserAPIRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Str;
@@ -29,7 +28,6 @@ class AuthAPIController extends Controller
         $token = Str::random(60);
         auth()->user()->update(['api_token' => $token]);
         return response(['user' => auth()->user(), 'api_token' => $token, 'status' => true]);
-//        return $this->sendSms("544249999", 'Test Otp');
     }
 
     public function register(Request $request)
