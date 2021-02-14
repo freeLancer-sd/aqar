@@ -46,13 +46,11 @@ class AuthAPIController extends Controller
         $input['status'] = 2;
         if ($validatedData->fails()) {
             return ['status' => false, 'message' => $validatedData->messages()->first()];
-
-//        return $message = "رمز تفعيل الحساب هو: " . $otp;
-//        self::sendSms($request->mobile, $message);
         }
         $user = User::create($input);
-
-        return response(['user' => $user, 'status' => true]);
+        $message = "رمز تفعيل الحساب هو: " . $otp;
+        self::sendSms($request->mobile, $message);
+        return response(['user' => $user, 'status' => true, 'message' => __('auth.')]);
 
     }
 
@@ -62,6 +60,17 @@ class AuthAPIController extends Controller
         if ($user) {
             $user->status = 1;
             $user->save();
+            return true;
+        }
+        return false;
+    }
+
+    public function reSendOtpMessage(Request $request)
+    {
+        $user = User::where('id', $request->user_id)->first();
+        if ($user) {
+            $message = "رمز تفعيل الحساب هو: " . $user->otp;
+            self::sendSms($user->phone, $message);
             return true;
         }
         return false;
@@ -82,7 +91,7 @@ class AuthAPIController extends Controller
 
         $fields = <<<EOT
 {
-  "userName": $userName,
+  "userName": "$userName",
   "numbers": "966$phone",
   "userSender": "$userSender",
   "apiKey": "$apiKey",

@@ -13,6 +13,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('auth/login', 'AuthAPIController@login');
 Route::post('auth/register', 'AuthAPIController@register');
+Route::post('auth/resend_otp', 'AuthAPIController@reSendOtpMessage');
 Route::get('auth/verify/{id}/{otp}', 'AuthAPIController@verifyAccount');
 
 
