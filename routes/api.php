@@ -39,6 +39,7 @@ Route::get('property/cats_types', function () {
 Route::get('ads_seen/{id}', function ($id) {
     $property = Property::find($id);
     $property->seen = $property->seen + 1;
+    $property->timestamps = false;
     $property->save();
 });
 
