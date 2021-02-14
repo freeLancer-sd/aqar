@@ -110,6 +110,7 @@ class ImageAPIController extends AppBaseController
      */
     public function store(CreateImageAPIRequest $request)
     {
+//        return $request->all();
         return $image = $this->imageRepository->createApi($request);
 
         // return $this->sendResponse(

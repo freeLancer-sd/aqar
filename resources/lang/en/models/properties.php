@@ -5,7 +5,7 @@ return array(
     'plural' => 'عقارات',
     'fields' =>
         array(
-            'id' => 'رقم تعريفي',
+            'id' => 'رقم اﻹعلان',
             'title' => 'عنوان خاض',
             'ads_title' => 'عنوان الإعلان',
             'ads_note' => 'وصف الإعلان',

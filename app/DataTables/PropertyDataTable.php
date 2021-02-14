@@ -103,6 +103,7 @@ class PropertyDataTable extends DataTable
     {
         return [
 //            'title' => new Column(['title' => __('models/properties.fields.title'), 'data' => 'title']),
+            'id' => new Column(['title' => __('models/properties.fields.id'), 'data' => 'id']),
             'user_id' => new Column(['title' => __('models/properties.fields.user_id'), 'data' => 'user_id']),
             'address' => new Column(['title' => __('models/properties.fields.address'), 'data' => 'address']),
             'status' => new Column(['title' => __('models/properties.fields.status'), 'data' => 'status']),
