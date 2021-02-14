@@ -207,7 +207,7 @@ class Property extends Model
     const UPDATED_AT = 'updated_at';
 
     protected $dates = ['deleted_at'];
-    protected $with = ['images', 'propertyCategorie', 'user'];
+    protected $with = ['images', 'propertyCategorie', 'user', 'district'];
 
     public function routeNotificationForFCM()
     {
@@ -268,7 +268,7 @@ class Property extends Model
         'id' => 'integer',
         'title' => 'string',
         'address' => 'string',
-        'district_id' => 'string',
+        'district_id' => 'integer',
         'lat' => 'float',
         'lng' => 'float',
         'status' => 'integer',
@@ -360,7 +360,13 @@ class Property extends Model
     public function seenUpdate($id)
     {
         $property = Property::find($id);
-        $property->seen = $property->seen +1;
+        $property->seen = $property->seen + 1;
+        $property->timestamps = false;
         $property->save();
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(District::class, 'district_id');
     }
 }

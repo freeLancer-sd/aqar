@@ -44,11 +44,14 @@ class District extends Model
     protected $dates = ['deleted_at'];
 
 
-    public $fillable = [
+    protected $fillable = [
         'name',
         'number',
         'city_id'
     ];
+
+    protected $with = ['city'];
+
 
     /**
      * The attributes that should be casted to native types.
