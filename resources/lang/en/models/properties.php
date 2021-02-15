@@ -9,6 +9,7 @@ return array(
             'title' => 'عنوان خاض',
             'ads_title' => 'عنوان الإعلان',
             'ads_note' => 'وصف الإعلان',
+            'land_number'=> 'رقم القطعة',
             'image' => 'الصور',
             'status_mobile' => 'إظهار رقم المعلن',
             'address' => 'العنوان وموقع العقار',

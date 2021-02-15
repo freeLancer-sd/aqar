@@ -87,6 +87,13 @@ null, ['class' => 'form-control select2']) !!}
     {{--    {!! Form::number('property_categorie_id', null, ['class' => 'form-control']) !!}--}}
 </div>
 
+
+<!-- Land number Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('land_number', __('models/properties.fields.land_number').':') !!}
+    {!! Form::number('land_number', null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Image Field -->
 <div class="form-group col-sm-12 col-lg-12">
     {!! Form::label('image', __('models/properties.fields.image').':') !!}
