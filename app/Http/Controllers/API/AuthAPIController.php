@@ -93,7 +93,9 @@ class AuthAPIController extends Controller
 
     public function saveNewPassword(Request $request)
     {
-        $user = User::where('mobile', $request->mobile)->first();
+        $user = User::where('mobile', $request->mobile)
+            ->where('otp', $request->otp)
+            ->first();
         if ($user) {
             $user->password = bcrypt($request->password);
             $user->save();
