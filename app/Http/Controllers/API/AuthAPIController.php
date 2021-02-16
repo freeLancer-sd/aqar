@@ -44,6 +44,7 @@ class AuthAPIController extends Controller
         $input['password'] = bcrypt($request->password);
         $input['otp'] = $otp;
         $input['status'] = 2;
+        $input['role'] = 2;
         if ($validatedData->fails()) {
             return ['status' => false, 'message' => $validatedData->messages()->first()];
         }
@@ -99,7 +100,6 @@ class AuthAPIController extends Controller
             return true;
         }
         return false;
-
     }
 
     public function sendSms($phone, $message)
