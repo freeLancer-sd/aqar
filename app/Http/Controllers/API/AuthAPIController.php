@@ -70,7 +70,7 @@ class AuthAPIController extends Controller
         $user = User::where('id', $request->user_id)->first();
         if ($user) {
             $message = "رمز تفعيل الحساب هو: " . $user->otp;
-            self::sendSms($user->phone, $message);
+            self::sendSms($user->mobile, $message);
             return true;
         }
         return false;
