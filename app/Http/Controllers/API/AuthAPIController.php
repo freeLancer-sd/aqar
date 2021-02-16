@@ -76,6 +76,32 @@ class AuthAPIController extends Controller
         return false;
     }
 
+    public function resetPassword(Request $request)
+    {
+        $otp = random_int(1, 200) . random_int(1, 200);
+        $message = "رمز استعادة كلمة المرور: $otp";
+        $user = User::where('mobile', $request->mobile)->first();
+        if ($user) {
+            $user->otp = $otp;
+            $user->save();
+            self::sendSms($request->mobile, $message);
+            return true;
+        }
+        return false;
+    }
+
+    public function saveNewPassword(Request $request)
+    {
+        $user = User::where('mobile', $request->mobile)->first();
+        if ($user) {
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return true;
+        }
+        return false;
+
+    }
+
     public function sendSms($phone, $message)
     {
         $userName = env('MSEGAT_USERNAME');

@@ -15,7 +15,9 @@ Route::post('auth/login', 'AuthAPIController@login');
 Route::post('auth/register', 'AuthAPIController@register');
 Route::post('auth/resend_otp', 'AuthAPIController@reSendOtpMessage');
 Route::get('auth/verify/{id}/{otp}', 'AuthAPIController@verifyAccount');
-
+//resetPassword
+Route::post('auth/reset_password', 'AuthAPIController@resetPassword');
+Route::post('auth/save_password', 'AuthAPIController@saveNewPassword');
 
 Route::resource('users', 'UserAPIController');
 Route::get('user/images/{user}', 'UserAPIController@userImage');
