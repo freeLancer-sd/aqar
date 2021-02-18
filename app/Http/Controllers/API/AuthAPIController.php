@@ -7,8 +7,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Str;
 use Validator;
+use GuzzleHttp\Client;
 
 class AuthAPIController extends Controller
 {
@@ -50,8 +52,9 @@ class AuthAPIController extends Controller
         }
         $user = User::create($input);
         $message = "رمز تفعيل الحساب هو: " . $otp;
-        self::sendSms($request->mobile, $message);
-        return response(['user' => $user, 'status' => true, 'message' => __('auth.')]);
+        $response = self::sendSms($request->mobile, $message);
+
+        return response(['user' => $user, 'status' => true, 'message' => __('auth.'), 'sms' => $response->code]);
 
     }
 
@@ -71,8 +74,11 @@ class AuthAPIController extends Controller
         $user = User::where('id', $request->user_id)->first();
         if ($user) {
             $message = "رمز تفعيل الحساب هو: " . $user->otp;
-            self::sendSms($user->mobile, $message);
-            return true;
+            $response = self::sendSms($user->mobile, $message);
+            if ($response['code'] == 1 || $response['message'] == "Success")
+                return true;
+        } else {
+            return [false, 'message' => 'لم يتم ارسال الرسالة'];
         }
         return false;
     }
@@ -85,8 +91,11 @@ class AuthAPIController extends Controller
         if ($user) {
             $user->otp = $otp;
             $user->save();
-            self::sendSms($request->mobile, $message);
-            return true;
+            $response = self::sendSms($request->mobile, $message);
+            if ($response['code'] == 1 || $response['message'] == "Success")
+                return true;
+        } else {
+            return [false, 'message' => 'لم يتم ارسال الرسالة'];
         }
         return false;
     }
@@ -104,39 +113,19 @@ class AuthAPIController extends Controller
         return false;
     }
 
+
     public function sendSms($phone, $message)
     {
         $userName = env('MSEGAT_USERNAME');
         $userSender = env('MSEGAT_SENDR_NAME');
         $apiKey = env('MSEGAT_APIKEY');
-        $ch = curl_init();
+        $fields = array(
+            "userName" => "$userName",
+            "numbers" => "966$phone",
+            "userSender" => "$userSender",
+            "apiKey" => "$apiKey",
+            "msg" => "$message");
 
-        curl_setopt($ch, CURLOPT_URL, "https://www.msegat.com/gw/sendsms.php");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($ch, CURLOPT_HEADER, TRUE);
-
-        curl_setopt($ch, CURLOPT_POST, TRUE);
-
-        $fields = <<<EOT
-{
-  "userName": "$userName",
-  "numbers": "966$phone",
-  "userSender": "$userSender",
-  "apiKey": "$apiKey",
-  "msg": "$message"
-}
-EOT;
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            "Content-Type: application/json",));
-
-        $response = curl_exec($ch);
-        $info = curl_getinfo($ch);
-        curl_close($ch);
-
-//        var_dump($info["http_code"]);
-//        var_dump($response);
-        return $response;
+        return $response = Http::post('https://www.msegat.com/gw/sendsms.php', $fields);
     }
 }
