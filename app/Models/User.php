@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notification;
 /**
  * @SWG\Definition(
  *      definition="User",
- *      required={"name", "mobile", "role", "status", "password"},
+ *      required={"name", "mobile", "role", "status", "password", "status"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -31,6 +31,11 @@ use Illuminate\Notifications\Notification;
  *      @SWG\Property(
  *          property="mobile",
  *          description="mobile",
+ *          type="string"
+ *      ),
+ *  @SWG\Property(
+ *          property="status",
+ *          description="account status 1 for verfied acount, 2 for new",
  *          type="string"
  *      ),
  *      @SWG\Property(
@@ -105,7 +110,7 @@ class User extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'password', 'ads_type', 'otp'
+        'name', 'email', 'mobile', 'password', 'ads_type', 'otp', 'status'
     ];
 
     /**

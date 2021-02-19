@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'password', 'ads_type','device_token', 'otp'
+        'name', 'email', 'mobile', 'password', 'ads_type','device_token', 'otp', 'status'
     ];
 
     /**
@@ -35,4 +35,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+      /**
+     * @return HasMany
+     **/
+    public function images()
+    {
+        return $this->hasMany(Image::class, 'user_id');
+    }
+
+    public function ads()
+    {
+        return $this->hasMany(Adv::class, 'user_id');
+    }
 }

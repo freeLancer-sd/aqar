@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Str;
 use Validator;
-use GuzzleHttp\Client;
 
 class AuthAPIController extends Controller
 {
