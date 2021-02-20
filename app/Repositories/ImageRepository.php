@@ -42,24 +42,6 @@ class ImageRepository extends BaseRepository
         return ImageModel::class;
     }
 
-//    public function createApi(Request $request)
-//    {
-//        $folderPath = $request->fileName;
-//        if ($request->hasfile('images')) {
-//            $image = $request->file('images');
-//            $imageModel = new ImageModel();
-//            $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
-//            $img = Image::make($image);
-//            $img->save(public_path($path));
-//            $imageModel->name = $image->getClientOriginalName();
-//            $imageModel->url = url("/$path");
-//            $imageModel->property_id = $request->property_id;
-//            $imageModel->user_id = $request->user_id;
-//            $imageModel->save();
-//            return $imageModel;
-//        }
-//    }
-
     public function createApi(Request $request)
     {
 
@@ -74,7 +56,6 @@ class ImageRepository extends BaseRepository
             }
         }
         return false;
-
     }
 
     private function save_property(Request $request)
@@ -86,9 +67,7 @@ class ImageRepository extends BaseRepository
         $img = Image::make($image);
 
         /* insert watermark at bottom-right corner with 10px offset */
-//        $img->insert(public_path('mark.png'), 'bottom-right', 10, 10);
-        $img->insert(public_path('mark.png'), 'top', 50, 50);
-        $img->save(public_path($path));
+        $img->insert(public_path('mark.png'), 'bottom-right', 50, 50);
         $imageModel->name = $image->getClientOriginalName();
         $imageModel->url = url("/$path");
         $imageModel->property_id = $request->property_id;
@@ -102,28 +81,18 @@ class ImageRepository extends BaseRepository
     {
         $folderPath = $request->fileName;
         $image = $request->file('images');
-//        $path = "upload/$folderPath/" . 'profile_u_' . $request->user_id . '.' . $image->getClientOriginalExtension();
         $path = "upload/$folderPath/" . 'profile_u_' . $request->user_id . '.' . 'png';
 
         $imageModel = ImageModel::where('user_id', $request->user_id)
             ->first();
-//            ->firstOrCreate([
-//            'name' => $image->getClientOriginalName(),
-//            'url' => url("/$path"),
-//            'user_id' => $request->user_id
-//        ]);
         $img = Image::make($image)->insert(public_path('mark.png'), 'bottom-right', 50, 50)->save(public_path($path));
-        /* insert watermark at bottom-right corner with 10px offset */
-//        $img->insert(public_path('mark.png'), 'bottom-right', 50, 50);
-//        $img->save(public_path($path));
         if ($imageModel) {
             $imageModel->name = $image->getClientOriginalName();
             $imageModel->url = url("/$path");
             $imageModel->user_id = $request->user_id;
             $imageModel->save();
             return $imageModel;
-        }
-        else{
+        } else {
             $imageModel = new ImageModel();
             $imageModel->name = $image->getClientOriginalName();
             $imageModel->url = url("/$path");
