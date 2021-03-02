@@ -64,10 +64,8 @@ class ImageRepository extends BaseRepository
         $image = $request->file('images');
         $imageModel = new ImageModel();
         $path = "upload/$folderPath/" . uniqid() . '.' . $image->getClientOriginalExtension();
-        $img = Image::make($image);
-
         /* insert watermark at bottom-right corner with 10px offset */
-        $img->insert(public_path('mark.png'), 'bottom-right', 10, 10);
+        $img = Image::make($image)->insert(public_path('mark.png'), 'bottom-right', 10, 10)->save(public_path($path));
         $imageModel->name = $image->getClientOriginalName();
         $imageModel->url = url("/$path");
         $imageModel->property_id = $request->property_id;
