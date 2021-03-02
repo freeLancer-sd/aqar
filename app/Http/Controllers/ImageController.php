@@ -33,7 +33,7 @@ class ImageController extends AppBaseController
     /**
      * Show the form for creating a new Image.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|Response
      */
     public function create()
     {
@@ -45,7 +45,7 @@ class ImageController extends AppBaseController
      *
      * @param CreateImageRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|Response
      */
     public function store(CreateImageRequest $request)
     {
