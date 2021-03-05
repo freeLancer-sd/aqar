@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\DataTables\PropertyDataTable;
 use App\Http\Requests\CreatePropertyRequest;
 use App\Http\Requests\UpdatePropertyRequest;
+use App\Models\Property;
 use App\Models\PropertyCategory;
 use App\Repositories\PropertyRepository;
+use Auth;
 use Flash;
+use Illuminate\Http\Request;
 use Response;
 
 class PropertyController extends AppBaseController
@@ -34,12 +37,14 @@ class PropertyController extends AppBaseController
     /**
      * Show the form for creating a new Property.
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $cat = PropertyCategory::all()->pluck( 'title', 'id');
-        return view('properties.create', compact('cat'));
+        $cat = PropertyCategory::all()->pluck('title', 'id');
+        $property = new Property();
+        $property->fill($request->old());
+        return view('properties.create', compact('cat', 'property'));
     }
 
     /**
@@ -51,8 +56,6 @@ class PropertyController extends AppBaseController
      */
     public function store(CreatePropertyRequest $request)
     {
-        $input = $request->all();
-
         $this->propertyRepository->new_create($request);
 
         Flash::success(__('lang.messages.saved', ['model' => __('models/properties.singular')]));
@@ -107,7 +110,7 @@ class PropertyController extends AppBaseController
      * @param int $id
      * @param UpdatePropertyRequest $request
      *
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|Response
      */
     public function update($id, UpdatePropertyRequest $request)
     {
@@ -119,7 +122,7 @@ class PropertyController extends AppBaseController
             return redirect(route('properties.index'));
         }
 
-        $property = $this->propertyRepository->update($request->all(), $id);
+        $property = $this->propertyRepository->new_update($request, $id);
 
         Flash::success(__('lang.messages.updated', ['model' => __('models/properties.singular')]));
 

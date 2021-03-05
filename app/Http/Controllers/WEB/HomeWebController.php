@@ -13,10 +13,10 @@ class HomeWebController extends Controller
     public function index()
     {
 //        return
-        $pays = Property::where('property_type', 'بيع')->get()->take(10);
+        $pays = Property::all();
         $rents = Property::where('property_type', 'إيجار')->get()->take(10);
         return view('welcome', compact(
-            'pays', 'rents'
+            'pays', $pays, 'rents', $rents
         ));
     }
 }

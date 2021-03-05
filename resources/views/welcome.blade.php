@@ -52,20 +52,20 @@
                         <div class="carousel-inner">
 
                             @foreach($pays as $pay)
-                                <div class="carousel-item " style="max-height:300px">
-                                    <img src="{{$pay->images[0]->url}}" alt="Property 1"
-                                         style="max-height:200px;width:400px"/>
+                                <div class="carousel-item active" style="max-height:300px">
+                                    <img src="{{$pay->images[0]->url}}" alt="Property 1" style="max-height:200px;width:400px"/>
                                     <div class="property-details">
                                         <p class="price">{{$pay->price}}</p>
-                                        <span class="beds">{{$pay->price}}</span>
-                                        <span class="baths">{{$pay->price}}</span>
+                                        <span class="beds">{{$pay->baths}}</span>
+                                        <span class="baths">{{$pay->baths}}</span>
                                         <span class="sqft">{{$pay->space}}</span>
                                         <address>
-                                            480 12th, Unit 14, San Francisco, CA
+                                            {{$pay->address}}
                                         </address>
                                     </div>
                                 </div>
                             @endforeach
+
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
                            data-slide="prev">
@@ -325,7 +325,6 @@
                 </div>
 
             </section>
-
 
 
         </main>

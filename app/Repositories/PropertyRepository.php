@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Image as ImageModel;
 use App\Models\Property;
+use Auth;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -85,16 +86,15 @@ class PropertyRepository extends BaseRepository
     public function new_create(Request $request)
     {
         $input = $request->all();
-
+        $input['user_id'] = Auth::user()->id;
         $model = $this->model->newInstance($input);
 
         $model->save();
 //         $model;
         if ($model && $request->hasFile('image')) {
 
-
             $imageModel = new ImageModel();
-            foreach ($request->file('filenames') as $file) {
+            foreach ($request->file('image') as $file) {
                 $path = 'upload/property/' . uniqid() . '.' . $file->getClientOriginalExtension();
                 $img = Image::make($file);
                 $img->save(public_path($path));
@@ -106,5 +106,38 @@ class PropertyRepository extends BaseRepository
             }
         }
         return $model;
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|void
+     */
+    public function new_update(Request $request, $id)
+    {
+        $input = $request->all();
+        $query = $this->model->newQuery();
+        $model = $query->findOrFail($id);
+        $model->fill($input);
+        if ($request->hasFile('image')) {
+            $this->saveImage($request);
+        }
+        $model->save();
+
+    }
+
+    public function saveImage(Request $request)
+    {
+        $imageModel = new ImageModel();
+        foreach ($request->file('image') as $file) {
+            $path = 'upload/property/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $img = Image::make($file);
+            $img->save(public_path($path));
+            $imageModel->name = $file->getClientOriginalName();
+            $imageModel->url = url("/$path");
+            $imageModel->property_id = $id;
+            $imageModel->save();
+            return $imageModel;
+        }
     }
 }
