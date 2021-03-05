@@ -16,7 +16,7 @@ class HomeWebController extends Controller
 //        return
         $pays = Property::where('property_type', 'بيع')->get()->take(10);
         $rents = Property::where('property_type', 'إيجار')->get()->take(10);
-        return$offers = Image::where('property_id', '!=', null)->with('property')->get();
+        $offers = Image::where('property_id', '!=', null)->with('property')->get();
         return view('welcome', compact(
             'pays', $pays, 'rents', $rents, 'offers', $offers
         ));
