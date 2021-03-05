@@ -51,69 +51,31 @@
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
-                            <div class="carousel-item " style="max-height:300px">
-                                <img src="img/loginbg.jpeg" alt="Property 1" style="max-height:200px;width:400px"/>
-                                <div class="property-details">
-                                    <p class="price">$3,400,000</p>
-                                    <span class="beds">6 beds</span>
-                                    <span class="baths">4 baths</span>
-                                    <span class="sqft">4,250 sqft.</span>
-                                    <address>
-                                        480 12th, Unit 14, San Francisco, CA
-                                    </address>
+                            @foreach($pays as $pay)
+                                <div class="carousel-item " style="max-height:300px">
+                                    <img src="{{$pay->images->url[0]}}" alt="Property 1"
+                                         style="max-height:200px;width:400px"/>
+                                    <div class="property-details">
+                                        <p class="price">{{$pay->price}}</p>
+                                        <span class="beds">{{$pay->price}}</span>
+                                        <span class="baths">{{$pay->price}}</span>
+                                        <span class="sqft">{{$pay->space}}</span>
+                                        <address>
+                                            480 12th, Unit 14, San Francisco, CA
+                                        </address>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="carousel-item " style="max-height:300px">
-
-                                <img src="img/loginbg.jpeg" alt="Property 1" style="max-height:200px;width:400px"/>
-
-                                <div class="property-details">
-                                    <p class="price">$3,400,000</p>
-                                    <span class="beds">6 beds</span>
-                                    <span class="baths">4 baths</span>
-                                    <span class="sqft">4,250 sqft.</span>
-                                    <address>
-                                        480 12th, Unit 14, San Francisco, CA
-                                    </address>
-                                </div>
-
-                            </div>
-                            <div class="carousel-item " style="max-height:300px">
-                                <img src="img/loginbg.jpeg" alt="Property 1" style="max-height:200px;width:400px"/>
-                                <div class="property-details">
-                                    <p class="price">$3,400,000</p>
-                                    <span class="beds">6 beds</span>
-                                    <span class="baths">4 baths</span>
-                                    <span class="sqft">4,250 sqft.</span>
-                                    <address>
-                                        480 12th, Unit 14, San Francisco, CA
-                                    </address>
-                                </div>
-                            </div>
-                            <div class="carousel-item active" style="max-height:300px">
-                                <img src="img/loginbg.jpeg" alt="Property 1" style="max-height:200px;width:400px"/>
-                                <div class="property-details">
-                                    <p class="price">$3,400,000</p>
-                                    <span class="beds">6 beds</span>
-                                    <span class="baths">4 baths</span>
-                                    <span class="sqft">4,250 sqft.</span>
-                                    <address>
-                                        480 12th, Unit 14, San Francisco, CA
-                                    </address>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
                            data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">السابق</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselExampleControls" role="button"
                            data-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">التالي</span>
                         </a>
                     </div>
                 </div>
