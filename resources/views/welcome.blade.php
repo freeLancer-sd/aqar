@@ -51,8 +51,8 @@
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
 
-                            @foreach($pays as $pay)
-                                <div class="carousel-item active" style="max-height:300px">
+                            @foreach($pays as  $key=> $pay)
+                                <div class="carousel-item  {{$key == 0 ? 'active':''}}" style="max-height:300px">
                                     @if(isset($pay->images[0]))
                                         <img src="{{$pay->images[0]->url}}" alt="Property 1"
                                              style="max-height:200px;width:400px"/>
