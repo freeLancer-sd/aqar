@@ -93,7 +93,39 @@
             <!-- الاسلايدر الثاني  عروض الايجار  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$    -->
             <div class="container row">
                 <div class="col-md-8">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
 
+                            @foreach($rents as  $key=> $rent)
+                                <div class="carousel-item  {{$key == 0 ? 'active':''}}" style="max-height:300px">
+                                    @if(isset($rent->images[0]))
+                                        <img src="{{$rent->images[0]->url}}" alt="Property 1"
+                                             style="max-height:200px;width:400px"/>
+                                    @endif
+                                    <div class="property-details">
+                                        <p class="price">{{$rent->price}}</p>
+                                        <span class="beds">{{$rent->baths}}</span>
+                                        <span class="baths">{{$rent->baths}}</span>
+                                        <span class="sqft">{{$rent->space}}</span>
+                                        <address>
+                                            {{$rent->address}}
+                                        </address>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                           data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">السابق</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                           data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">التالي</span>
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-4">
                     <h1 class="text-warning text-right">عروض الايجار</h1>
@@ -107,70 +139,20 @@
                 <div class="container">
                     <h2>الــعروض</h2>
                     <div id="properties-slider" class="slick">
-                        <div>
-                            <img src="img/loginbg.jpeg" alt="Property 1"/>
-                            <div class="property-details">
-                                <p class="price">$3,400,000</p>
-                                <span class="beds">6 beds</span>
-                                <span class="baths">4 baths</span>
-                                <span class="sqft">4,250 sqft.</span>
-                                <address>
-                                    480 12th, Unit 14, San Francisco, CA
-                                </address>
+                        @foreach($offers as $offer)
+                            <div>
+                                <img src="{{$offer->url}}" alt="{{$offer->title}}"/>
+                                <div class="property-details">
+                                    <p class="price">{{$offer->property->price}}</p>
+                                    <span class="beds">{{$offer->property->beds}}</span>
+                                    <span class="baths">{{$offer->property->baths}}</span>
+                                    <span class="sqft">{{$offer->property->space}}</span>
+                                    <address>
+                                        {{$offer->property->address}}
+                                    </address>
+                                </div>
                             </div>
-                        </div>
-
-                        <div>
-                            <img src="img/loginbg.jpeg" alt="Property 1"/>
-                            <div class="property-details">
-                                <p class="price">$3,400,000</p>
-                                <span class="beds">6 beds</span>
-                                <span class="baths">4 baths</span>
-                                <span class="sqft">4,250 sqft.</span>
-                                <address>
-                                    480 12th, Unit 14, San Francisco, CA
-                                </address>
-                            </div>
-                        </div>
-
-                        <div>
-                            <img src="img/loginbg.jpeg" alt="Property 1"/>
-                            <div class="property-details">
-                                <p class="price">$3,400,000</p>
-                                <span class="beds">6 beds</span>
-                                <span class="baths">4 baths</span>
-                                <span class="sqft">4,250 sqft.</span>
-                                <address>
-                                    480 12th, Unit 14, San Francisco, CA
-                                </address>
-                            </div>
-                        </div>
-
-                        <div>
-                            <img src="img/loginbg.jpeg" alt="Property 1"/>
-                            <div class="property-details">
-                                <p class="price">$3,400,000</p>
-                                <span class="beds">6 beds</span>
-                                <span class="baths">4 baths</span>
-                                <span class="sqft">4,250 sqft.</span>
-                                <address>
-                                    480 12th, Unit 14, San Francisco, CA
-                                </address>
-                            </div>
-                        </div>
-
-                        <div>
-                            <img src="img/loginbg.jpeg" alt="Property 1"/>
-                            <div class="property-details">
-                                <p class="price">$3,400,000</p>
-                                <span class="beds">6 beds</span>
-                                <span class="baths">4 baths</span>
-                                <span class="sqft">4,250 sqft.</span>
-                                <address>
-                                    480 12th, Unit 14, San Francisco, CA
-                                </address>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class=" text-center ">
                         <a class="btn btn-warning text-white">الاعلانات العــــــــروض</a>
