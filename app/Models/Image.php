@@ -118,7 +118,11 @@ class Image extends Model
      **/
     public function property()
     {
-        return $this->belongsTo(Property::class, 'property_id');
+        return $this->belongsTo(Property::class, 'property_id')
+            ->where('price', '!=', null)
+            ->where('property_age', '!=', null)
+            ->where('address', '!=', null)
+            ->where('space', '!=', null);
     }
 
     /**

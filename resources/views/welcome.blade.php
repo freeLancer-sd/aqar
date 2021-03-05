@@ -144,8 +144,8 @@
                                 <img src="{{$offer->url}}" alt="{{$offer->title}}"/>
                                 <div class="property-details">
                                     <p class="price">{{$offer->property->price}}</p>
-                                    <span class="beds">{{$offer->property->beds}}</span>
-                                    <span class="baths">{{$offer->property->baths}}</span>
+                                    <span class="beds">{{$offer->property->property_age}}</span>
+{{--                                    <span class="baths">{{$offer->property->baths}}</span>--}}
                                     <span class="sqft">{{$offer->property->space}}</span>
                                     <address>
                                         {{$offer->property->address}}
