@@ -143,7 +143,9 @@
                             <div>
                                 <img src="{{$offer->url}}" alt="{{$offer->title}}"/>
                                 <div class="property-details">
+                                    @if(isset($offer->property->price))
                                     <p class="price">{{$offer->property->price}}</p>
+                                    @endif
                                     <span class="beds">{{$offer->property->property_age}}</span>
 {{--                                    <span class="baths">{{$offer->property->baths}}</span>--}}
                                     <span class="sqft">{{$offer->property->space}}</span>
