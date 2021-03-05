@@ -53,7 +53,10 @@
 
                             @foreach($pays as $pay)
                                 <div class="carousel-item active" style="max-height:300px">
-                                    <img src="{{$pay->images[0]->url}}" alt="Property 1" style="max-height:200px;width:400px"/>
+                                    @if(isset($pay->images[0]))
+                                        <img src="{{$pay->images[0]->url}}" alt="Property 1"
+                                             style="max-height:200px;width:400px"/>
+                                    @endif
                                     <div class="property-details">
                                         <p class="price">{{$pay->price}}</p>
                                         <span class="beds">{{$pay->baths}}</span>
