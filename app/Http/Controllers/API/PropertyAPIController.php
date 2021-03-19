@@ -3,17 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreatePropertyAPIRequest;
-use App\Http\Requests\API\UpdatePropertyAPIRequest;
 use App\Models\Property;
-use App\Notifications\PropertyNotification;
 use App\Repositories\PropertyRepository;
-use App\User;
 use Exception;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
-use Illuminate\Support\Facades\Notification;
 
 use Response;
 
@@ -24,7 +20,7 @@ use Response;
 class PropertyAPIController extends AppBaseController
 {
     /** @var  PropertyRepository */
-    private $propertyRepository;
+    private PropertyRepository $propertyRepository;
 
     public function __construct(PropertyRepository $propertyRepo)
     {
@@ -35,6 +31,7 @@ class PropertyAPIController extends AppBaseController
      * @param Request $request
      * @return LengthAwarePaginator|Response
      *
+     * @throws Exception
      * @SWG\Get(
      *      path="/properties",
      *      summary="Get a listing of the Properties.",
