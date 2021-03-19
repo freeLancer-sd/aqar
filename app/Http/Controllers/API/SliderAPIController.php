@@ -58,9 +58,7 @@ class SliderAPIController extends AppBaseController
      */
     public function index()
     {
-        $sliders = cache()->remember('slide', 60 * 60 * 120, function () {
-            $this->sliderRepository->allApi();
-        });
+        $sliders = $this->sliderRepository->allApi();
 
         return $this->sendResponse(
             $sliders->toArray(),
