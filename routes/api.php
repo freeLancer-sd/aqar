@@ -23,7 +23,7 @@ Route::post('properties/filter', 'PropertyAPIController@filterData');
 Route::get('properties/user/{id}', 'PropertyAPIController@user');
 Route::get('property/cats_types', 'PropertyCategoryAPIController@catType');
 
-Route::get('ads_seen/{id}', 'PropertyAPIController@ads_seen');
+Route::get('ads_seen/{id}', 'PropertyAPIController@adsSeen');
 
 Route::get('property/images/{id}', 'PropertyAPIController@getImage');
 
