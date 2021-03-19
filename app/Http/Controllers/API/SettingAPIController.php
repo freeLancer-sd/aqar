@@ -25,7 +25,7 @@ class SettingAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      *
      * @SWG\Get(
      *      path="/settings",
@@ -57,7 +57,9 @@ class SettingAPIController extends AppBaseController
      */
     public function index()
     {
-        $settings = $this->settingRepository->all()->first();
+        $settings = cache()->remember('setting', 60 * 60 * 360, function () {
+            $this->settingRepository->all()->first();
+        });
 
         return $this->sendResponse(
             $settings,

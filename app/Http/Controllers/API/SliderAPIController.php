@@ -26,7 +26,7 @@ class SliderAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      *
      * @SWG\Get(
      *      path="/sliders",
@@ -58,7 +58,9 @@ class SliderAPIController extends AppBaseController
      */
     public function index()
     {
-        $sliders = $this->sliderRepository->allApi();
+        $sliders = cache()->remember('slide', 60 * 60 * 120, function () {
+            $this->sliderRepository->allApi();
+        });
 
         return $this->sendResponse(
             $sliders->toArray(),
