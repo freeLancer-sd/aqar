@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Requests\API\CreatePropertyCategoryAPIRequest;
 use App\Http\Requests\API\UpdatePropertyCategoryAPIRequest;
+use App\Models\City;
+use App\Models\District;
 use App\Models\PropertyCategory;
 use App\Repositories\PropertyCategoryRepository;
 use Illuminate\Http\Request;
