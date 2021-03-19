@@ -303,11 +303,17 @@ class PropertyCategoryAPIController extends AppBaseController
 
     public function catType()
     {
-        return $response = [
-            'category' => PropertyCategory::where('status', 1)->get(),
-            'all_category' => PropertyCategory::all(),
-            'city' => City::all(),
-            'district' => District::all()
-        ];
+        try {
+            return $response = cache()->remember('city_cat', 60 * 60 * 60, function () {
+                [
+                    'category' => PropertyCategory::where('status', 1)->get(),
+                    'all_category' => PropertyCategory::all(),
+                    'city' => City::all(),
+                    'district' => District::all()
+                ];
+            });
+        } catch (\Exception $e) {
+            return $e->getMessage(). $e->getLine();
+        }
     }
 }
