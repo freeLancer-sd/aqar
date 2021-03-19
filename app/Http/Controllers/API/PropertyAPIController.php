@@ -9,6 +9,8 @@ use App\Notifications\PropertyNotification;
 use App\Repositories\PropertyRepository;
 use App\User;
 use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Notification;
@@ -31,7 +33,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param Request $request
-     * @return Response
+     * @return LengthAwarePaginator|Response
      *
      * @SWG\Get(
      *      path="/properties",
@@ -69,24 +71,32 @@ class PropertyAPIController extends AppBaseController
         $keyword['user_id'] = $request->get('user_id');
         if ($keyword['propertyType'] == 'null')
             $keyword['propertyType'] = null;
-//        return $keyword;
-//        if (!isset($keyword['propertyType']){
         if (!empty($keyword['catId']) && !empty($keyword['user_id'])) {
-            return $properties = Property::where('user_id', $keyword['user_id'])
-                ->where('property_categorie_id', $keyword['catId'])
-                ->orderBy('id', 'DESC')->paginate(40);
+            return $properties = cache()->remember('get_property_two', 60 * 60 * 5, function () use ($keyword) {
+                Property::where('user_id', $keyword['user_id'])
+                    ->where('property_categorie_id', $keyword['catId'])
+                    ->orderBy('id', 'DESC')->paginate(40);
+            });
+
         } elseif (!empty($keyword['user_id'])) {
-            return $properties = Property::where('user_id', $keyword['user_id'])
-                ->orderBy('id', 'DESC')->paginate(40);
+            return $properties = cache()->remember('get_property_two', 60 * 60 * 5, function () use ($keyword) {
+                Property::where('user_id', $keyword['user_id'])
+                    ->orderBy('id', 'DESC')->paginate(40);
+            });
         } elseif (!empty($keyword['catId']) && $keyword['propertyType']) {
-            return $properties = Property::where('property_categorie_id', $keyword['catId'])
-                ->where('property_type', $keyword['propertyType'])
-                ->where('status', 3)
-                ->orderBy('id', 'DESC')->paginate(40);
+            return $properties = cache()->remember('get_property_two', 60 * 60 * 5, function () use ($keyword) {
+                Property::where('property_categorie_id', $keyword['catId'])
+                    ->where('property_type', $keyword['propertyType'])
+                    ->where('status', 3)
+                    ->orderBy('id', 'DESC')->paginate(40);
+            });
+
         } elseif (!empty($keyword['catId'])) {
-            return $properties = Property::where('property_categorie_id', $keyword['catId'])
-                ->where('status', 3)
-                ->orderBy('id', 'DESC')->paginate(40);
+            return $properties = cache()->remember('get_property_two', 60 * 60 * 5, function () use ($keyword) {
+                Property::where('property_categorie_id', $keyword['catId'])
+                    ->where('status', 3)
+                    ->orderBy('id', 'DESC')->paginate(40);
+            });
         } else {
             return $properties = $this->propertyRepository->index();
         }
@@ -94,7 +104,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param CreatePropertyAPIRequest $request
-     * @return \Illuminate\Http\JsonResponse|Response
+     * @return JsonResponse|Response
      *
      * @SWG\Post(
      *      path="/properties",
@@ -143,7 +153,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
+     * @return JsonResponse|Response
      *
      * @SWG\Get(
      *      path="/properties/{id}",
@@ -182,7 +192,9 @@ class PropertyAPIController extends AppBaseController
     public function show($id)
     {
         /** @var Property $property */
-        $property = $this->propertyRepository->find($id);
+        $property = cache()->remember('get_property_two', 60 * 60 * 5, function () use ($id) {
+            $this->propertyRepository->find($id);
+        });
 
         if (empty($property)) {
             return $this->sendError(
@@ -198,7 +210,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      *
      * @SWG\Get(
      *      path="/properties/user/{id}",
@@ -255,7 +267,7 @@ class PropertyAPIController extends AppBaseController
     /**
      * @param int $id
      * @param Request $request
-     * @return Response
+     * @return JsonResponse
      *
      * @SWG\Put(
      *      path="/properties/{id}",
@@ -324,7 +336,7 @@ class PropertyAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
+     * @return JsonResponse
      *
      * @throws Exception
      * @SWG\Delete(
@@ -506,4 +518,22 @@ class PropertyAPIController extends AppBaseController
         $property = new Property();
         $property->seenUpdate($id);
     }
+
+    public function getImage($id)
+    {
+        $images = Property::where('id', $id)->first();
+        if ($images) {
+            return $images->images;
+        }
+        return 'error';
+    }
+
+    public function adsSeen($id)
+    {
+        $property = Property::find($id);
+        $property->seen = $property->seen + 1;
+        $property->timestamps = false;
+        $property->save();
+    }
+
 }

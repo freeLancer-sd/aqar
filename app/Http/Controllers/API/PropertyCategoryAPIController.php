@@ -244,7 +244,7 @@ class PropertyCategoryAPIController extends AppBaseController
 
     /**
      * @param int $id
-     * @return Response
+     * @return \Illuminate\Http\JsonResponse
      *
      * @SWG\Delete(
      *      path="/propertyCategories/{id}",
@@ -297,5 +297,15 @@ class PropertyCategoryAPIController extends AppBaseController
             $id,
             __('lang.messages.deleted', ['model' => __('models/propertyCategories.singular')])
         );
+    }
+
+    public function catType()
+    {
+        return $response = [
+            'category' => PropertyCategory::where('status', 1)->get(),
+            'all_category' => PropertyCategory::all(),
+            'city' => City::all(),
+            'district' => District::all()
+        ];
     }
 }

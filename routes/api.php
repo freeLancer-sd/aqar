@@ -1,16 +1,8 @@
 <?php
 
-use App\Models\City;
-use App\Models\District;
-use App\Models\Property;
-use App\Models\PropertyCategory;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::post('auth/login', 'AuthAPIController@login');
 Route::post('auth/register', 'AuthAPIController@register');
 Route::post('auth/resend_otp', 'AuthAPIController@reSendOtpMessage');
@@ -29,30 +21,11 @@ Route::resource('properties', 'PropertyAPIController');
 Route::post('properties/search', 'PropertyAPIController@search');
 Route::post('properties/filter', 'PropertyAPIController@filterData');
 Route::get('properties/user/{id}', 'PropertyAPIController@user');
-Route::get('property/cats_types', function () {
-    return $response = [
-        'category' => PropertyCategory::where('status', 1)->get(),
-        'all_category' => PropertyCategory::all(),
-        'city' => City::all(),
-        'district' => District::all()
-    ];
-});
+Route::get('property/cats_types', 'PropertyCategoryAPIController@catType');
 
-Route::get('ads_seen/{id}', function ($id) {
-    $property = Property::find($id);
-    $property->seen = $property->seen + 1;
-    $property->timestamps = false;
-    $property->save();
-});
+Route::get('ads_seen/{id}', 'PropertyAPIController@ads_seen');
 
-Route::get('property/images/{id}', function ($id) {
-
-    $images = Property::where('id', $id)->first();
-    if ($images) {
-        return $images->images;
-    }
-    return 'error';
-});
+Route::get('property/images/{id}', 'PropertyAPIController@getImage');
 
 Route::resource('images', 'ImageAPIController');
 
