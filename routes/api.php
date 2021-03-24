@@ -35,8 +35,10 @@ Route::resource('conditions', 'ConditionAPIController');
 
 Route::get('seatings', 'SettingAPIController@index');
 Route::post('seatings', 'SettingAPIController@updateUser');
-
 Route::resource('cities', 'CityAPIController');
+Route::get('count_notifications', 'NotificationsAPIController@count');
+Route::get('notifications', 'NotificationsAPIController@index');
+
 
 Route::resource('districts', 'DistrictAPIController');
 Route::get('districts/byCity/{city}', 'DistrictAPIController@byCity');
