@@ -17,7 +17,7 @@ class NotificationsAPIController extends AppBaseController
     public function index()
     {
         $message = Message::all();
-        if (!empty($message) ) {
+        if ($message->isNotEmpty()) {
             return response()->json([
                 'data' => $message,
                 'status' => true
@@ -29,7 +29,7 @@ class NotificationsAPIController extends AppBaseController
     public function count()
     {
         $count = Message::all()->count();
-        if (!empty($count)) {
+        if ($count) {
             return response()->json([
                 'data' => $count,
                 'status' => true
