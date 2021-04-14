@@ -26,6 +26,24 @@ class FavoriteAPIController extends AppBaseController
         }
         return false;
     }
-    public function saveFavorite($userId, $propertyId){}
-    public function deleteFavorite($userId, $propertyId){}
+
+    public function saveFavorite(Request $request){
+        $favorite = new Favorite();
+        $favorite->user_id = $request->userId;
+        $favorite->property_id = $request->propertyId;
+        $favorite->save();
+        if($favorite){
+        return true;
+        }
+        return false;
+    }
+
+    public function deleteFavorite($Id){
+        $favorite = Favorite::delete($Id);
+        if($favorite){
+        return true;
+    }
+    return false;
+        
+    }
 }
