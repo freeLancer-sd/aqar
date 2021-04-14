@@ -44,3 +44,8 @@ Route::resource('districts', 'DistrictAPIController');
 Route::get('districts/byCity/{city}', 'DistrictAPIController@byCity');
 
 Route::resource('settings', 'SettingAPIController');
+
+Route::get('favorite', 'FavoriteAPIController@index')->name('favorite');
+Route::get('get_favorite', 'FavoriteAPIController@getFavorite');
+Route::post('save_favorite', 'FavoriteAPIController@saveFavorite');
+Route::delete('delete_favorite', 'FavoriteAPIController@deleteFavorite');
