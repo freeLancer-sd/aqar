@@ -15,17 +15,20 @@ use Response;
 class FavoriteAPIController extends AppBaseController
 {
     public function index($userId){
-        return $favorite = Favorite::where('user_id', $userId)->get();
+         $favorite = Favorite::where('user_id', $userId)
+         ->with('property')
+       ->get();
+        return response()->json(['data'=> $favorite]);
     }
 
     public function getFavorite($userId, $propertyId){
          $favorite = Favorite::where('user_id', $userId)
         ->where('property_id', $propertyId)->count();
         if($favorite){
-            return true;
+            return response()->json(true);
         }
-        return false;
-    }
+        return response()->json(false);
+        }
 
     public function saveFavorite(Request $request){
         $favorite = new Favorite();
@@ -33,17 +36,19 @@ class FavoriteAPIController extends AppBaseController
         $favorite->property_id = $request->propertyId;
         $favorite->save();
         if($favorite){
-        return true;
+        return response()->json(true);
         }
-        return false;
+        return response()->json(false);
     }
 
-    public function deleteFavorite($Id){
-        $favorite = Favorite::delete($Id);
+    public function deleteFavorite($userId, $propertyId){
+        $favorite = Favorite::where('user_id', $userId)
+        ->where('property_id', $propertyId);
+        $favorite= $favorite->delete();
         if($favorite){
-        return true;
-    }
-    return false;
+            return response()->json(true);
+        }
+        return response()->json(false);
         
     }
 }

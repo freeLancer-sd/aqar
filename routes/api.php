@@ -47,5 +47,5 @@ Route::resource('settings', 'SettingAPIController');
 
 Route::get('favorite/{userId}', 'FavoriteAPIController@index')->name('favorite');
 Route::get('get_favorite/{userId}/{propertyId}', 'FavoriteAPIController@getFavorite');
+Route::get('delete_favorite/{userId}/{propertyId}', 'FavoriteAPIController@deleteFavorite');
 Route::post('save_favorite', 'FavoriteAPIController@saveFavorite');
-Route::delete('delete_favorite/{id}', 'FavoriteAPIController@deleteFavorite');
