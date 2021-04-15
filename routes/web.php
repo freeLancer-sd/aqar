@@ -42,6 +42,7 @@ Route::middleware(['role'])->group(function () {
     Route::resource('conditions', 'ConditionController');
 
 
+    Route::resource('notifications', 'NotificationWebController');
     Route::post('/save-token', 'NotificationWebController@saveToken')->name('save-token');
     Route::post('/send-notification', 'NotificationWebController@sendNotification')->name('send.notification');
 

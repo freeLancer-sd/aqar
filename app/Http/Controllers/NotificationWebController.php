@@ -3,10 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Models\Message;
 use Illuminate\Http\Request;
+use Flash;
 
 class NotificationWebController extends Controller
 {
+
+    public function index(){
+        $messages = Message::all(); 
+        return view('notifications.index', compact('messages'));
+    }
+
+
+    public function create(){
+        return view('notifications.create');
+    }
+
+
+
+    public function store(Request $request){
+         $fcm = $request->fcm;
+         $message = Message::create($request->all());
+         if($fcm){
+            Flash::success(__('lang.messages.saved', ['model' => __('models/notifications.singular')]));
+             $this->sendNotification($request);
+         }
+        return redirect(route('notifications.index'));
+    }
+
+
     /**
      * Write code on Method
      *
@@ -25,15 +51,15 @@ class NotificationWebController extends Controller
      */
     public function sendNotification(Request $request)
     {
-        $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+        // $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
 
         $SERVER_API_KEY = env('FIREBASE_SERVER_KEY');
 
         $data = [
-            "to" => '/topics/admin',
+            "to" => '/topics/all',
             "notification" => [
                 "title" => $request->title,
-                "body" => $request->body,
+                "body" => $request->message,
             ]
         ];
         $dataString = json_encode($data);
